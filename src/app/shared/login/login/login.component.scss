@@ -1,0 +1,80 @@
+@import "src/assets/scss/style";
+//=============================== Login form ================================
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  margin: 40px 0 0 42px;
+  min-height: 80px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 440px;
+  padding: 0 48px;
+  height: 400px;
+  background: $white;
+  border: 1px solid $lightGray;
+  box-sizing: border-box;
+  border-radius: 8px;
+  &__title {
+    margin: 70px 0 26px 0;
+    h5 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 132%;
+      text-align: center;
+      color: $black;
+    }
+  }
+  &__form-control {
+    input {
+      width: 344px;
+      padding: 12px;
+      background: $white;
+      border: 1px solid $borderGray;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    label {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 130%;
+      margin-left: 15px;
+      margin-bottom: 2px;
+      letter-spacing: 0.03em;
+      color: $gray;
+    }
+  }
+  &__description {
+    margin-top: 16px;
+    text-align: center;
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 130%;
+      letter-spacing: 0.03em;
+      color: $gray;
+    }
+  }
+  &__submit {
+    margin-top: 32px;
+    button {
+      width: 344px;
+      height: 48px;
+      background: $blue;
+      opacity: 0.6;
+      box-shadow: 0px 1px 2px rgba(15, 86, 179, 0.2), 0px 2px 4px rgba(15, 86, 179, 0.2);
+      border-radius: 8px;
+
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+      text-transform: capitalize;
+      color: $lightBlue;
+    }
+  }
+}
