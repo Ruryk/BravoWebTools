@@ -1,0 +1,33 @@
+@import "null";
+
+body {
+  background: $backgroudPage;
+}
+
+.wrapper {
+  // max-width: $maxWidth;
+  // margin: 0 auto;
+  font-family: $fontfamily;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+  max-width: 100vw;
+}
+
+section.code .container,
+section.email .container,
+section.login .container {
+  div.row {
+    display: flex;
+  }
+  div.row:first-child {
+    justify-content: flex-start;
+    height: 30vh;
+  }
+  div.row:last-child {
+    justify-content: center;
+    height: 70vh;
+  }
+}
