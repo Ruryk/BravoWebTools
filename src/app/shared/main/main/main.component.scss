@@ -1,0 +1,45 @@
+@import "src/assets/scss/variables";
+
+mat-sidenav-container {
+  height: 100vh;
+  background: $backgroundPage;
+  color: $black;
+
+  .mat-drawer {
+    background: $backgroundPage;
+    color: black;
+    border-right: 1px solid $lightGray;
+  }
+
+  ::ng-deep mat-icon, ::ng-deep span {
+    color: $black;
+  }
+
+  ::ng-deep .mat-list-item-content {
+    img {
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
+    }
+    padding: 0 20px;
+  }
+
+  ::ng-deep .ng-tns-c193-2:first-child {
+  }
+  ::ng-deep .ng-tns-c193-2:last-child {
+    & mat-nav-list {
+      display: flex;
+      flex-direction: column;
+      & a.mat-list-item:last-child {
+        flex: 1 0 auto;
+        .mat-list-item-content{
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+
+
+
+}

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MainComponent } from './main/main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { MaterialUiModule } from '../material-ui/material-ui.module';
+import { SideNavModule } from '../side-nav/side-nav.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { MainRoutingModule } from './main-routing.module';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    MaterialUiModule,
+    SideNavModule
   ],
   exports: [
     MainComponent

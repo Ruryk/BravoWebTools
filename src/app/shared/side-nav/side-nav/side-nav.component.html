@@ -1,0 +1,33 @@
+<div class="sidenav_container" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <div fxLayout="column" fxLayoutGap="10px" style="height: 100%;">
+
+    <div class="user_menu">
+      <mat-nav-list>
+        <a mat-list-item>
+          <img *ngIf="sideNavState" class="jim" src="/assets/img/bravo-logo.png" alt="">
+          <img *ngIf="!sideNavState" class="jim" src="/assets/img/bravo-logo-min.png" alt="">
+        </a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let link of navigation">
+          <div class="img-container">
+            <img class="jim" [src]="'/assets/img/'+link.icon+'.png'" alt="">
+          </div>
+          <span [@animateText]="linkText ? 'show' : 'hide'">{{ link?.name }} </span>
+        </a>
+      </mat-nav-list>
+    </div>
+  </div>
+
+<!--  <span class="spacer"></span>-->
+<!--  <div fxLayout="row" fxLayoutAlign="end center" style="padding: 0px 10px;">-->
+<!--    <button mat-icon-button (click)="onSinenavToggle()">-->
+<!--      <mat-icon *ngIf="sideNavState">arrow_left</mat-icon>-->
+<!--      <mat-icon *ngIf="!sideNavState">arrow_right</mat-icon>-->
+<!--    </button>-->
+<!--  </div>-->
+</div>

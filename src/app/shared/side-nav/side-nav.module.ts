@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoginCodeComponent } from './login-code/login-code.component';
-import { LoginCodeRoutingModule } from './login-code-routing.module';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { SideNavRoutingModule } from './side-nav-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 
 @NgModule({
   declarations: [
-    LoginCodeComponent
+    SideNavComponent
   ],
   imports: [
     CommonModule,
-    LoginCodeRoutingModule,
+    SideNavRoutingModule,
     MaterialUiModule
   ],
   exports: [
-    LoginCodeComponent
+    SideNavComponent
   ]
 })
-export class LoginCodeModule {
-}
+export class SideNavModule { }

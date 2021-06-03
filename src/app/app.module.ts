@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SharedModule } from './shared/shared/shared.module';
+import { SidenavService } from './services/sidenav/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SharedModule } from './shared/shared/shared.module';
     StoreRouterConnectingModule.forRoot(),
     SharedModule
   ],
-  providers: [],
+  providers: [SidenavService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

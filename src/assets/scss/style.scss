@@ -1,19 +1,14 @@
 @import "null";
 
 body {
-  background: $backgroudPage;
-}
-
-.wrapper {
-  // max-width: $maxWidth;
-  // margin: 0 auto;
-  font-family: $fontfamily;
+  background: $backgroundPage;
 }
 
 main {
   display: flex;
   height: 100vh;
   max-width: 100vw;
+  font-family: $fontfamily;
 }
 
 section.code .container,
