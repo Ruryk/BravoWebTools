@@ -1,5 +1,10 @@
 @import "src/assets/scss/variables";
 
+.main_content{
+  padding: 25px 20px;
+  background: $backgroundPage;
+}
+
 mat-sidenav-container {
   height: 100vh;
   background: $backgroundPage;
@@ -39,7 +44,4 @@ mat-sidenav-container {
       }
     }
   }
-
-
-
 }

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './component/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { SideNavModule } from '../side-nav/side-nav.module';
+import { CustomersModule } from '../customers/customers.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SideNavModule } from '../side-nav/side-nav.module';
     CommonModule,
     MainRoutingModule,
     MaterialUiModule,
-    SideNavModule
+    SideNavModule,
+    CustomersModule
   ],
   exports: [
     MainComponent

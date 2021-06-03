@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoginComponent } from './component/login.component';
-import { LoginRoutingModule } from './login-routing.module';
+import { CustomersComponent } from './component/customers.component';
+import { CustomersRoutingModule } from './customers-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    CustomersComponent
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule,
+    CustomersRoutingModule,
     MaterialUiModule
   ],
   exports: [
-    LoginComponent
+    CustomersComponent
   ]
 })
-export class LoginModule {
-}
+export class CustomersModule { }
