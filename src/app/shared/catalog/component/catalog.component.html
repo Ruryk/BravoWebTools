@@ -30,7 +30,7 @@
           <img src="/assets/img/search.png" alt="search">
         </div>
         <div class="search-input">
-          <input type="search" placeholder="Product Code, Name...">
+          <input type="search" placeholder="Product Code, Name..." (keyup)="applyFilter($event)">
         </div>
       </div>
     </div>

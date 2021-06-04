@@ -40,6 +40,11 @@ export class CatalogComponent implements AfterViewInit{
     this.sideMenuStatus = !this.sideMenuStatus;
     this.sidenavService.sideNavState$.next(this.sideMenuStatus);
   }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
 
 const ELEMENT_DATA: TableElement[] = [

@@ -214,6 +214,7 @@
             th.mat-column-items {
               width: 6%;
             }
+
             th.mat-column-notes {
               width: 12%;
             }
@@ -240,7 +241,7 @@
                 cursor: pointer;
               }
 
-              button.confirm{
+              button.confirm {
                 background: $blue;
                 box-shadow: 0px 1px 2px rgba(15, 86, 179, 0.2), 0px 2px 4px rgba(15, 86, 179, 0.2);
                 border-radius: 8px;
@@ -253,13 +254,14 @@
                 color: $lightBlue;
                 padding: 8px 12px;
               }
-              button.confirm[disabled]{
+
+              button.confirm[disabled] {
                 color: $green;
                 background: transparent;
                 box-shadow: none;
               }
 
-              .status-container{
+              .status-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -432,18 +434,21 @@
 ::ng-deep .cdk-overlay-pane {
   .mat-menu-panel {
     background: $white;
+
     .mat-menu-content {
       display: flex;
       flex-direction: column;
       padding: 12px 40px 12px 17px;
-      color:$black;
-      mat-checkbox{
+      color: $black;
+
+      mat-checkbox {
         margin: 10px 0;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
         line-height: 150%;
-        span.mat-checkbox-inner-container{
+
+        span.mat-checkbox-inner-container {
           border: 1px solid $gray;
           border-radius: 4px;
         }
@@ -454,10 +459,11 @@
 }
 
 ::ng-deep .mat-flat-button span {
- color: $lightBlue !important;
+  color: $lightBlue !important;
 }
+
 ::ng-deep .mat-flat-button[disabled] span {
- color: $green !important;
+  color: $green !important;
 }
 
 tr.example-detail-row {
@@ -479,6 +485,86 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-detail {
   overflow: hidden;
   display: flex;
+  padding-left: 5%;
+
+  .detail {
+    width: 100%;
+    padding: 15px 0 0 0;
+
+    .detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $lightGray;
+
+      .detail-header__item {
+        span {
+          font-family: $fontfamily;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 142%;
+          letter-spacing: 0.005em;
+        }
+
+        button.print {
+          background: transparent;
+          border: none;
+          color: $black;
+          display: flex;
+          align-items: center;
+
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 142%;
+          letter-spacing: 0.005em;
+        }
+
+        button.print::before {
+          content: "";
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-image: url("/assets/img/print.png");
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .detail-table {
+      ::ng-deep table {
+        width: 100%;
+        box-shadow: none;
+
+        thead {
+          th.mat-column-code {
+            width: 25%;
+          }
+
+          th.mat-column-product {
+            width: 43%;
+          }
+
+          th.mat-column-unit {
+            width: 23%;
+          }
+
+          th.mat-column-quantity {
+            width: 9%;
+          }
+        }
+
+        tbody tr:last-child {
+          td {
+            border-bottom: none !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 .example-element-diagram {
