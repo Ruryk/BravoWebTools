@@ -2,33 +2,47 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 
 export interface TableElement {
-  code: string;
-  name: string;
-  unit: string;
-  price: number;
-  availability: string;
-  actions: string;
+  dropdown: string;
+  order: string;
+  customer: string;
+  customerNo: string;
+  items: number;
+  notes: string;
+  ordered: string;
+  delivery: string;
+  status: boolean;
 }
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  styleUrls: ['./orders.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
-export class OrdersComponent implements AfterViewInit{
+export class OrdersComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public sideMenuStatus: boolean;
-  public displayedColumns: string[] = ['code', 'name', 'unit', 'price', 'availability', 'actions'];
+  public displayedColumns: string[] = ['dropdown', 'order', 'customer', 'customerNo', 'items', 'notes', 'ordered', 'delivery', 'status'];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
+  public expandedElement: TableElement | null;
 
   constructor(private sidenavService: SidenavService) {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
+    this.expandedElement = null;
   }
 
   ngAfterViewInit(): void {
@@ -44,25 +58,36 @@ export class OrdersComponent implements AfterViewInit{
 
 const ELEMENT_DATA: TableElement[] = [
   {
-    code: 'APP123',
-    name: 'Apples',
-    unit: 'kg +2 more',
-    price: 2.03,
-    availability: `In stock`,
-    actions: `trash`
-  }, {
-    code: 'TOM53',
-    name: 'Tomatos',
-    unit: 'box +1 more',
-    price: 12.03,
-    availability: `In stock`,
-    actions: `trash`
-  }, {
-    code: 'CUC997',
-    name: 'Cucumbers',
-    unit: 'pcs',
-    price: 0.52,
-    availability: `Out of stock`,
-    actions: `trash`
+    dropdown: 'chevron-down',
+    order: '35322',
+    customer: 'Burger Bar',
+    customerNo: 'BB-243',
+    items: 12,
+    notes: 'Please deliver...',
+    ordered: 'Yesterday, 22:01',
+    delivery: 'Today',
+    status: false
+  },
+  {
+    dropdown: 'chevron-down',
+    order: '32342',
+    customer: 'Gyoza SS',
+    customerNo: 'GZ-889',
+    items: 75,
+    notes: 'Confirmed',
+    ordered: 'Yesterday, 22:01',
+    delivery: 'Tomorrow',
+    status: true
+  },
+  {
+    dropdown: 'chevron-down',
+    order: '23424',
+    customer: 'Burger Bar',
+    customerNo: 'BB-243',
+    items: 9,
+    notes: '+1 Bottle Coc...',
+    ordered: 'Mon, 15 Jun 2021, 22:01',
+    delivery: 'Mon, 15 Jun 2021',
+    status: true
   }
 ];
