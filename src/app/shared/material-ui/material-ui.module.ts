@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCommonModule } from '@angular/material/core';
@@ -30,6 +31,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatToolbarModule,
     MatTableModule,
+    MatSortModule,
     MatIconModule,
     MatDatepickerModule,
     MatCommonModule,
@@ -50,6 +52,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatToolbarModule,
     MatTableModule,
+    MatSortModule,
     MatIconModule,
     MatDatepickerModule,
     MatCommonModule,

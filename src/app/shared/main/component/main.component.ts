@@ -7,15 +7,15 @@ import { onMainContentChange } from 'src/app/animations/animations';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [ onMainContentChange ]
+  animations: [onMainContentChange]
 })
 export class MainComponent implements OnInit {
 
   public onSideNavChange?: boolean;
 
   constructor(private sidenavService: SidenavService) {
-    this.sidenavService.sideNavState$.subscribe( res => {
-      console.log(res);
+    this.onSideNavChange = true;
+    this.sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
     });
   }

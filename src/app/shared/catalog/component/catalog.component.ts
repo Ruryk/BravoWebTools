@@ -11,13 +11,12 @@ export interface TableElement {
   address: string;
   days: string;
 }
-
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+  selector: 'app-catalog',
+  templateUrl: './catalog.component.html',
+  styleUrls: ['./catalog.component.scss']
 })
-export class CustomersComponent implements AfterViewInit {
+export class CatalogComponent implements AfterViewInit{
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public sideMenuStatus: boolean;

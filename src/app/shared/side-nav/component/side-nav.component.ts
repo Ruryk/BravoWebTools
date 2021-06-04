@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { onSideNavChange, animateText } from 'src/app/animations/animations';
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
@@ -15,10 +17,11 @@ interface NavigationList {
   styleUrls: ['./side-nav.component.scss'],
   animations: [onSideNavChange, animateText]
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnDestroy {
 
   public sideNavState: boolean;
   public linkText: boolean;
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   public navigation: NavigationList[] = [
     { name: 'Orders', link: 'orders', icon: 'shopping-cart' },
@@ -30,17 +33,14 @@ export class SideNavComponent implements OnInit {
   constructor(private sidenavService: SidenavService) {
     this.sideNavState = true;
     this.linkText = true;
+    this.sidenavService.sideNavState$.pipe(takeUntil(this.unsubscribe$)).subscribe((res: boolean) => {
+      this.sideNavState = res;
+      this.linkText = res;
+    });
   }
 
-  ngOnInit(): void {
-  }
-
-  onSinenavToggle(): void {
-    this.sideNavState = !this.sideNavState;
-
-    setTimeout(() => {
-      this.linkText = this.sideNavState;
-    }, 200);
-    this.sidenavService.sideNavState$.next(this.sideNavState);
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

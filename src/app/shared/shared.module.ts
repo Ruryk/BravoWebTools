@@ -5,6 +5,7 @@ import { LoginModule } from './login/login.module';
 import { LoginCodeModule } from './login-code/login-code.module';
 import { MainModule } from './main/main.module';
 import { CustomersModule } from './customers/customers.module';
+import { CatalogModule } from './catalog/catalog.module';
 
 @NgModule({
   declarations: [],
@@ -14,14 +15,16 @@ import { CustomersModule } from './customers/customers.module';
     LoginModule,
     LoginCodeModule,
     MainModule,
-    CustomersModule
+    CustomersModule,
+    CatalogModule
   ],
   exports: [
     MaterialUiModule,
     LoginModule,
     LoginCodeModule,
     MainModule,
-    CustomersModule
+    CustomersModule,
+    CatalogModule
   ]
 })
 export class SharedModule {
