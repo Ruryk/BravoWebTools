@@ -14,11 +14,11 @@ export interface TableElement {
   actions: string;
 }
 @Component({
-  selector: 'app-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class CatalogComponent implements AfterViewInit{
+export class OrdersComponent implements AfterViewInit{
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public sideMenuStatus: boolean;

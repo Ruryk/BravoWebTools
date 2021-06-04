@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './component/main.component';
 import { CustomersComponent } from '../customers/component/customers.component';
 import { CatalogComponent } from '../catalog/component/catalog.component';
+import { OrdersComponent } from '../orders/component/orders.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
         component: CatalogComponent,
         pathMatch: 'full'
       },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        pathMatch: 'full'
+      }
     ]
   }
 ];

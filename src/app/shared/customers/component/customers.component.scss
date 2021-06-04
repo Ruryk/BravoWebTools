@@ -78,7 +78,8 @@
             border: none;
             min-height: 25px;
           }
-          input::-webkit-search-cancel-button{
+
+          input::-webkit-search-cancel-button {
             color: red;
           }
         }
@@ -166,6 +167,22 @@
               }
             }
 
+            th.mat-column-code {
+              width: 15%;
+            }
+
+            th.mat-column-name {
+              width: 28%;
+            }
+
+            th.mat-column-address {
+              width: 37.5%;
+            }
+
+            th.mat-column-days {
+              width: 18%;
+            }
+
             td {
               color: $black;
               border-bottom: 1px solid $lightGray;
@@ -176,19 +193,23 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                &__icon{
+
+                &__icon {
                   display: inline-block;
                   background: $lightBlue;
                   border-radius: 50%;
                   padding: 15px;
-                  img{
-                    display:inline-block;
+
+                  img {
+                    display: inline-block;
                     margin: 0 auto;
                   }
                 }
-                &__title{
+
+                &__title {
                   margin-top: 24px;
-                  h4{
+
+                  h4 {
                     text-align: center;
                     font-family: $fontfamily;
                     font-style: normal;
@@ -197,9 +218,11 @@
                     line-height: 138%;
                   }
                 }
-                &__description{
+
+                &__description {
                   margin: 8px 0 40px 0;
-                  p{
+
+                  p {
                     text-align: center;
                     font-family: $fontfamily;
                     font-style: normal;
@@ -207,13 +230,15 @@
                     font-size: 14px;
                     line-height: 142%;
                     letter-spacing: 0.0168em;
-                    color:$gray;
+                    color: $gray;
                   }
                 }
+
                 &__control {
-                  .control-item{
+                  .control-item {
                     display: flex;
                     justify-content: center;
+
                     button {
                       display: flex;
                       align-items: center;

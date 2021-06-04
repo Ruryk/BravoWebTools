@@ -19,6 +19,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -41,7 +43,9 @@ import { MatListModule } from '@angular/material/list';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatAutocompleteModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
@@ -62,7 +66,9 @@ import { MatListModule } from '@angular/material/list';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatAutocompleteModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialUiModule {

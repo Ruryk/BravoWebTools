@@ -6,6 +6,7 @@ import { LoginCodeModule } from './login-code/login-code.module';
 import { MainModule } from './main/main.module';
 import { CustomersModule } from './customers/customers.module';
 import { CatalogModule } from './catalog/catalog.module';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,8 @@ import { CatalogModule } from './catalog/catalog.module';
     LoginCodeModule,
     MainModule,
     CustomersModule,
-    CatalogModule
+    CatalogModule,
+    OrdersModule
   ],
   exports: [
     MaterialUiModule,
@@ -24,7 +26,8 @@ import { CatalogModule } from './catalog/catalog.module';
     LoginCodeModule,
     MainModule,
     CustomersModule,
-    CatalogModule
+    CatalogModule,
+    OrdersModule
   ]
 })
 export class SharedModule {

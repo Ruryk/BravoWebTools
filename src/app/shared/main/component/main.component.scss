@@ -1,6 +1,6 @@
 @import "src/assets/scss/variables";
 
-.main_content{
+.main_content {
   padding: 25px 20px;
   background: $backgroundPage;
 }
@@ -27,21 +27,23 @@ mat-sidenav-container {
       object-fit: cover;
       border-radius: 0;
     }
+
     padding: 0 20px;
   }
 
-  ::ng-deep .ng-tns-c193-2:first-child {
-  }
-  ::ng-deep .ng-tns-c193-2:last-child {
-    & mat-nav-list {
+  ::ng-deep div[fxlayout='column'] div:last-child {
+    flex: 1 0 auto;
+
+    mat-nav-list {
+      flex: 1 0 auto;
       display: flex;
       flex-direction: column;
-      & a.mat-list-item:last-child {
-        flex: 1 0 auto;
-        .mat-list-item-content{
-          align-items: flex-end;
-        }
-      }
+
+    }
+    mat-nav-list a:last-child {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: flex-end;
     }
   }
 }
