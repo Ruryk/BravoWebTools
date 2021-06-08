@@ -32,7 +32,9 @@
               <button
                 class="open-dropdown">
                 <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.34292 0.753906L0.928711 2.16812L7.99976 9.23922L15.0708 2.16815L13.6566 0.753935L7.99978 6.41077L2.34292 0.753906Z" fill="#A1A1A1"/>
+                  <path
+                    d="M2.34292 0.753906L0.928711 2.16812L7.99976 9.23922L15.0708 2.16815L13.6566 0.753935L7.99978 6.41077L2.34292 0.753906Z"
+                    fill="#A1A1A1"/>
                 </svg>
               </button>
             </td>
@@ -46,7 +48,7 @@
           <ng-container matColumnDef="customer">
             <th mat-header-cell *matHeaderCellDef>
               Customer
-              <span [matMenuTriggerFor]="menuCustomers" class="sort-size">
+              <span [matMenuTriggerFor]="menuCustomersFilter" class="sort-size">
                 <img src="/assets/img/sort-size.png" alt="sort-size">
               </span>
             </th>
@@ -71,7 +73,7 @@
           <ng-container matColumnDef="ordered">
             <th mat-header-cell *matHeaderCellDef>
               Ordered
-              <span [matMenuTriggerFor]="menuAvailability" class="sort-size">
+              <span [mat-menu-trigger-for]="menuCustomersFilter" class="sort-size">
                 <img src="/assets/img/sort-size.png" alt="sort-size">
               </span>
             </th>
@@ -110,12 +112,12 @@
                 <div class="detail">
                   <div class="detail-header">
                     <div class="detail-header__item">
-                        <span>Notes:</span><br>
-                        +1 Bottle Coca Cola Please, Need to be delivered Today!
+                      <span>Notes:</span><br>
+                      +1 Bottle Coca Cola Please, Need to be delivered Today!
                     </div>
                     <div class="detail-header__item">
-                        <span>Delivery Address:</span><br>
-                        Main Street 23, 1453 Zurich
+                      <span>Delivery Address:</span><br>
+                      Main Street 23, 1453 Zurich
                     </div>
                     <div class="detail-header__item print">
                       <button class="print">Print Order</button>
@@ -202,36 +204,10 @@
   <mat-checkbox class="example-margin" color="primary">Discontinued</mat-checkbox>
 </mat-menu>
 
-<mat-menu #menuCustomers="matMenu" >
-  <mat-form-field class="example-chip-list">
-    <mat-label>Favorite Fruits</mat-label>
-    <mat-chip-list #chipList aria-label="Fruit selection"
-                   (click)="$event.stopPropagation()" >
-      <mat-chip
-        *ngFor="let customer of customers"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(customer)">
-        {{customer}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input
-        placeholder="New fruit..."
-        #customersInput
-        [formControl]="customersCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
-        {{customer}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
+<mat-menu #menuCustomersFilter="matMenu">
+  <app-select-filter-menu [dataSource]="dataSource"></app-select-filter-menu>
 </mat-menu>
+
 
 
 

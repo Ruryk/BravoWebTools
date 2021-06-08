@@ -15,7 +15,7 @@
   padding: 0 48px;
   height: 400px;
   background: $white;
-  border: 1px solid $lightGray;
+  border: 1px solid $lightgray;
   box-sizing: border-box;
   border-radius: 8px;
   &__title {
@@ -35,7 +35,7 @@
       width: 100%;
     }
     ::ng-deep .mat-input-element {
-      border: 1.5px solid $borderGray;
+      border: 1.5px solid $bordergray;
       box-sizing: border-box;
       border-radius: 8px;
       min-height: 48px;

@@ -12,6 +12,8 @@ import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
+import { SelectFilterMenuComponent } from '../../custom-ui/select-filter-menu/select-filter-menu.component';
+import { MatMenuPanel, MatMenuTrigger } from '@angular/material/menu';
 
 export interface TableElement {
   dropdown: string;
@@ -48,22 +50,13 @@ export interface TableElementItem {
 export class OrdersComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
+
   public sideMenuStatus: boolean;
   public displayedColumns: string[] = ['dropdown', 'order', 'customer', 'customerNo', 'items', 'notes', 'ordered', 'delivery', 'status'];
   public displayedColumnsItem: string[] = ['code', 'product', 'unit', 'quantity'];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public dataSourceItem = new MatTableDataSource(ELEMENT_DATA_ITEM);
   public expandedElement: TableElement | null;
-// sorting customers
-  public visible = true;
-  public selectable = true;
-  public removable = true;
-  public separatorKeysCodes: number[] = [ENTER, COMMA];
-  public customersCtrl = new FormControl();
-  public filteredCustomers: Observable<string[]>;
-  public customers: string[] = [];
-  public customersChange$ = new Subject<string[]>();
-  public allCustomers: string[] = ['Gyoza SS', 'Burger King', 'Burger Bar'];
 
   @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
@@ -74,48 +67,10 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     this.sort = null;
     this.sideMenuStatus = true;
     this.expandedElement = null;
-
-// sorting select list customers
-    this.filteredCustomers = this.customersCtrl.valueChanges.pipe(
-      startWith(null),
-      map((customer: string | null) => customer ? this._filter(customer) : this.allCustomers.slice()));
   }
-
-
-  // none value
-  filterValues: any = {
-    position: []
-  };
 
   ngOnInit(): void {
-    this.getFormsValue();
   }
-
-  // create filter
-  getFormsValue(): void {
-    this.dataSource.filterPredicate = (data, filter: string): boolean => {
-      const searchString = JSON.parse(filter);
-      let isPositionAvailable = false;
-      if (searchString.position.length) {
-        for (const d of searchString.position) {
-          if (data.position.trim() === d) {
-            isPositionAvailable = true;
-          }
-        }
-      } else {
-        isPositionAvailable = true;
-      }
-      return isPositionAvailable;
-
-    };
-    this.dataSource.filter = JSON.stringify(this.filterValues);
-  }
-
-  filterCustomers(): void {
-      this.filterValues['position'] = this.customers;
-      this.dataSource.filter = JSON.stringify(this.filterValues);
-  }
-
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -130,43 +85,6 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    // Add our customer
-    if (value) {
-      this.customers.push(value);
-      this.customersChange$.next(this.customers);
-    }
-    // Clear the input value
-    event.input.value = '';
-    this.customersCtrl.setValue(null);
-    this.filterCustomers();
-
-  }
-
-  remove(customer: string): void {
-    const index = this.customers.indexOf(customer);
-
-    if (index >= 0) {
-      this.customers.splice(index, 1);
-    }
-    this.filterCustomers();
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.customers.push(event.option.viewValue);
-    this.customersInput!.nativeElement.value = '';
-    this.customersCtrl.setValue(null);
-
-    this.filterCustomers();
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allCustomers.filter(customer => customer.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -1,0 +1,186 @@
+@import "src/assets/scss/variables";
+
+.modal-window {
+  width: 376px;
+  font-family: $fontfamily;
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+
+    h1.dialog-title {
+
+    }
+
+    button.dialog-close-modal-btn {
+      width: 15px;
+      height: 15px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  form.example-form {
+    .dialog-item {
+      .mat-form-field {
+
+        display: block;
+
+        label {
+          font-style: normal;
+          font-weight: normal;
+          line-height: 130%;
+          letter-spacing: 0.03em;
+          color: $gray;
+        }
+
+        input, textarea {
+          border: 1.5px solid $bordergray;
+          box-sizing: border-box;
+          border-radius: 8px;
+          min-height: 48px;
+          width: 100%;
+          padding: 12px;
+          font-size: 16px;
+        }
+
+        textarea {
+          min-height: 120px;
+          resize: none;
+        }
+      }
+
+      section.days-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        p {
+          min-width: 50px;
+          margin: 0px 10px 25px 12px;
+        }
+      }
+
+      button.dialog-add-btn {
+        background: $blue;
+        border: none;
+        cursor: pointer;
+        color: $lightBlue;
+        font-family: $fontfamily;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        padding: 12px 15px;
+        border-radius: 10px;
+      }
+
+      button.dialog-add-btn::before {
+        content: '';
+        display: inline-block;
+        background-image: url("/assets/img/math-plus_light.png");
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+      }
+
+      button.dialog-cancel-btn {
+        padding: 12px 15px;
+        background: transparent;
+        border: 1px solid $lightgray;
+        color: $gray;
+        font-family: $fontfamily;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        cursor: pointer;
+        margin-right: 15px;
+        border-radius: 10px;
+      }
+    }
+
+    .dialog-item.control {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-form-field-wrapper {
+    .mat-form-field-flex {
+      padding: 0;
+    }
+
+    .mat-form-field-underline {
+      display: none;
+    }
+  }
+
+  mat-label {
+    color: $gray;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+
+  .mat-h4, .mat-subheading-1, .mat-typography h4.dialog-subtitle {
+    font-size: 12px;
+    padding-left: 14px;
+    margin: 0;
+  }
+
+  .mat-h4, .mat-subheading-1, .mat-typography h1 {
+    font-family: $fontfamily;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 132%;
+  }
+
+  mat-checkbox {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.005em;
+
+    .mat-checkbox-inner-container {
+      border: 1px solid $gray;
+      border-radius: 3px;
+    }
+  }
+
+  mat-checkbox.mat-checkbox-checked {
+    .mat-checkbox-inner-container {
+      border: 1px solid $lightBlue;
+      -webkit-box-shadow: 0px 0px 0px 4px rgba(197, 220, 250, 0.3);
+      -moz-box-shadow: 0px 0px 0px 4px rgba(197, 220, 250, 0.3);
+      box-shadow: 0px 0px 0px 4px rgba(197, 220, 250, 0.3);
+    }
+
+    .mat-checkbox-background {
+      background: $blue !important;
+    }
+
+    .mat-checkbox-checkmark-path {
+      stroke: $white !important;
+    }
+  }
+  .mat-input-element::placeholder{
+    color: $gray!important;
+  }
+  .mat-input-element[disabled]{
+    background: $disabledInputColor;
+  }
+}
+

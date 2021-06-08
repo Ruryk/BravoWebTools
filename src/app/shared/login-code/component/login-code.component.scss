@@ -14,7 +14,7 @@
   padding: 0 48px;
   height: 400px;
   background: $white;
-  border: 1px solid $lightGray;
+  border: 1px solid $lightgray;
   box-sizing: border-box;
   border-radius: 8px;
   &__title {
@@ -33,7 +33,7 @@
       width: 156px;
       padding: 12px;
       background: $white;
-      border: 1px solid $borderGray;
+      border: 1px solid $bordergray;
       border-radius: 8px;
       font-size: 16px;
     }
@@ -63,7 +63,7 @@
       width: 47%;
     }
     ::ng-deep .mat-input-element {
-      border: 1.5px solid $borderGray;
+      border: 1.5px solid $bordergray;
       box-sizing: border-box;
       border-radius: 8px;
       min-height: 48px;
@@ -103,6 +103,6 @@
     line-height: 142%;
     text-align: center;
     letter-spacing: 0.0168em;
-    color: $strongGray;
+    color: $stronggray;
   }
 }
