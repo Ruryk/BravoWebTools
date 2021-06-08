@@ -535,9 +535,10 @@ tr.example-element-row:not(.example-expanded-row):active {
     }
 
     .detail-table {
-      ::ng-deep table {
+      ::ng-deep table.detail-table-content {
         width: 100%;
         box-shadow: none;
+        background: $aliceBlue !important;
 
         thead {
           th.mat-column-code {
@@ -590,6 +591,27 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
+.example-expanded-row {
+  background: $middleBlue;
+
+  td {
+    button.open-dropdown {
+      transition: all 0.3s ease;
+      transform: rotate(180deg);
+      background: #D3E4FB !important;
+      border-radius: 10px;
+      padding: 5px;
+
+      svg path {
+        fill: $blue;
+      }
+    }
+  }
+}
+
+.mat-column-expandedDetail {
+  background: $aliceBlue;
+}
 
 //::ng-deep .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
 //  background-color: $blue;

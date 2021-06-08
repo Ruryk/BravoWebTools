@@ -332,3 +332,8 @@
 }
 
 
+//================================= Mat Dialog ====================================
+::ng-deep .mat-dialog-container{
+  background: $white;
+  color: $black;
+}

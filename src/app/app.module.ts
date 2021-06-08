@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { SharedModule } from './shared/shared.module';
 import { SidenavService } from './services/sidenav/sidenav.service';
 
@@ -29,7 +30,10 @@ import { SidenavService } from './services/sidenav/sidenav.service';
     StoreRouterConnectingModule.forRoot(),
     SharedModule
   ],
-  providers: [SidenavService],
+  providers: [
+    SidenavService,
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

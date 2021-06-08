@@ -1,0 +1,61 @@
+<div class="modal-window">
+  <div class="dialog-header">
+    <h1 mat-dialog-title class="dialog-title">Add Customer
+    </h1>
+    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close"></button>
+  </div>
+  <div mat-dialog-content>
+    <form class="example-form">
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Customer No</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <h4 class="dialog-subtitle">Delivery Days</h4>
+        <section class="days-section" [formGroup]="days">
+          <p>
+            <mat-checkbox formControlName="Mon">Mon</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Tue">Tue</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Wed">Wed</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Thu">Thu</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Fri">Fri</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Sat">Sat</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="Sun">Sun</mat-checkbox>
+          </p>
+          <p></p>
+        </section>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Shortlisted Products</mat-label>
+          <textarea matInput placeholder=""></textarea>
+        </mat-form-field>
+      </div>
+      <div class="dialog-item control">
+        <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
+        <button mat-flat-button color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Add Customer</button>
+      </div>
+    </form>
+  </div>
+</div>
+

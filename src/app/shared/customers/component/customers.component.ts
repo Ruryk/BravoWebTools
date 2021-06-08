@@ -2,8 +2,11 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
+import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
+
 
 export interface TableElement {
   customer: string;
@@ -24,7 +27,10 @@ export class CustomersComponent implements AfterViewInit {
   public displayedColumns: string[] = ['customer', 'name', 'address', 'days'];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private sidenavService: SidenavService) {
+  constructor(
+    private sidenavService: SidenavService,
+    public dialog: MatDialog
+    ) {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
@@ -43,6 +49,15 @@ export class CustomersComponent implements AfterViewInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openModalAddCustomer(): void {
+    this.dialog.open(AddCustomerModalComponent, {
+      data: {
+        animal: 'panda'
+      },
+      maxHeight: '100vh'
+    });
   }
 }
 
