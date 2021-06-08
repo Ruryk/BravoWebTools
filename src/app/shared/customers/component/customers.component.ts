@@ -2,19 +2,12 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { EditCustomerModalComponent } from './edit-customer-modal/edit-customer-modal.component';
-
-
-export interface TableElement {
-  customer: string;
-  name: string;
-  address: string;
-  days: string;
-}
+import { CustomersTableElement } from '../../../interfaces/interfaces';
 
 @Component({
   selector: 'app-customers',
@@ -64,7 +57,7 @@ export class CustomersComponent implements AfterViewInit {
   }
 }
 
-const ELEMENT_DATA: TableElement[] = [
+const ELEMENT_DATA: CustomersTableElement[] = [
   {
     customer: 'BB-123',
     name: 'Burger Bar',

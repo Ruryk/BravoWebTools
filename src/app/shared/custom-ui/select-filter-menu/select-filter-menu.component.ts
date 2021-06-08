@@ -111,6 +111,20 @@ export class SelectFilterMenuComponent implements OnInit {
     return this.allCustomers.filter(customer => customer.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  openMenu(trigger: MatMenuTrigger): void {
+  toppingsControl = new FormControl([]);
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+  onToppingRemoved(topping: string) {
+    const toppings = this.toppingsControl.value as string[];
+    this.removeFirst(toppings, topping);
+    this.toppingsControl.setValue(toppings); // To trigger change detection
   }
+
+  private removeFirst<T>(array: T[], toRemove: T): void {
+    const index = array.indexOf(toRemove);
+    if (index !== -1) {
+      array.splice(index, 1);
+    }
+  }
+
 }

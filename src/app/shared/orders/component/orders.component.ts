@@ -4,36 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
-import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
-import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipList } from '@angular/material/chips';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { SelectFilterMenuComponent } from '../../custom-ui/select-filter-menu/select-filter-menu.component';
-import { MatMenuPanel, MatMenuTrigger } from '@angular/material/menu';
-
-export interface TableElement {
-  dropdown: string;
-  order: string;
-  customer: string;
-  customerNo: string;
-  items: number;
-  notes: string;
-  ordered: string;
-  delivery: string;
-  status: boolean;
-  position: string;
-}
-
-export interface TableElementItem {
-  code: string;
-  product: string;
-  unit: string;
-  quantity: number;
-}
+import { OrdersTableElement, OrdersTableElementItem } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-orders',
@@ -56,7 +31,7 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   public displayedColumnsItem: string[] = ['code', 'product', 'unit', 'quantity'];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public dataSourceItem = new MatTableDataSource(ELEMENT_DATA_ITEM);
-  public expandedElement: TableElement | null;
+  public expandedElement: OrdersTableElement | null;
 
   @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
@@ -68,6 +43,12 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     this.sideMenuStatus = true;
     this.expandedElement = null;
   }
+
+  public status: any = [
+    {value: 'all', viewValue: 'All'},
+    {value: 'confirm', viewValue: 'Confirm'},
+    {value: 'confirmed', viewValue: 'Confirmed'}
+  ];
 
   ngOnInit(): void {
   }
@@ -89,7 +70,7 @@ export class OrdersComponent implements AfterViewInit, OnInit {
 
 }
 
-const ELEMENT_DATA: TableElement[] = [
+const ELEMENT_DATA: OrdersTableElement[] = [
   {
     dropdown: 'chevron-down',
     order: '35322',
@@ -128,7 +109,7 @@ const ELEMENT_DATA: TableElement[] = [
   }
 ];
 
-const ELEMENT_DATA_ITEM: TableElementItem[] = [
+const ELEMENT_DATA_ITEM: OrdersTableElementItem[] = [
   { code: 'APP123', product: 'Apples', unit: 'kg', quantity: 14 },
   { code: 'TOM53', product: 'Tomatos', unit: 'box', quantity: 4 },
   { code: 'CUC997', product: 'Cucumber', unit: 'pcs', quantity: 36 },

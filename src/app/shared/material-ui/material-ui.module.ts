@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -47,7 +48,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatMenuModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatMenuModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialUiModule {

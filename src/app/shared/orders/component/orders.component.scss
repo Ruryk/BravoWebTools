@@ -174,6 +174,7 @@
 
               span.sort-size {
                 margin-left: 10px;
+                position: relative;
               }
 
               .sort-name {
@@ -613,7 +614,18 @@ tr.example-element-row:not(.example-expanded-row):active {
   background: $aliceBlue;
 }
 
-//::ng-deep .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
-//  background-color: $blue;
-//}
+::ng-deep{
+  mat-form-field.mat-form-field-type-mat-date-range-input{
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+  mat-form-field.sort-status{
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+}
 

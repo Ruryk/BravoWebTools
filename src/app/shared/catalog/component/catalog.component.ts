@@ -4,15 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
+import { CatalogTableElement } from '../../../interfaces/interfaces';
 
-export interface TableElement {
-  code: string;
-  name: string;
-  unit: string;
-  price: number;
-  availability: string;
-  actions: string;
-}
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -47,7 +40,7 @@ export class CatalogComponent implements AfterViewInit{
   }
 }
 
-const ELEMENT_DATA: TableElement[] = [
+const ELEMENT_DATA: CatalogTableElement[] = [
   {
     code: 'APP123',
     name: 'Apples',
