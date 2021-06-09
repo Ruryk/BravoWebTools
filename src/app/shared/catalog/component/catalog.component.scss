@@ -213,10 +213,16 @@
 
             th.mat-column-availability {
               width: 20%;
-              mat-form-field{
+
+              mat-form-field {
                 width: 0;
                 height: 0;
                 visibility: hidden;
+              }
+            }
+            td.mat-column-unit{
+              span {
+                color: $gray;
               }
             }
 
@@ -397,18 +403,21 @@
 ::ng-deep .cdk-overlay-pane {
   .mat-menu-panel {
     background: $white;
+
     .mat-menu-content {
       display: flex;
       flex-direction: column;
       padding: 12px 40px 12px 17px;
-      color:$black;
-      mat-checkbox{
+      color: $black;
+
+      mat-checkbox {
         margin: 10px 0;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
         line-height: 150%;
-        span.mat-checkbox-inner-container{
+
+        span.mat-checkbox-inner-container {
           border: 1px solid $gray;
           border-radius: 4px;
         }

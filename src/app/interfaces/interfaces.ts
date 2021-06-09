@@ -17,14 +17,6 @@ export interface OrdersTableElementItem {
   quantity: number;
 }
 
-export interface CustomersTableElement {
-  customer: string;
-  name: string;
-  address: string;
-  days: string;
-}
-
-
 export interface CatalogTableElement {
   code: string;
   name: string;
@@ -48,4 +40,17 @@ export interface ICustomers {
 
 export interface ICustomersState {
   [code: string]: ICustomers;
+}
+
+export interface ICatalog {
+  code?: string;
+  name?: string;
+  unit?: string[];
+  price?: number;
+  availability?: string;
+  actions?: string;
+}
+
+export interface ICatalogState {
+  [code: string]: ICatalog;
 }

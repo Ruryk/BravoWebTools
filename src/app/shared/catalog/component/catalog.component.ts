@@ -2,11 +2,13 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { CatalogTableElement } from '../../../interfaces/interfaces';
+import { CatalogTableElement, ICatalog, ICatalogState } from '../../../interfaces/interfaces';
 import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
+import { Store } from '@ngrx/store';
+import { getCatalogDataSource, IState } from '../../../reducers';
 
 @Component({
   selector: 'app-catalog',
@@ -18,20 +20,24 @@ export class CatalogComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public sideMenuStatus: boolean;
   public displayedColumns: string[] = ['code', 'name', 'unit', 'price', 'availability', 'actions'];
-  public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public availabilityList: string[] = ['In stock', 'Out of stock', 'Discontinued'];
   public filterValues: any = {
     customer: [],
     column: 'availability'
   };
+  public dataCatalog = this.store.select(getCatalogDataSource);
+  public dataSource: MatTableDataSource<ICatalog>;
 
   constructor(
+    private store: Store<IState>,
     private sidenavService: SidenavService,
     public dialog: MatDialog
   ) {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
+    this.dataSource = new MatTableDataSource<ICatalog>();
+    this.dataCatalog.subscribe((data: ICatalogState) => this.dataSource.data = Object.values(data));
   }
 
   openDeleteModal(): void {
@@ -92,26 +98,5 @@ export class CatalogComponent implements AfterViewInit, OnInit {
 }
 
 const ELEMENT_DATA: CatalogTableElement[] = [
-  {
-    code: 'APP123',
-    name: 'Apples',
-    unit: 'kg +2 more',
-    price: 2.03,
-    availability: `In stock`,
-    actions: `trash`
-  }, {
-    code: 'TOM53',
-    name: 'Tomatos',
-    unit: 'box +1 more',
-    price: 12.03,
-    availability: `In stock`,
-    actions: `trash`
-  }, {
-    code: 'CUC997',
-    name: 'Cucumbers',
-    unit: 'pcs',
-    price: 0.52,
-    availability: `Out of stock`,
-    actions: `trash`
-  }
+
 ];
