@@ -116,8 +116,10 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   }
 
   dateFilter(event: MatDatepickerInputEvent<Date>): void {
-    const startDate = new Date(this.dateRange.controls['start'].value).getTime();
-    const endDate = new Date(this.dateRange.controls['end'].value).getTime();
+    const startKey = 'start';
+    const endKey = 'end';
+    const startDate = new Date(this.dateRange.controls[startKey].value).getTime();
+    const endDate = new Date(this.dateRange.controls[endKey].value).getTime();
     if (!isNaN(endDate)) {
       this.dataSource.filter = JSON.stringify({ customer: [startDate, endDate + 100000], column: 'delivery' });
     } else {
