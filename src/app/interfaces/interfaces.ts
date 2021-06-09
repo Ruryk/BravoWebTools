@@ -33,3 +33,19 @@ export interface CatalogTableElement {
   availability: string;
   actions: string;
 }
+
+
+// ========================Store=======================
+export interface ICustomers {
+  customerNo?: string;
+  name?: string;
+  address?: string;
+  days?: string[];
+  productsCodes?: string[];
+  contactName?: string;
+  phone?: string;
+}
+
+export interface ICustomersState {
+  [code: string]: ICustomers;
+}
