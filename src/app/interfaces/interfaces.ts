@@ -5,10 +5,9 @@ export interface OrdersTableElement {
   customerNo: string;
   items: number;
   notes: string;
-  ordered: string;
-  delivery: string;
-  status: boolean;
-  position: string;
+  ordered: number;
+  delivery: number;
+  status: string;
 }
 
 export interface OrdersTableElementItem {

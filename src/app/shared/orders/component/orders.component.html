@@ -79,9 +79,9 @@
               <ng-container>
                 <mat-form-field appearance="fill" class="example-form-field">
                   <mat-label>Enter a date range</mat-label>
-                  <mat-date-range-input [rangePicker]="rangePicker">
-                    <input matStartDate placeholder="Start date">
-                    <input matEndDate placeholder="End date">
+                  <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
+                    <input matStartDate formControlName="start" placeholder="Start date">
+                    <input matEndDate formControlName="end" placeholder="End date">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <!-- #docregion date-range-picker-actions -->
@@ -95,7 +95,7 @@
                 </mat-form-field>
               </ng-container>
             </th>
-            <td mat-cell *matCellDef="let element"> {{element.ordered}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.ordered | date: 'EEEE, MMMM d, y, h:mm'}} </td>
           </ng-container>
 
           <ng-container matColumnDef="delivery">
@@ -107,13 +107,14 @@
               <ng-container>
                 <mat-form-field appearance="fill" class="example-form-field">
                   <mat-label>Enter a date range</mat-label>
-                  <mat-date-range-input [rangePicker]="rangePicker">
-                    <input matStartDate placeholder="Start date">
-                    <input matEndDate placeholder="End date">
+                  <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
+                    <input matStartDate formControlName="start" placeholder="Start date">
+                    <input matEndDate formControlName="end" placeholder="End date"
+                           (dateChange)="dateFilter($event)" >
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <!-- #docregion date-range-picker-actions -->
-                  <mat-date-range-picker #rangePicker>
+                  <mat-date-range-picker #rangePicker >
                     <mat-date-range-picker-actions>
                       <button mat-button matDateRangePickerCancel>Cancel</button>
                       <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
@@ -123,14 +124,14 @@
                 </mat-form-field>
               </ng-container>
             </th>
-            <td mat-cell *matCellDef="let element"> {{element.delivery}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.delivery | date: 'fullDate'}} </td>
           </ng-container>
 
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef>
               <ng-container>
                 <mat-form-field appearance="fill" class="sort-status">
-                  <mat-select #selectMenuStatus>
+                  <mat-select #selectMenuStatus (selectionChange)="statusFilter($event.value)">
                     <mat-option *ngFor="let item of status" [value]="item.value">
                       {{item.viewValue}}
                     </mat-option>
@@ -145,7 +146,9 @@
             <td mat-cell *matCellDef="let element">
               <div class="status-container">
                 <button mat-flat-button color="primary" class="confirm"
-                        [disabled]="element.status">{{element.status ? 'Confirmed' : 'Confirm'}}</button>
+                        [disabled]="(element.status === 'confirm')?false:true">{{(element.status !== 'confirm') ?
+                  'Confirmed' :
+                  'Confirm'}}</button>
               </div>
             </td>
           </ng-container>

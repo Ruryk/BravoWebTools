@@ -43,7 +43,8 @@ export class SelectFilterMenuComponent implements OnInit {
 
   // none value
   filterValues: any = {
-    position: []
+    customer: [],
+    column: 'customer'
   };
 
   ngOnInit(): void {
@@ -54,11 +55,20 @@ export class SelectFilterMenuComponent implements OnInit {
   getFormsValue(): void {
     this.dataSource.filterPredicate = (data, filter: string): boolean => {
       const searchString = JSON.parse(filter);
+      const column = searchString.column;
       let isPositionAvailable = false;
-      if (searchString.position.length) {
-        for (const d of searchString.position) {
-          if (data.position.trim() === d) {
-            isPositionAvailable = true;
+      if (searchString.customer.length) {
+        if (column !== 'delivery') {
+          for (const d of searchString.customer) {
+            if (data[column].trim() === d) {
+              isPositionAvailable = true;
+            }
+          }
+        } else {
+          if (searchString.customer.length === 2) {
+            isPositionAvailable = (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
+          } else {
+            isPositionAvailable = (data[column] >= searchString.customer[0]) ? true : false;
           }
         }
       } else {
@@ -71,7 +81,8 @@ export class SelectFilterMenuComponent implements OnInit {
   }
 
   filterCustomers(): void {
-    this.filterValues['position'] = this.customers;
+    this.filterValues['customer'] = this.customers;
+    this.filterValues['column'] = 'customer';
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
@@ -86,12 +97,10 @@ export class SelectFilterMenuComponent implements OnInit {
     event.input.value = '';
     this.customersCtrl.setValue(null);
     this.filterCustomers();
-
   }
 
   remove(customer: string): void {
     const index = this.customers.indexOf(customer);
-
     if (index >= 0) {
       this.customers.splice(index, 1);
     }
@@ -102,29 +111,12 @@ export class SelectFilterMenuComponent implements OnInit {
     this.customers.push(event.option.viewValue);
     this.customersInput!.nativeElement.value = '';
     this.customersCtrl.setValue(null);
-
     this.filterCustomers();
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allCustomers.filter(customer => customer.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  toppingsControl = new FormControl([]);
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
-  onToppingRemoved(topping: string) {
-    const toppings = this.toppingsControl.value as string[];
-    this.removeFirst(toppings, topping);
-    this.toppingsControl.setValue(toppings); // To trigger change detection
-  }
-
-  private removeFirst<T>(array: T[], toRemove: T): void {
-    const index = array.indexOf(toRemove);
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
   }
 
 }

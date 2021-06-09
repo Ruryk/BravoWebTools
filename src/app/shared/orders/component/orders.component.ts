@@ -9,6 +9,8 @@ import { MatChipList } from '@angular/material/chips';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import { OrdersTableElement, OrdersTableElementItem } from 'src/app/interfaces/interfaces';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-orders',
@@ -37,20 +39,30 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
   @ViewChild('chipList') chipList?: MatChipList;
 
+  public dateRange: FormGroup;
+
   constructor(private sidenavService: SidenavService) {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
     this.expandedElement = null;
+
+    this.dateRange = new FormGroup({
+      start: new FormControl(''),
+      end: new FormControl('')
+    });
   }
 
   public status: any = [
-    {value: 'all', viewValue: 'All'},
-    {value: 'confirm', viewValue: 'Confirm'},
-    {value: 'confirmed', viewValue: 'Confirmed'}
+    { value: '', viewValue: 'All' },
+    { value: 'confirm', viewValue: 'Confirm' },
+    { value: 'confirmed', viewValue: 'Confirmed' }
   ];
 
   ngOnInit(): void {
+    this.dateRange.valueChanges.subscribe(date => {
+      this.dateFilter(date);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -68,6 +80,24 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  statusFilter(value: string): void {
+    if (value === '') {
+      this.dataSource.filter = JSON.stringify({ customer: [] });
+
+    } else {
+      this.dataSource.filter = JSON.stringify({ customer: [value], column: 'status' });
+    }
+  }
+
+  dateFilter(event: MatDatepickerInputEvent<Date>): void {
+    const startDate = new Date(this.dateRange.controls['start'].value).getTime();
+    const endDate = new Date(this.dateRange.controls['end'].value).getTime();
+    if (!isNaN(endDate)) {
+      this.dataSource.filter = JSON.stringify({ customer: [startDate, endDate + 100000], column: 'delivery' });
+    } else {
+      this.dataSource.filter = JSON.stringify({ customer: [startDate], column: 'delivery' });
+    }
+  }
 }
 
 const ELEMENT_DATA: OrdersTableElement[] = [
@@ -78,10 +108,9 @@ const ELEMENT_DATA: OrdersTableElement[] = [
     customerNo: 'BB-243',
     items: 12,
     notes: 'Please deliver...',
-    ordered: 'Yesterday, 22:01',
-    delivery: 'Today',
-    status: false,
-    position: 'Burger Bar'
+    ordered: 1623045600000,
+    delivery: 1623045600000,
+    status: 'confirm'
   },
   {
     dropdown: 'chevron-down',
@@ -90,10 +119,9 @@ const ELEMENT_DATA: OrdersTableElement[] = [
     customerNo: 'GZ-889',
     items: 75,
     notes: 'Confirmed',
-    ordered: 'Yesterday, 22:01',
-    delivery: 'Tomorrow',
-    status: true,
-    position: 'Gyoza SS'
+    ordered: 1623132000000,
+    delivery: 1623132000000,
+    status: 'confirmed'
   },
   {
     dropdown: 'chevron-down',
@@ -102,10 +130,9 @@ const ELEMENT_DATA: OrdersTableElement[] = [
     customerNo: 'BB-243',
     items: 9,
     notes: '+1 Bottle Coc...',
-    ordered: 'Mon, 15 Jun 2021, 22:01',
-    delivery: 'Mon, 15 Jun 2021',
-    status: true,
-    position: 'Burger Bar'
+    ordered: 1623218400000,
+    delivery: 1623218400000,
+    status: 'confirmed'
   }
 ];
 

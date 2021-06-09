@@ -20,24 +20,6 @@
       (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
 
-<!--  <mat-form-field>-->
-<!--    <mat-select [formControl]="customersCtrl">-->
-<!--      <mat-select-trigger>-->
-<!--        <mat-chip-list (click)="$event.stopPropagation()">-->
-<!--          <mat-chip-->
-<!--            *ngFor="let customer of customers"-->
-<!--            [selectable]="selectable"-->
-<!--            [removable]="removable"-->
-<!--            (removed)="remove(customer)">-->
-<!--            {{customer}}-->
-<!--            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
-<!--          </mat-chip>-->
-<!--        </mat-chip-list>-->
-<!--      </mat-select-trigger>-->
-<!--      <mat-option *ngFor="let customer of allCustomers" [value]="customer">{{customer}}</mat-option>-->
-<!--    </mat-select>-->
-<!--  </mat-form-field>-->
-
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
       {{customer}}

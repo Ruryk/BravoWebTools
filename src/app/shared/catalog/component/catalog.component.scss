@@ -213,6 +213,11 @@
 
             th.mat-column-availability {
               width: 20%;
+              mat-form-field{
+                width: 0;
+                height: 0;
+                visibility: hidden;
+              }
             }
 
             td {
