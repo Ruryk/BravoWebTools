@@ -8,9 +8,16 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipList } from '@angular/material/chips';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { OrdersTableElement, OrdersTableElementItem } from 'src/app/interfaces/interfaces';
+import {
+  IOrders,
+  IOrdersState,
+  OrdersTableElement,
+  OrdersTableElementItem
+} from 'src/app/interfaces/interfaces';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { getOrdersDataSource, IState } from '../../../reducers';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-orders',
@@ -29,11 +36,13 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
 
   public sideMenuStatus: boolean;
-  public displayedColumns: string[] = ['dropdown', 'order', 'customer', 'customerNo', 'items', 'notes', 'ordered', 'delivery', 'status'];
-  public displayedColumnsItem: string[] = ['code', 'product', 'unit', 'quantity'];
-  public dataSource = new MatTableDataSource(ELEMENT_DATA);
-  public dataSourceItem = new MatTableDataSource(ELEMENT_DATA_ITEM);
+  public displayedColumns: string[] = ['dropdown', 'orderNo', 'customer', 'customerNo', 'items', 'notes', 'ordered', 'delivery', 'status'];
+  public displayedColumnsItem: string[] = ['productCode', 'productName', 'unit', 'quantity'];
   public expandedElement: OrdersTableElement | null;
+
+  public dataOrders = this.store.select(getOrdersDataSource);
+  public dataSource: MatTableDataSource<IOrders>;
+  public dataSourceItem: MatTableDataSource<OrdersTableElementItem>;
 
   @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
@@ -41,7 +50,10 @@ export class OrdersComponent implements AfterViewInit, OnInit {
 
   public dateRange: FormGroup;
 
-  constructor(private sidenavService: SidenavService) {
+  constructor(
+    private store: Store<IState>,
+    private sidenavService: SidenavService
+  ) {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
@@ -51,6 +63,20 @@ export class OrdersComponent implements AfterViewInit, OnInit {
       start: new FormControl(''),
       end: new FormControl('')
     });
+
+    this.dataSource = new MatTableDataSource<IOrders>();
+    this.dataSourceItem = new MatTableDataSource<OrdersTableElementItem>();
+    this.dataOrders.subscribe((data: IOrdersState) => this.dataSource.data = Object.values(data));
+    this.dataSourceItem = this.dataSource.data.reduce((acc: any, item: IOrders) => {
+      const data = {
+        productCode: item.product?.productCode,
+        productName: item.product?.productName,
+        unit: item.product?.unit,
+        quantity: item.product?.quantity
+      };
+      acc.push(data);
+      return acc;
+    }, [] as any);
   }
 
   public status: any = [
@@ -100,44 +126,6 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   }
 }
 
-const ELEMENT_DATA: OrdersTableElement[] = [
-  {
-    dropdown: 'chevron-down',
-    order: '35322',
-    customer: 'Burger Bar',
-    customerNo: 'BB-243',
-    items: 12,
-    notes: 'Please deliver...',
-    ordered: 1623045600000,
-    delivery: 1623045600000,
-    status: 'confirm'
-  },
-  {
-    dropdown: 'chevron-down',
-    order: '32342',
-    customer: 'Gyoza SS',
-    customerNo: 'GZ-889',
-    items: 75,
-    notes: 'Confirmed',
-    ordered: 1623132000000,
-    delivery: 1623132000000,
-    status: 'confirmed'
-  },
-  {
-    dropdown: 'chevron-down',
-    order: '23424',
-    customer: 'Burger Bar',
-    customerNo: 'BB-243',
-    items: 9,
-    notes: '+1 Bottle Coc...',
-    ordered: 1623218400000,
-    delivery: 1623218400000,
-    status: 'confirmed'
-  }
-];
+const ELEMENT_DATA: OrdersTableElement[] = [];
 
-const ELEMENT_DATA_ITEM: OrdersTableElementItem[] = [
-  { code: 'APP123', product: 'Apples', unit: 'kg', quantity: 14 },
-  { code: 'TOM53', product: 'Tomatos', unit: 'box', quantity: 4 },
-  { code: 'CUC997', product: 'Cucumber', unit: 'pcs', quantity: 36 },
-];
+const ELEMENT_DATA_ITEM: OrdersTableElementItem[] = [];

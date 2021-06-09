@@ -54,3 +54,25 @@ export interface ICatalog {
 export interface ICatalogState {
   [code: string]: ICatalog;
 }
+
+export interface IOrders {
+  dropdown?: string;
+  orderNo?: number;
+  customer?: string;
+  customerNo?: string;
+  items?: number;
+  notes?: string;
+  ordered?: number;
+  delivery?: number;
+  status?: string;
+  product?: {
+    productCode?: string;
+    productName?: string;
+    unit?: string;
+    quantity?: number;
+  };
+}
+
+export interface IOrdersState {
+  [code: string]: IOrders;
+}
