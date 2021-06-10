@@ -14,7 +14,6 @@ import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { SidenavService } from './services/sidenav/sidenav.service';
 
-
 @NgModule({
   declarations: [
     AppComponent

@@ -5,8 +5,6 @@ import { CatalogRoutingModule } from './catalog-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { DeleteCatalogModalComponent } from './component/delete-catalog-modal/delete-catalog-modal.component';
 
-
-
 @NgModule({
   declarations: [
     CatalogComponent,

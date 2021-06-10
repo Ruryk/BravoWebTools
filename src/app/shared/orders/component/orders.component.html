@@ -110,7 +110,7 @@
                   <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
                     <input matStartDate formControlName="start" placeholder="Start date">
                     <input matEndDate formControlName="end" placeholder="End date"
-                           (dateChange)="dateFilter($event)" >
+                           (dateChange)="dateFilter()" >
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <!-- #docregion date-range-picker-actions -->
