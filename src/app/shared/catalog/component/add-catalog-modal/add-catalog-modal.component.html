@@ -1,0 +1,57 @@
+<div class="modal-window">
+  <div class="dialog-header">
+    <h1 mat-dialog-title class="dialog-title">Add Product
+    </h1>
+    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close">
+    </button>
+  </div>
+  <div class="dialog-content">
+    <form class="example-form">
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Product Code</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item multiple">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Unit</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Price (optional)</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <button class="dialog-add-unit-btn">Add Unit</button>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Availability</mat-label>
+          <mat-select [formControl]="selected">
+            <ng-container *ngFor="let food of foods; index as i">
+              <mat-option *ngIf="i!==0" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+              <mat-option *ngIf="i===0" [value]="food.value" aria-selected="true">
+                {{food.viewValue}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="dialog-item control">
+        <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
+        <button mat-flat-button color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+

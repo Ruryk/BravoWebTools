@@ -220,7 +220,8 @@
                 visibility: hidden;
               }
             }
-            td.mat-column-unit{
+
+            td.mat-column-unit {
               span {
                 color: $gray;
               }
@@ -286,7 +287,6 @@
                 &__control {
                   display: flex;
                   align-items: center;
-
                   .control-item {
                     button {
                       display: flex;
@@ -314,7 +314,6 @@
 
                   .control-item:first-child {
                     margin-right: 30px;
-
                     button {
                       color: $gray;
                     }
@@ -388,46 +387,53 @@
   }
 }
 
-::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-  color: $black;
-}
 
-::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: $white;
-}
-
-::ng-deep .mat-select-panel {
-  background: $gray;
-}
-
-::ng-deep .cdk-overlay-pane {
-  .mat-menu-panel {
-    background: $white;
-
-    .mat-menu-content {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 40px 12px 17px;
+::ng-deep {
+  .mat-form-field.mat-focused.mat-primary {
+    .mat-select-arrow {
       color: $black;
+    }
+  }
 
-      mat-checkbox {
-        margin: 10px 0;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 150%;
+  .mat-primary {
+    .mat-option.mat-selected:not(.mat-option-disabled) {
+      color: $white;
+    }
+  }
 
-        span.mat-checkbox-inner-container {
-          border: 1px solid $gray;
-          border-radius: 4px;
+  .mat-select-panel {
+    background: $gray;
+  }
+
+  mat-dialog-container {
+    background: $white !important;
+    color: $black !important;
+  }
+
+  .cdk-overlay-pane {
+    .mat-menu-panel {
+      background: $white;
+
+      .mat-menu-content {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 40px 12px 17px;
+        color: $black;
+
+        mat-checkbox {
+          margin: 10px 0;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 150%;
+
+          span.mat-checkbox-inner-container {
+            border: 1px solid $gray;
+            border-radius: 4px;
+          }
         }
-      }
 
+      }
     }
   }
 }
-
-//::ng-deep .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
-//  background-color: $blue;
-//}
-

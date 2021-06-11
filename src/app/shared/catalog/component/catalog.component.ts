@@ -10,6 +10,8 @@ import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catal
 import { Store } from '@ngrx/store';
 import { CatalogFilterService } from 'src/app/services/catalog-filter/catalog-filter.service';
 import { ReplaceCatalogModalComponent } from './replace-catalog-modal/replace-catalog-modal.component';
+import { AddCatalogModalComponent } from './add-catalog-modal/add-catalog-modal.component';
+import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-modal.component';
 
 @Component({
   selector: 'app-catalog',
@@ -49,6 +51,22 @@ export class CatalogComponent implements AfterViewInit, OnInit {
 
   openReplaceModal(): void {
     this.dialog.open(ReplaceCatalogModalComponent, {
+      data: {
+        animal: 'panda'
+      }
+    });
+  }
+
+  openAddModal(): void {
+    this.dialog.open(AddCatalogModalComponent, {
+      data: {
+        animal: 'panda'
+      }
+    });
+  }
+
+  openEditModal(): void {
+    this.dialog.open(EditCatalogModalComponent, {
       data: {
         animal: 'panda'
       }

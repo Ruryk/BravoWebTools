@@ -17,7 +17,7 @@
             </button>
           </div>
           <div class="control-item">
-            <button>
+            <button (click)="openAddModal()">
               Add Customer
             </button>
           </div>
@@ -89,8 +89,8 @@
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+          <tr mat-row (click)="openEditModal()" *matRowDef="let row; columns: displayedColumns;"></tr>
 
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="6">
