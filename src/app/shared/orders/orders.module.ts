@@ -6,13 +6,11 @@ import { OrdersComponent } from './component/orders.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { SelectFilterMenuComponent } from '../custom-ui/select-filter-menu/select-filter-menu.component';
-import { DatePickerMenuComponent } from '../custom-ui/date-picker-menu/date-picker-menu.component';
 
 @NgModule({
   declarations: [
     OrdersComponent,
-    SelectFilterMenuComponent,
-    DatePickerMenuComponent
+    SelectFilterMenuComponent
   ],
   imports: [
     CommonModule,

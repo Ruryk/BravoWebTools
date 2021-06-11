@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
@@ -8,6 +8,8 @@ import { map, startWith } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatMenuTrigger, MatMenuPanel } from '@angular/material/menu';
 
+import { OrdersFilterService } from '../../../services/orders-filter/orders-filter.service';
+
 @Component({
   selector: 'app-select-filter-menu',
   templateUrl: './select-filter-menu.component.html',
@@ -15,11 +17,13 @@ import { MatMenuTrigger, MatMenuPanel } from '@angular/material/menu';
 })
 export class SelectFilterMenuComponent implements OnInit {
 
-  @Input() public dataSource!: MatTableDataSource<any>;
   @ViewChild(MatMenuTrigger) trigger?: MatMenuTrigger;
   @ViewChild('menuCustomersFilter') menu?: MatMenuPanel;
+  @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete?: MatAutocomplete;
+  @ViewChild('chipList') chipList?: MatChipList;
 
-// sorting customers
+  public dataSource: MatTableDataSource<any>;
   public visible = true;
   public selectable = true;
   public removable = true;
@@ -29,71 +33,33 @@ export class SelectFilterMenuComponent implements OnInit {
   public customers: string[] = [];
   public customersChange$ = new Subject<string[]>();
   public allCustomers: string[] = ['Gyoza SS', 'Burger King', 'Burger Bar'];
+  public filterValues: any;
 
-  @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete?: MatAutocomplete;
-  @ViewChild('chipList') chipList?: MatChipList;
-
-  constructor() {
-    // sorting select list customers
+  constructor(private dataFilter: OrdersFilterService) {
+    this.dataSource = this.dataFilter.dataSource;
+    this.filterValues = this.dataFilter.filterValues;
     this.filteredCustomers = this.customersCtrl.valueChanges.pipe(
       startWith(null),
       map((customer: string | null) => customer ? this._filter(customer) : this.allCustomers.slice()));
   }
 
-  // none value
-  filterValues: any = {
-    customer: [],
-    column: 'customer'
-  };
-
   ngOnInit(): void {
-    this.getFormsValue();
-  }
-
-  // create filter
-  getFormsValue(): void {
-    this.dataSource.filterPredicate = (data, filter: string): boolean => {
-      const searchString = JSON.parse(filter);
-      const column = searchString.column;
-      let isPositionAvailable = false;
-      if (searchString.customer.length) {
-        if (column !== 'delivery') {
-          for (const d of searchString.customer) {
-            if (data[column].trim() === d) {
-              isPositionAvailable = true;
-            }
-          }
-        } else {
-          if (searchString.customer.length === 2) {
-            isPositionAvailable = (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
-          } else {
-            isPositionAvailable = (data[column] >= searchString.customer[0]) ? true : false;
-          }
-        }
-      } else {
-        isPositionAvailable = true;
-      }
-      return isPositionAvailable;
-
-    };
-    this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
   filterCustomers(): void {
-    this.filterValues['customer'] = this.customers;
-    this.filterValues['column'] = 'customer';
-    this.dataSource.filter = JSON.stringify(this.filterValues);
+    const customerKey = 'customer';
+    const columnKey = 'column';
+    this.filterValues[customerKey] = this.customers;
+    this.filterValues[columnKey] = 'customer';
+    this.dataFilter.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    // Add our customer
     if (value) {
       this.customers.push(value);
       this.customersChange$.next(this.customers);
     }
-    // Clear the input value
     event.input.value = '';
     this.customersCtrl.setValue(null);
     this.filterCustomers();

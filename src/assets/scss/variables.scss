@@ -17,6 +17,12 @@ $middleBlue: #E2EDFC;
 $aliceBlue: #F0F6FE;
 $backgroundPage: #f7f7f7;
 $green: #1f8b24;
-
+$red: #F5413D;
+$lightred: #FCD0CF;
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap");
 $fontfamily: "Manrope", sans-serif;
+
+
+@mixin fontType(){
+
+}

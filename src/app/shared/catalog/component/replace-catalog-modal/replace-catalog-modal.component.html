@@ -1,0 +1,45 @@
+<div class="dialog-replace">
+  <div class="dialog-replace title">
+    <h1 mat-dialog-title>Replace Catalog</h1>
+    <button class="dialog-close-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close"></button>
+  </div>
+  <div class="dialog-replace content">
+    <p>
+      Drops the existing catalog and imports the new one
+    </p>
+  </div>
+  <ng-container *ngIf="!fileLoad">
+    <div class="dialog-replace load" (click)="inputFile.click()">
+      <h4>
+        Drag or Click here to upload files
+      </h4>
+      <p>
+        Note, that only .CSV files are<br>supported
+      </p>
+      <input type="file" class="file-input" #inputFile (change)="handleFileInput($event)">
+    </div>
+  </ng-container>
+  <ng-container *ngIf="fileLoad">
+    <div class="dialog-replace loaded">
+      <div class="loaded-content">
+        <p>
+          <span>{{ fileLoad.name }}</span><br>
+          {{ fileLoad.size }} KB
+        </p>
+      </div>
+      <button class="file-remove-btn" (click)="fileRemove()"><img src="/assets/img/close.png" alt="close"></button>
+    </div>
+  </ng-container>
+  <div class="dialog-replace download">
+    <p>
+      <a [href]="fileLoad" download=""><span>Download</span></a> our Template as a help.
+    </p>
+  </div>
+  <div class="dialog-replace control">
+    <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
+    <button mat-flat-button color="primary" class="dialog-replace-btn" [mat-dialog-close]="true">Replace Catalog
+    </button>
+  </div>
+</div>
+
+

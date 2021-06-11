@@ -1,0 +1,89 @@
+@import "src/assets/scss/variables";
+
+.dialog-delete {
+  &.title {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 132%;
+    }
+    button.dialog-close-btn{
+      background: transparent;
+      border: none;
+      align-self: flex-start;
+    }
+  }
+
+  &.content {
+    p {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.0168em;
+
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  &.content:after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid $lightgray;
+    margin: 30px 0 20px 0;
+  }
+
+  &.control {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      padding: 12px 16px;
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+    }
+
+    button.dialog-cancel-btn {
+      background: transparent;
+      border: 1px solid $gray;
+      color: $gray;
+      margin-right: 16px;
+    }
+
+    button.dialog-delete-btn {
+      padding: 12px 19px;
+      background: $red;
+      color: $lightred;
+      border: 1px solid $red;
+    }
+
+    button.dialog-delete-btn::before {
+      content: '';
+      background: url("/assets/img/trash.svg");
+      width: 18px;
+      height: 19px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+  }
+}
+
+::ng-deep {
+  mat-dialog-container {
+    background: $white !important;
+    color: $black !important;
+  }
+
+}

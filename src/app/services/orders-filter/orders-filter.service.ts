@@ -20,6 +20,10 @@ export class OrdersFilterService {
     { value: 'confirm', viewValue: 'Confirm' },
     { value: 'confirmed', viewValue: 'Confirmed' }
   ];
+  public filterValues: any = {
+    customer: [],
+    column: 'customer'
+  };
   constructor(private store: Store<IState>) {
     this.expandedElement = null;
     this.dataSource = new MatTableDataSource<IOrders>();
@@ -35,10 +39,43 @@ export class OrdersFilterService {
       acc.push(data);
       return acc;
     }, [] as any);
+    this.setDataSourceFiltering();
+  }
+
+  setDataSourceFiltering(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
+      const searchString = JSON.parse(filter);
+      const column = searchString.column;
+      let isPositionAvailable = false;
+      if (searchString.customer.length) {
+        if (column !== 'delivery' && column !== 'orderNo') {
+          for (const d of searchString.customer) {
+            if (data[column].trim() === d) {
+              isPositionAvailable = true;
+            }
+          }
+        }else if(column ===  'orderNo'){
+          if (data[column].toString().includes(searchString.customer[0].toString())) {
+            isPositionAvailable = true;
+          }
+        } else {
+          if (searchString.customer.length === 2) {
+            isPositionAvailable = (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
+          } else {
+            isPositionAvailable = (data[column] >= searchString.customer[0]) ? true : false;
+          }
+        }
+      } else {
+        isPositionAvailable = true;
+      }
+      return isPositionAvailable;
+
+    };
+    this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
   applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify({ customer: [filterValue], column: 'orderNo' });
   }
 
   statusFilter(value: string): void {

@@ -9,6 +9,7 @@ import { ICatalog} from 'src/app/interfaces/interfaces';
 import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
 import { Store } from '@ngrx/store';
 import { CatalogFilterService } from 'src/app/services/catalog-filter/catalog-filter.service';
+import { ReplaceCatalogModalComponent } from './replace-catalog-modal/replace-catalog-modal.component';
 
 @Component({
   selector: 'app-catalog',
@@ -40,6 +41,14 @@ export class CatalogComponent implements AfterViewInit, OnInit {
 
   openDeleteModal(): void {
     this.dialog.open(DeleteCatalogModalComponent, {
+      data: {
+        animal: 'panda'
+      }
+    });
+  }
+
+  openReplaceModal(): void {
+    this.dialog.open(ReplaceCatalogModalComponent, {
       data: {
         animal: 'panda'
       }

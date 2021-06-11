@@ -1,0 +1,206 @@
+@import "src/assets/scss/variables";
+
+.dialog-replace {
+
+  &.title {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 132%;
+    }
+    button.dialog-close-btn {
+      background: transparent;
+      border: none;
+      align-self: flex-start;
+      cursor: pointer;
+    }
+  }
+
+  &.content {
+    p {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.0168em;
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  &.load {
+    background: $lightBlue;
+    padding: 0 20px;
+    border-radius: 10px;
+    border: 1px dashed $blue;
+    cursor: pointer;
+    margin: 24px 0;
+
+    input[type='file'] {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      position: absolute;
+    }
+
+    h4 {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: center;
+      letter-spacing: 0.005em;
+      color: $blue;
+      margin: 41px 0 6px 0;
+    }
+
+    p {
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 130%;
+      text-align: center;
+      letter-spacing: 0.03em;
+      color: $blue;
+      margin-bottom: 27px;
+    }
+  }
+  &.loaded{
+    background: $lightBlue;
+    border-radius: 10px;
+    border: 1px dashed $blue;
+    margin: 20px 0;
+    padding: 15px;
+    background: $lightBlue;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    p{
+      margin: 0 !important;
+      span{
+        font-family: $fontfamily;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
+    div.loaded-content{
+      display: flex;
+      align-items: center;
+    }
+    div.loaded-content:before{
+      content: '';
+      display: inline-block;
+      background: url("/assets/img/Union.svg");
+      background-repeat: no-repeat;
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    button.file-remove-btn {
+      background: transparent;
+      border: none;
+      align-self: center;
+      cursor: pointer;
+    }
+  }
+  &.download {
+    p {
+      color: $gray;
+
+      span {
+        color: $blue;
+        font-family: $fontfamily;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0.005em;
+        cursor: pointer;
+      }
+
+      span:before {
+        content: '';
+        background: url("/assets/img/software-download.svg");
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &.download:after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid $lightgray;
+    margin: 30px 0 20px 0;
+  }
+
+  &.control {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    button {
+      padding: 12px 16px;
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+    }
+
+    button.dialog-cancel-btn {
+      background: transparent;
+      border: 1px solid $gray;
+      color: $gray;
+      margin-right: 16px;
+    }
+
+    button.dialog-replace-btn {
+      padding: 12px 19px;
+      background: $blue;
+      color: $lightBlue;
+      border: 1px solid $blue;
+    }
+
+    button.dialog-replace-btn::before {
+      content: '';
+      background: url("/assets/img/check.svg");
+      width: 20px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+  }
+}
+
+::ng-deep {
+  mat-dialog-container {
+    background: $white !important;
+    color: $black !important;
+  }
+
+  mat-form-field.file-input {
+    position: absolute;
+  }
+  a:-webkit-any-link{
+    text-decoration: none;
+  }
+}
