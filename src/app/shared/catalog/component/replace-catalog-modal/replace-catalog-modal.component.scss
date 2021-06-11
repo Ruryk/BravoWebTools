@@ -181,7 +181,8 @@
 
     button.dialog-replace-btn::before {
       content: '';
-      background: url("/assets/img/check.svg");
+      background: url("/assets/img/check-light.svg");
+      background-repeat: no-repeat;
       width: 20px;
       height: 16px;
       display: inline-block;

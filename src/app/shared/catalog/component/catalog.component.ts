@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { ICatalog} from 'src/app/interfaces/interfaces';
+import { ICatalog } from 'src/app/interfaces/interfaces';
 import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
 import { Store } from '@ngrx/store';
 import { CatalogFilterService } from 'src/app/services/catalog-filter/catalog-filter.service';
@@ -26,6 +26,13 @@ export class CatalogComponent implements AfterViewInit, OnInit {
   public displayedColumns: string[];
   public availabilityList: string[];
   public dataSource!: MatTableDataSource<ICatalog>;
+  // progress bar
+  public valueAddModal = 0;
+  public valueFileModal = 0;
+  public bufferValueAddModal = 100;
+  public bufferValueFileModal = 100;
+  public progressAddModalStatus: boolean;
+  public progressFileModalStatus: boolean;
 
   constructor(
     // private store: Store<IState>,
@@ -33,6 +40,8 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     private sidenavService: SidenavService,
     public dialog: MatDialog
   ) {
+    this.progressAddModalStatus = false;
+    this.progressFileModalStatus = false;
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
@@ -54,7 +63,7 @@ export class CatalogComponent implements AfterViewInit, OnInit {
       data: {
         animal: 'panda'
       }
-    });
+    }).afterClosed().subscribe(() => this.openProgressFileModal());
   }
 
   openAddModal(): void {
@@ -62,7 +71,7 @@ export class CatalogComponent implements AfterViewInit, OnInit {
       data: {
         animal: 'panda'
       }
-    });
+    }).afterClosed().subscribe(() => this.openProgressAddModal());
   }
 
   openEditModal(): void {
@@ -71,6 +80,32 @@ export class CatalogComponent implements AfterViewInit, OnInit {
         animal: 'panda'
       }
     });
+  }
+
+  openProgressAddModal(): void {
+    this.progressAddModalStatus = true;
+    const timerId = setInterval(() => {
+      if (this.valueAddModal < 105) {
+        this.valueAddModal++;
+      }else {
+        this.progressAddModalStatus = false;
+        clearTimeout(timerId);
+      }
+    }, 30);
+    this.valueAddModal = 0;
+  }
+
+  openProgressFileModal(): void {
+    this.progressFileModalStatus = true;
+    const timerId = setInterval(() => {
+      if (this.valueFileModal < 105) {
+        this.valueFileModal++;
+      }else {
+        this.progressFileModalStatus = false;
+        clearTimeout(timerId);
+      }
+    }, 30);
+    this.valueFileModal = 0;
   }
 
   ngOnInit(): void {

@@ -287,6 +287,7 @@
                 &__control {
                   display: flex;
                   align-items: center;
+
                   .control-item {
                     button {
                       display: flex;
@@ -314,6 +315,7 @@
 
                   .control-item:first-child {
                     margin-right: 30px;
+
                     button {
                       color: $gray;
                     }
@@ -383,6 +385,106 @@
         }
       }
 
+    }
+  }
+}
+
+.progress-bar.active{
+  display: block;
+}
+.progress-bar.add-modal{
+  background: $green;
+  ::ng-deep{
+    mat-progress-bar{
+      height: 6px;
+    }
+    .mat-progress-bar-buffer{
+      background-color:$green !important;
+    }
+    .mat-progress-bar-fill::after {
+      background-color:$lightgreen !important;
+    }
+  }
+}
+.progress-bar.file-modal{
+  background: $orange;
+  ::ng-deep{
+    mat-progress-bar{
+      height: 6px;
+    }
+    .mat-progress-bar-buffer{
+      background-color:$orange !important;
+    }
+    .mat-progress-bar-fill::after {
+      background-color:$lightorange !important;
+    }
+  }
+}
+.progress-bar {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  &-body{
+    ::ng-deep{
+      mat-progress-bar{
+        height: 6px;
+      }
+    }
+  }
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    div {
+      display: flex;
+      img{
+      align-self: flex-start;
+        padding: 5px 15px 0 0;
+      }
+      align-items: center;
+      ::ng-deep mat-progress-spinner{
+        align-self: flex-start;
+        margin: 5px 15px 0 0;
+        width: 40px !important;
+        height: 40px !important;
+        svg{
+          width: 40px !important;
+          height: 40px !important;
+          circle{
+            stroke: $lightorange;
+          }
+        }
+      }
+      p{
+        color: $white;
+        font-family: $fontfamily;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0.0168em;
+
+        span {
+          color: $white;
+          font-family: $fontfamily;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 150%;
+          letter-spacing: 0.005em;
+        }
+      }
+    }
+    button.progress-bar-close-btn {
+      background: url("/assets/img/close.svg") center center;
+      background-repeat: no-repeat;
+      border: none;
+      width: 16px;
+      height: 16px;
     }
   }
 }

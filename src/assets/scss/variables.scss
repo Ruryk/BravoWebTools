@@ -3,22 +3,33 @@
 $minWidth: 320px;
 $maxWidth: 1440px;
 
-// Colors
-$black: rgb(0, 0, 0);
-$white: rgb(255, 255, 255);
+// =============================== Colors =================================
 $bordergray: #a1a1a1;
+$backgroundPage: #f7f7f7;
+$disabledInputColor:#EFEFEF;
+// black
+$black: rgb(0, 0, 0);
+// white
+$white: rgb(255, 255, 255);
+// gray
 $gray: #616161;
 $stronggray: #414141;
 $lightgray: #e0e0e0;
-$disabledInputColor:#EFEFEF;
+// blue
 $blue: #1672ec;
 $lightBlue: #c5dcfa;
 $middleBlue: #E2EDFC;
 $aliceBlue: #F0F6FE;
-$backgroundPage: #f7f7f7;
+// green
 $green: #1f8b24;
+$lightgreen: #8CE590;
+// red
 $red: #F5413D;
 $lightred: #FCD0CF;
+// orange
+$orange: #ED9526;
+$lightorange:#F6CA92;
+
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap");
 $fontfamily: "Manrope", sans-serif;
 
