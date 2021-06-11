@@ -18,8 +18,10 @@
   border: 1px solid $lightgray;
   box-sizing: border-box;
   border-radius: 8px;
+
   &__title {
     margin: 70px 0 26px 0;
+
     h5 {
       font-style: normal;
       font-weight: 600;
@@ -29,36 +31,55 @@
       color: $black;
     }
   }
+
   & form {
     width: 100%;
+
     mat-form-field {
       width: 100%;
     }
-    ::ng-deep .mat-input-element {
-      border: 1.5px solid $bordergray;
-      box-sizing: border-box;
-      border-radius: 8px;
-      min-height: 48px;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-    }
-    ::ng-deep .mat-input-element::placeholder {
-      color:$gray;
-      display: block ;
-    }
-    ::ng-deep label {
-      margin-left: 15px;
-      color:$gray;
-    }
-    ::ng-deep .mat-form-field-underline,
-    ::ng-deep.mat-form-field-subscript-wrapper {
-      display: none;
+
+    ::ng-deep {
+      .mat-input-element {
+        border: 1.5px solid $bordergray;
+        box-sizing: border-box;
+        border-radius: 8px;
+        min-height: 48px;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        caret-color: $blue;
+      }
+
+      .mat-input-element:focus {
+        border: 3px solid $blue;
+      }
+
+      mat-input-element::placeholder {
+        color: $gray;
+        display: block;
+      }
+
+      mat-label {
+        margin-left: 15px;
+        color: $gray;
+      }
+
+      mat-label.active {
+        color: $blue;
+      }
+
+      .mat-form-field-underline,
+      .mat-form-field-subscript-wrapper {
+        display: none;
+      }
     }
   }
+
   &__description {
-    margin-top: 16px;
+    margin-top: 6px;
     text-align: center;
+
     p {
       font-style: normal;
       font-weight: normal;
@@ -68,9 +89,11 @@
       color: $gray;
     }
   }
+
   &__submit {
-    margin-top: 32px;
+    margin-top: 22px;
     width: 100%;
+
     button {
       background: $blue;
       opacity: 0.6;
@@ -83,6 +106,10 @@
       letter-spacing: 0.05em;
       text-transform: capitalize;
       border-radius: 8px;
+    }
+
+    button.valid {
+     opacity: 1.0;
     }
   }
 }

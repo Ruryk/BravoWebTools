@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { LoginCodeComponent } from './component/login-code.component';
 import { LoginCodeRoutingModule } from './login-code-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
+import { InputOnlyNumbersDirective } from '../../directives/input-only-numbers.directive';
 
 @NgModule({
   declarations: [
-    LoginCodeComponent
+    LoginCodeComponent,
+    InputOnlyNumbersDirective
   ],
   imports: [
     CommonModule,

@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginCodeComponent implements OnInit {
 
-  constructor() { }
+  public focus: boolean;
+
+  constructor() {
+    this.focus = false;
+  }
 
   ngOnInit(): void {
+  }
+
+  focusIn(): void{
+    this.focus = true;
+  }
+
+  focusOut(): void{
+    this.focus = false;
   }
 
 }

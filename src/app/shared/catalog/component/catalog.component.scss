@@ -392,34 +392,7 @@
 .progress-bar.active{
   display: block;
 }
-.progress-bar.add-modal{
-  background: $green;
-  ::ng-deep{
-    mat-progress-bar{
-      height: 6px;
-    }
-    .mat-progress-bar-buffer{
-      background-color:$green !important;
-    }
-    .mat-progress-bar-fill::after {
-      background-color:$lightgreen !important;
-    }
-  }
-}
-.progress-bar.file-modal{
-  background: $orange;
-  ::ng-deep{
-    mat-progress-bar{
-      height: 6px;
-    }
-    .mat-progress-bar-buffer{
-      background-color:$orange !important;
-    }
-    .mat-progress-bar-fill::after {
-      background-color:$lightorange !important;
-    }
-  }
-}
+
 .progress-bar {
   display: none;
   position: absolute;
@@ -479,7 +452,8 @@
         }
       }
     }
-    button.progress-bar-close-btn {
+    button.progress-bar-close-btn{
+      cursor: pointer;
       background: url("/assets/img/close.svg") center center;
       background-repeat: no-repeat;
       border: none;
@@ -489,6 +463,34 @@
   }
 }
 
+.progress-bar.add-modal{
+  background: $green;
+  ::ng-deep{
+    mat-progress-bar{
+      height: 6px;
+    }
+    .mat-progress-bar-buffer{
+      background-color:$green !important;
+    }
+    .mat-progress-bar-fill::after {
+      background-color:$lightgreen !important;
+    }
+  }
+}
+.progress-bar.file-modal{
+  background: $orange;
+  ::ng-deep{
+    mat-progress-bar{
+      height: 6px;
+    }
+    .mat-progress-bar-buffer{
+      background-color:$orange !important;
+    }
+    .mat-progress-bar-fill::after {
+      background-color:$lightorange !important;
+    }
+  }
+}
 
 ::ng-deep {
   .mat-form-field.mat-focused.mat-primary {

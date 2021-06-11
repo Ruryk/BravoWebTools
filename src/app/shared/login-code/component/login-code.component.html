@@ -18,12 +18,12 @@
         </div>
         <form class="login-form__form">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <mat-label>Your login code</mat-label>
-            <input matInput value="">
+            <mat-label [class]="focus?'active':''" >Your login code</mat-label>
+            <input matInput value="" (focusin)="focusIn()" (focusout)="focusOut()" appInputOnlyNumbers>
           </mat-form-field>
           <span>&mdash;</span>
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <input matInput value="">
+            <input matInput value="" (focusin)="focusIn()" (focusout)="focusOut()" appInputOnlyNumbers>
           </mat-form-field>
         </form>
         <div class="code-form__description">

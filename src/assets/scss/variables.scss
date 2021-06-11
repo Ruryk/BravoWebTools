@@ -6,7 +6,7 @@ $maxWidth: 1440px;
 // =============================== Colors =================================
 $bordergray: #a1a1a1;
 $backgroundPage: #f7f7f7;
-$disabledInputColor:#EFEFEF;
+$disabledInputColor: #EFEFEF;
 // black
 $black: rgb(0, 0, 0);
 // white
@@ -16,7 +16,7 @@ $gray: #616161;
 $stronggray: #414141;
 $lightgray: #e0e0e0;
 // blue
-$blue: #1672ec;
+$blue: #1672EC;
 $lightBlue: #c5dcfa;
 $middleBlue: #E2EDFC;
 $aliceBlue: #F0F6FE;
@@ -28,12 +28,12 @@ $red: #F5413D;
 $lightred: #FCD0CF;
 // orange
 $orange: #ED9526;
-$lightorange:#F6CA92;
+$lightorange: #F6CA92;
 
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap");
 $fontfamily: "Manrope", sans-serif;
 
 
-@mixin fontType(){
+@mixin fontType() {
 
 }

@@ -17,8 +17,10 @@
   border: 1px solid $lightgray;
   box-sizing: border-box;
   border-radius: 8px;
+
   &__title {
     margin: 70px 0 11px 0;
+
     h5 {
       font-style: normal;
       font-weight: 600;
@@ -28,6 +30,7 @@
       color: $black;
     }
   }
+
   &__form-control {
     input {
       width: 156px;
@@ -37,56 +40,74 @@
       border-radius: 8px;
       font-size: 16px;
     }
+
     span {
       margin: 0px 8px;
     }
+
     label {
       display: inline-block;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
       line-height: 130%;
-      margin-left: 15px;
       margin-top: 30px;
       margin-bottom: 2px;
       letter-spacing: 0.03em;
-      color: $gray;
     }
+
   }
+
   & form {
     margin-top: 22px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     mat-form-field {
       width: 47%;
     }
-    ::ng-deep .mat-input-element {
-      border: 1.5px solid $bordergray;
-      box-sizing: border-box;
-      border-radius: 8px;
-      min-height: 48px;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-    }
-    ::ng-deep .mat-input-element::placeholder {
-      color:$gray;
-      display: block ;
-    }
-    ::ng-deep label {
-      margin-left: 15px;
-      color:$gray;
-    }
-    ::ng-deep .mat-form-field-underline,
-    ::ng-deep.mat-form-field-subscript-wrapper {
-      display: none;
+
+    ::ng-deep {
+      .mat-input-element {
+        border: 1.5px solid $bordergray;
+        box-sizing: border-box;
+        border-radius: 8px;
+        min-height: 48px;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+      }
+      .mat-input-element:focus{
+        border: 3px solid $blue;
+      }
+
+      .mat-input-element::placeholder {
+        color: $gray;
+        display: block;
+      }
+
+      mat-label {
+        color: $gray;
+        margin-left: 15px;
+      }
+
+      mat-label.active {
+        color: $blue;
+      }
+
+      .mat-form-field-underline,
+      .mat-form-field-subscript-wrapper {
+        display: none;
+      }
     }
   }
+
   &__description {
     margin-top: 24px;
     text-align: center;
+
     p {
       font-style: normal;
       font-weight: normal;
@@ -96,6 +117,7 @@
       color: $gray;
     }
   }
+
   &__subtitle {
     font-style: normal;
     font-weight: normal;

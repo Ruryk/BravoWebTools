@@ -12,10 +12,12 @@
         <div class="login-form__title">
           <h5>Log In</h5>
         </div>
-        <form class="login-form__form">
+        <form class="login-form__form" [formGroup]="loginGroup">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <mat-label>Your Email</mat-label>
-            <input matInput placeholder="email@example.com" value="">
+            <mat-label [class]="focus?'active':''">Your Email</mat-label>
+            <input formControlName="login" matInput placeholder="email@example.com" value=""
+                   (focusin)="focusIn()"
+                   (focusout)="focusOut()">
           </mat-form-field>
         </form>
         <div class="login-form__description">
@@ -25,7 +27,8 @@
           </p>
         </div>
         <div class="login-form__submit">
-          <button mat-flat-button type="submit">Log In</button>
+          <button [class]="loginGroup.controls['login'].status.toLowerCase()" mat-flat-button type="submit">Log
+            In</button>
         </div>
       </div>
     </div>
