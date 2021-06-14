@@ -13,6 +13,7 @@ import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { SidenavService } from './services/sidenav/sidenav.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SidenavService } from './services/sidenav/sidenav.service';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    HttpClientModule,
     SharedModule
   ],
   providers: [

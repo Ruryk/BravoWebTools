@@ -14,7 +14,7 @@
         </div>
         <form class="login-form__form" [formGroup]="loginGroup">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <mat-label [class]="focus?'active':''">Your Email</mat-label>
+            <mat-label [class]="focus && !userStatus?'active':'valid'">Your Email</mat-label>
             <input formControlName="login" matInput placeholder="email@example.com" value=""
                    (focusin)="focusIn()"
                    (focusout)="focusOut()">
@@ -27,7 +27,8 @@
           </p>
         </div>
         <div class="login-form__submit">
-          <button [class]="loginGroup.controls['login'].status.toLowerCase()" mat-flat-button type="submit">Log
+          <button [class]="loginGroup.controls['login'].status.toLowerCase()" mat-flat-button type="submit"
+                  (click)="submitLoginForm($event)">Log
             In</button>
         </div>
       </div>
