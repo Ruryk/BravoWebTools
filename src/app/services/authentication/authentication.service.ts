@@ -18,10 +18,8 @@ export interface User {
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
-  public userStatus: Subject<boolean>;
 
   constructor(private http: HttpClient) {
-    this.userStatus = new Subject<boolean>();
     this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -43,24 +41,8 @@ export class AuthenticationService {
       }));
   }
 
-  loginCheck(email: string): void {
-    console.log(email);
-    console.log(this.userStatus);
-    const response = this.http.post(`http://localhost:3000/auth/login-check`, { email });
-    response.subscribe((res: any ) => {
-      if (res['access_token']) {
-        this.userStatus.next(true);
-      } else {
-        this.userStatus.next(false);
-      }
-    });
-    // .pipe(map(user => {
-    //   if (user) {
-    //     this.userStatus.next(true);
-    //   } else {
-    //     this.userStatus.next(false);
-    //   }
-    // }));
+  loginCheck(email: string): Observable<object> {
+    return this.http.post(`http://localhost:3000/auth/login-check`, { email });
   }
 
   logout(): void {

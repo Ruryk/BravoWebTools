@@ -34,9 +34,24 @@
 
   & form {
     width: 100%;
+    position: relative;
 
     mat-form-field {
       width: 100%;
+    }
+
+    .error-message {
+      position: absolute;
+      bottom: 10px;
+      margin-left: 20px;
+      color: red;
+      text-align: center;
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 130%;
+      letter-spacing: 0.03em;
     }
 
     ::ng-deep {
@@ -55,6 +70,14 @@
         border: 3px solid $blue;
       }
 
+      .mat-input-element.valid, .mat-input-element.valid:focus {
+        border: 3px solid $middlegreen;
+      }
+
+      .mat-input-element.invalid, .mat-input-element.invalid:focus {
+        border: 3px solid $red;
+      }
+
       mat-input-element::placeholder {
         color: $gray;
         display: block;
@@ -65,12 +88,16 @@
         color: $gray;
       }
 
-      mat-label.active {
+      mat-label.focus {
         color: $blue;
       }
 
       mat-label.valid {
-        color: $green;
+        color: $middlegreen;
+      }
+
+      mat-label.invalid {
+        color: $red;
       }
 
       .mat-form-field-underline,
@@ -113,7 +140,7 @@
     }
 
     button.valid {
-     opacity: 1.0;
+      opacity: 1.0;
     }
   }
 }

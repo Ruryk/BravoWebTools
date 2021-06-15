@@ -14,11 +14,18 @@
         </div>
         <form class="login-form__form" [formGroup]="loginGroup">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <mat-label [class]="focus && !userStatus?'active':'valid'">Your Email</mat-label>
-            <input formControlName="login" matInput placeholder="email@example.com" value=""
+            <mat-label
+              [ngClass]="{focus: focus, valid: userStatus === 'VALID', invalid: userStatus === 'INVALID' }">
+              Your Email
+            </mat-label>
+            <input formControlName="login" matInput
+                   [ngClass]="{valid: userStatus === 'VALID', invalid: userStatus === 'INVALID'}"
+                   placeholder="email@example.com"
+                   value=""
                    (focusin)="focusIn()"
-                   (focusout)="focusOut()">
+                   (focusout)="focusOut()" matTooltip="Info about the action">
           </mat-form-field>
+          <div *ngIf="userStatus === 'INVALID'" class="error-message">This account doesn’t exist in the system</div>
         </form>
         <div class="login-form__description">
           <p>
@@ -29,7 +36,8 @@
         <div class="login-form__submit">
           <button [class]="loginGroup.controls['login'].status.toLowerCase()" mat-flat-button type="submit"
                   (click)="submitLoginForm($event)">Log
-            In</button>
+            In
+          </button>
         </div>
       </div>
     </div>
