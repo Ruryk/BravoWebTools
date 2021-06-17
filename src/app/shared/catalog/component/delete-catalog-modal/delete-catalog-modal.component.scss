@@ -5,11 +5,7 @@
     display: flex;
     justify-content: space-between;
     h1 {
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 132%;
+      @include fontType($fontfamily, normal, 600, 24px, 132%);
     }
     button.dialog-close-btn{
       background: transparent;
@@ -20,11 +16,7 @@
 
   &.content {
     p {
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 150%;
+      @include fontType($fontfamily, normal, 400, 16px, 150%);
       letter-spacing: 0.0168em;
 
       span {
@@ -46,11 +38,7 @@
     align-items: center;
     button {
       padding: 12px 16px;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 150%;
+      @include fontType($fontfamily, normal, 600, 16px, 150%);
       letter-spacing: 0.05em;
     }
 

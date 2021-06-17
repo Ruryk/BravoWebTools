@@ -33,9 +33,7 @@
         display: block;
 
         label {
-          font-style: normal;
-          font-weight: normal;
-          line-height: 130%;
+          @include fontType($fontfamily, normal, 400, 12px, 130%);
           letter-spacing: 0.03em;
           color: $gray;
         }
@@ -72,11 +70,7 @@
         border: none;
         cursor: pointer;
         color: $lightBlue;
-        font-family: $fontfamily;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 150%;
+        @include fontType($fontfamily, normal, 600, 16px, 150%);
         letter-spacing: 0.05em;
         text-transform: capitalize;
         padding: 12px 15px;
@@ -97,11 +91,7 @@
         background: transparent;
         border: 1px solid $lightgray;
         color: $gray;
-        font-family: $fontfamily;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 150%;
+        @include fontType($fontfamily, normal, 600, 16px, 150%);
         letter-spacing: 0.05em;
         text-transform: capitalize;
         cursor: pointer;
@@ -141,17 +131,12 @@
   }
 
   .mat-h4, .mat-subheading-1, .mat-typography h1 {
-    font-family: $fontfamily;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
+    @include fontType($fontfamily, normal, 600, 24px, 132%);
     line-height: 132%;
   }
 
   mat-checkbox {
-    font-style: normal;
-    font-size: 16px;
-    line-height: 150%;
+    @include fontType($fontfamily, normal, 400, 16px, 150%);
     letter-spacing: 0.005em;
 
     .mat-checkbox-inner-container {

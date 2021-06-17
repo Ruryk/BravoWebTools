@@ -23,10 +23,7 @@
     margin: 70px 0 26px 0;
 
     h5 {
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 132%;
+      @include fontType($fontfamily, normal, 600, 24px, 132%);
       text-align: center;
       color: $black;
     }
@@ -46,11 +43,7 @@
       margin-left: 20px;
       color: red;
       text-align: center;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 130%;
+      @include fontType($fontfamily, normal, 400, 12px, 130%);
       letter-spacing: 0.03em;
     }
 
@@ -112,10 +105,7 @@
     text-align: center;
 
     p {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 130%;
+      @include fontType($fontfamily, normal, 400, 12px, 130%);
       letter-spacing: 0.03em;
       color: $gray;
     }
@@ -131,9 +121,7 @@
       color: $lightBlue;
       width: 100%;
       min-height: 48px;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 150%;
+      @include fontType($fontfamily, normal, 600, 16px, 150%);
       letter-spacing: 0.05em;
       text-transform: capitalize;
       border-radius: 8px;

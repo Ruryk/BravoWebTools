@@ -35,6 +35,10 @@ $lightorange: #F6CA92;
 $fontfamily: "Manrope", sans-serif;
 
 
-@mixin fontType() {
-
+@mixin fontType($fontFamily, $fontStyle, $fontWeight, $fontSize, $lineHeight) {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
 }

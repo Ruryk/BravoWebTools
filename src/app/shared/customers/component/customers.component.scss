@@ -16,11 +16,7 @@
           }
 
           span {
-            font-family: $fontfamily;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 132%;
+            @include fontType($fontfamily, normal, 600, 24px, 132%);
             color: $black;
           }
         }
@@ -34,11 +30,7 @@
               border: none;
               cursor: pointer;
               color: $blue;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 16px;
-              line-height: 150%;
+              @include fontType($fontfamily, normal, 600, 16px, 150%);
               letter-spacing: 0.05em;
               text-transform: capitalize;
             }
@@ -95,10 +87,7 @@
         mat-paginator {
           background: $white;
           color: $gray;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 142%;
+          @include fontType($fontfamily, normal, 400, 14px, 142%);
 
           ::ng-deep.mat-form-field-underline {
             display: none;
@@ -140,11 +129,7 @@
 
             th {
               color: $black;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 14px;
-              line-height: 142%;
+              @include fontType($fontfamily, normal, 600, 14px, 142%);
               letter-spacing: 0.005em;
               border-bottom: 1px solid $lightgray;
 
@@ -211,11 +196,7 @@
 
                   h4 {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 20px;
-                    line-height: 138%;
+                    @include fontType($fontfamily, normal, 600, 20px, 138%);
                   }
                 }
 
@@ -224,11 +205,7 @@
 
                   p {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 14px;
-                    line-height: 142%;
+                    @include fontType($fontfamily, normal, 400, 14px, 142%);
                     letter-spacing: 0.0168em;
                     color: $gray;
                   }
@@ -246,11 +223,7 @@
                       border: none;
                       cursor: pointer;
                       color: $blue;
-                      font-family: $fontfamily;
-                      font-style: normal;
-                      font-weight: bold;
-                      font-size: 16px;
-                      line-height: 150%;
+                      @include fontType($fontfamily, normal, 600, 16px, 150%);
                       letter-spacing: 0.05em;
                       text-transform: capitalize;
                     }
@@ -301,9 +274,7 @@
         }
 
         .example-element-symbol {
-          font-weight: bold;
-          font-size: 40px;
-          line-height: normal;
+          @include fontType($fontfamily, normal, 600, 40px, 150%);
         }
 
         .example-element-description {

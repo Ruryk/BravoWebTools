@@ -16,11 +16,7 @@
           }
 
           span {
-            font-family: $fontfamily;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 132%;
+            @include fontType($fontfamily, normal, 600, 24px, 132%);
             color: $black;
           }
         }
@@ -36,11 +32,7 @@
               background: transparent;
               border: none;
               cursor: pointer;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 16px;
-              line-height: 150%;
+              @include fontType($fontfamily, normal, 600, 16px, 150%);
               letter-spacing: 0.05em;
               text-transform: capitalize;
             }
@@ -118,10 +110,7 @@
         mat-paginator {
           background: $white;
           color: $gray;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 142%;
+          @include fontType($fontfamily, normal, 400, 14px, 142%);
 
           ::ng-deep.mat-form-field-underline {
             display: none;
@@ -163,11 +152,7 @@
 
             th {
               color: $black;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 14px;
-              line-height: 142%;
+              @include fontType($fontfamily, normal, 600, 14px, 142%);
               letter-spacing: 0.005em;
               border-bottom: 1px solid $lightgray;
 
@@ -247,10 +232,7 @@
                 box-shadow: 0px 1px 2px rgba(15, 86, 179, 0.2), 0px 2px 4px rgba(15, 86, 179, 0.2);
                 border-radius: 8px;
                 border: none;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 16px;
-                line-height: 150%;
+                @include fontType($fontfamily, normal, 600, 16px, 150%);
                 letter-spacing: 0.05em;
                 color: $lightBlue;
                 padding: 8px 12px;
@@ -292,11 +274,7 @@
 
                   h4 {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 20px;
-                    line-height: 138%;
+                    @include fontType($fontfamily, normal, 600, 20px, 138%);
                   }
                 }
 
@@ -305,11 +283,7 @@
 
                   p {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 14px;
-                    line-height: 142%;
+                    @include fontType($fontfamily, normal, 400, 14px, 142%);
                     letter-spacing: 0.0168em;
                     color: $gray;
                   }
@@ -326,11 +300,7 @@
                       background: transparent;
                       border: none;
                       cursor: pointer;
-                      font-family: $fontfamily;
-                      font-style: normal;
-                      font-weight: bold;
-                      font-size: 16px;
-                      line-height: 150%;
+                      @include fontType($fontfamily, normal, 600, 16px, 150%);
                       letter-spacing: 0.05em;
                       text-transform: capitalize;
                     }
@@ -402,9 +372,7 @@
         }
 
         .example-element-symbol {
-          font-weight: bold;
-          font-size: 40px;
-          line-height: normal;
+          @include fontType($fontfamily, normal, 600, 40px, normal);
         }
 
         .example-element-description {
@@ -444,10 +412,7 @@
 
       mat-checkbox {
         margin: 10px 0;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 150%;
+        @include fontType($fontfamily, normal, 400, 16px, 150%);
 
         span.mat-checkbox-inner-container {
           border: 1px solid $gray;
@@ -502,11 +467,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
       .detail-header__item {
         span {
-          font-family: $fontfamily;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 14px;
-          line-height: 142%;
+          @include fontType($fontfamily, normal, 600, 14px, 142%);
           letter-spacing: 0.005em;
         }
 
@@ -516,11 +477,7 @@ tr.example-element-row:not(.example-expanded-row):active {
           color: $black;
           display: flex;
           align-items: center;
-
-          font-style: normal;
-          font-weight: bold;
-          font-size: 14px;
-          line-height: 142%;
+          @include fontType($fontfamily, normal, 600, 14px, 142%);
           letter-spacing: 0.005em;
         }
 
@@ -579,9 +536,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 .example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
+  @include fontType($fontfamily, normal, 600, 40px, normal);
 }
 
 .example-element-description {
@@ -652,11 +607,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
   .mat-calendar-body-selected {
     background: $blue;
-    font-family: $fontfamily;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 150%;
+    @include fontType($fontfamily, normal, 600, 16px, 150%);
     color: $white;
     padding: 12px;
   }
@@ -691,11 +642,7 @@ tr.example-element-row:not(.example-expanded-row):active {
       border-radius: 10px;
       background: transparent;
       padding: 12px 16px;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 150%;
+      @include fontType($fontfamily, normal, 600, 16px, 150%);
       letter-spacing: 0.05em;
     }
 
@@ -705,11 +652,7 @@ tr.example-element-row:not(.example-expanded-row):active {
       border-radius: 10px;
       background: $blue;
       padding: 12px 16px;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 150%;
+      @include fontType($fontfamily, normal, 600, 16px, 150%);
       letter-spacing: 0.05em;
       display: flex;
     }
@@ -746,11 +689,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
     button:first-child {
       order: 2;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 122%;
+      @include fontType($fontfamily, normal, 600, 20px, 122%);
     }
 
     button:last-child {

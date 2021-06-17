@@ -22,10 +22,7 @@
     margin: 70px 0 11px 0;
 
     h5 {
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 132%;
+      @include fontType($fontfamily, normal, 600, 24px, 132%);
       text-align: center;
       color: $black;
     }
@@ -47,10 +44,7 @@
 
     label {
       display: inline-block;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 130%;
+      @include fontType($fontfamily, normal, 400, 12px, 130%);
       margin-top: 30px;
       margin-bottom: 2px;
       letter-spacing: 0.03em;
@@ -90,10 +84,7 @@
       position: absolute;
       bottom: 10px;
       left: 20px;
-      font-size: 10px;
-      font-family: $fontfamily;
-      font-style: normal;
-      font-weight: normal;
+      @include fontType($fontfamily, normal, 400, 10px, 130%);
       color: $red;
     }
 
@@ -145,20 +136,14 @@
     text-align: center;
 
     p {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 130%;
+      @include fontType($fontfamily, normal, 400, 12px, 130%);
       letter-spacing: 0.03em;
       color: $gray;
     }
   }
 
   &__subtitle {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 142%;
+    @include fontType($fontfamily, normal, 400, 14px, 142%);
     text-align: center;
     letter-spacing: 0.0168em;
     color: $stronggray;

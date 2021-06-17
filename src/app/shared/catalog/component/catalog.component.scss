@@ -16,11 +16,7 @@
           }
 
           span {
-            font-family: $fontfamily;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 132%;
+            @include fontType($fontfamily, normal, 600, 24px, 132%);
             color: $black;
           }
         }
@@ -36,11 +32,7 @@
               background: transparent;
               border: none;
               cursor: pointer;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 16px;
-              line-height: 150%;
+              @include fontType($fontfamily, normal, 600, 16px, 150%);
               letter-spacing: 0.05em;
               text-transform: capitalize;
             }
@@ -118,11 +110,7 @@
         mat-paginator {
           background: $white;
           color: $gray;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 142%;
-
+          @include fontType($fontfamily, normal, 400, 14px, 142%);
           ::ng-deep.mat-form-field-underline {
             display: none;
           }
@@ -163,14 +151,9 @@
 
             th {
               color: $black;
-              font-family: $fontfamily;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 14px;
-              line-height: 142%;
+              @include fontType($fontfamily, normal, 600, 14px, 142%);
               letter-spacing: 0.005em;
               border-bottom: 1px solid $lightgray;
-
 
               span.sort-size {
                 margin-left: 10px;
@@ -262,11 +245,7 @@
 
                   h4 {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 20px;
-                    line-height: 138%;
+                    @include fontType($fontfamily, normal, 600, 20px, 138%);
                   }
                 }
 
@@ -275,11 +254,7 @@
 
                   p {
                     text-align: center;
-                    font-family: $fontfamily;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 14px;
-                    line-height: 142%;
+                    @include fontType($fontfamily, normal, 400, 14px, 142%);
                     letter-spacing: 0.0168em;
                     color: $gray;
                   }
@@ -296,11 +271,7 @@
                       background: transparent;
                       border: none;
                       cursor: pointer;
-                      font-family: $fontfamily;
-                      font-style: normal;
-                      font-weight: bold;
-                      font-size: 16px;
-                      line-height: 150%;
+                      @include fontType($fontfamily, normal, 600, 16px, 150%);
                       letter-spacing: 0.05em;
                       text-transform: capitalize;
                     }
@@ -372,9 +343,7 @@
         }
 
         .example-element-symbol {
-          font-weight: bold;
-          font-size: 40px;
-          line-height: normal;
+          @include fontType($fontfamily, normal, 600, 40px, normal);
         }
 
         .example-element-description {
@@ -390,7 +359,7 @@
   }
 }
 
-.progress-bar.active{
+.progress-bar.active {
   display: block;
 }
 
@@ -402,58 +371,60 @@
   width: 350px;
   border-radius: 15px;
   overflow: hidden;
-  &-body{
-    ::ng-deep{
-      mat-progress-bar{
+
+  &-body {
+    ::ng-deep {
+      mat-progress-bar {
         height: 6px;
       }
     }
   }
+
   &-content {
     display: flex;
     justify-content: space-between;
     padding: 15px;
+
     div {
       display: flex;
-      img{
-      align-self: flex-start;
+
+      img {
+        align-self: flex-start;
         padding: 5px 15px 0 0;
       }
+
       align-items: center;
-      ::ng-deep mat-progress-spinner{
+
+      ::ng-deep mat-progress-spinner {
         align-self: flex-start;
         margin: 5px 15px 0 0;
         width: 40px !important;
         height: 40px !important;
-        svg{
+
+        svg {
           width: 40px !important;
           height: 40px !important;
-          circle{
+
+          circle {
             stroke: $lightorange;
           }
         }
       }
-      p{
+
+      p {
         color: $white;
-        font-family: $fontfamily;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 142%;
+        @include fontType($fontfamily, normal, 400, 14px, 142%);
         letter-spacing: 0.0168em;
 
         span {
           color: $white;
-          font-family: $fontfamily;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 16px;
-          line-height: 150%;
+          @include fontType($fontfamily, normal, 600, 16px, 150%);
           letter-spacing: 0.005em;
         }
       }
     }
-    button.progress-bar-close-btn{
+
+    button.progress-bar-close-btn {
       cursor: pointer;
       background: url("/assets/img/close.svg") center center;
       background-repeat: no-repeat;
@@ -464,31 +435,38 @@
   }
 }
 
-.progress-bar.add-modal{
+.progress-bar.add-modal {
   background: $green;
-  ::ng-deep{
-    mat-progress-bar{
+
+  ::ng-deep {
+    mat-progress-bar {
       height: 6px;
     }
-    .mat-progress-bar-buffer{
-      background-color:$green !important;
+
+    .mat-progress-bar-buffer {
+      background-color: $green !important;
     }
+
     .mat-progress-bar-fill::after {
-      background-color:$lightgreen !important;
+      background-color: $lightgreen !important;
     }
   }
 }
-.progress-bar.file-modal{
+
+.progress-bar.file-modal {
   background: $orange;
-  ::ng-deep{
-    mat-progress-bar{
+
+  ::ng-deep {
+    mat-progress-bar {
       height: 6px;
     }
-    .mat-progress-bar-buffer{
-      background-color:$orange !important;
+
+    .mat-progress-bar-buffer {
+      background-color: $orange !important;
     }
+
     .mat-progress-bar-fill::after {
-      background-color:$lightorange !important;
+      background-color: $lightorange !important;
     }
   }
 }
@@ -527,10 +505,7 @@
 
         mat-checkbox {
           margin: 10px 0;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 16px;
-          line-height: 150%;
+          @include fontType($fontfamily, normal, 400, 16px, 150%);
 
           span.mat-checkbox-inner-container {
             border: 1px solid $gray;
@@ -543,24 +518,29 @@
   }
 
   // mat-availability
-  .mat-select-panel{
+  .mat-select-panel {
     background: $white;
-    span.mat-option-text{
+
+    span.mat-option-text {
       color: $black;
     }
-    .mat-pseudo-checkbox{
+
+    .mat-pseudo-checkbox {
       color: $lightgray;
       width: 20px;
       height: 20px;
     }
   }
-  .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate{
+
+  .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
     background: $blue !important;
   }
-  .mat-pseudo-checkbox::after{
+
+  .mat-pseudo-checkbox::after {
     color: $white;
   }
-  .mat-pseudo-checkbox-checked::after{
+
+  .mat-pseudo-checkbox-checked::after {
     top: 5px !important;
     left: 2px !important;
   }
