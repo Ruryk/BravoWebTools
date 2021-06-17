@@ -48,6 +48,11 @@
     }
 
     ::ng-deep {
+      .icon-status{
+        position: absolute;
+        top: 16px;
+        right: 20px;
+      }
       .mat-input-element {
         border: 1.5px solid $bordergray;
         box-sizing: border-box;

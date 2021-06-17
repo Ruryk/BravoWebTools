@@ -24,6 +24,10 @@
                    value=""
                    (focusin)="focusIn()"
                    (focusout)="focusOut()" matTooltip="Info about the action">
+            <div class="icon-status">
+              <img *ngIf="userStatus === 'VALID'" src="/assets/img/check.svg" alt="valid">
+              <img *ngIf="userStatus === 'INVALID'" src="/assets/img/danger.svg" alt="invalid">
+            </div>
           </mat-form-field>
           <div *ngIf="userStatus === 'INVALID'" class="error-message">This account doesn’t exist in the system</div>
         </form>
