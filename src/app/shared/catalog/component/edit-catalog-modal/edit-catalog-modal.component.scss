@@ -37,6 +37,8 @@
     }
 
     .dialog-item.multiple-new-item {
+      display: flex;
+      justify-content: space-between;
       .mat-form-field:nth-child(2) {
         ::ng-deep .mat-form-field-infix {
           display: flex;

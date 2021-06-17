@@ -29,8 +29,21 @@
           <input matInput placeholder="">
         </mat-form-field>
       </div>
-      <div class="dialog-item">
-        <button class="dialog-add-unit-btn">Add Unit</button>
+      <ng-container *ngFor="let key of unit; index as i">
+        <div class="dialog-item multiple-new-item">
+          <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+            <mat-label>Unit - {{ i + 2 }}</mat-label>
+            <input matInput placeholder="box" value="">
+          </mat-form-field>
+          <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="10.90">
+            <button class="delete-unit" (click)="deleteUnit(i)"></button>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <div *ngIf="unit.length<2" class="dialog-item">
+        <button class="dialog-add-unit-btn" (click)="addUnit()">Add Unit</button>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">

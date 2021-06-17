@@ -36,7 +36,28 @@
       }
 
     }
-
+    .dialog-item.multiple-new-item {
+      display: flex;
+      justify-content: space-between;
+      .mat-form-field:nth-child(2) {
+        ::ng-deep .mat-form-field-infix {
+          display: flex;
+          align-items: center;
+        }
+      }
+      button.delete-unit{
+        cursor: pointer;
+        background: url("/assets/img/trash.svg") center center;
+        border-radius: 50%;
+        background-color: $lightred;
+        background-repeat: no-repeat;
+        padding: 20px;
+        width: 18px;
+        height: 20px;
+        border: none;
+        margin-left: 15px;
+      }
+    }
     .dialog-item {
       .mat-form-field {
 
