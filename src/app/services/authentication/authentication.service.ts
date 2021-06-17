@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export interface User {
   id: number;
@@ -15,39 +16,78 @@ export interface User {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService implements OnDestroy {
   private currentUserSubject: BehaviorSubject<User | null>;
-  public currentUser: Observable<User | null>;
+  public unsubscribe$: Subject<void>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.unsubscribe$ = new Subject<void>();
     this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
-    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User | null {
     return this.currentUserSubject!.value;
   }
 
-  login(email: string): any {
-    return this.http.post<any>(`http://localhost:3000/auth/login`, { email })
-      .pipe(map(user => {
-        // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject!.next(user);
-        }
-        return user;
-      }));
+  verification(email: string): any {
+    this.http.post<any>(`http://localhost:3000/auth/verification`, { email })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (res) => this.responseHandlerSuccess(res, email),
+        (error) => this.responseHandlerError(error)
+      );
+  }
+
+  login(email: string, code: string): any {
+    this.http.post<any>(`http://localhost:3000/auth/login`, { email, code })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (res) => this.responseHandlerSuccess(res, email),
+        (error) => this.responseHandlerError(error)
+      );
+  }
+
+  loginStatus(): Observable<object> {
+    const token = localStorage.getItem('userToken');
+    return this.http.post<any>(`http://localhost:3000/auth/login-token`, { token });
   }
 
   loginCheck(email: string): Observable<object> {
-    return this.http.post(`http://localhost:3000/auth/login-check`, { email });
+    return this.http.post(`http://localhost:3000/auth/check-user`, { email });
+  }
+
+  codeCheck(email: string, code: string): Observable<object> {
+    return this.http.post(`http://localhost:3000/auth/check-code`, { email, code });
   }
 
   logout(): void {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject!.next(null);
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userEmail');
+    this.router.navigate(['/login']);
+  }
+
+  responseHandlerSuccess(res: any, email: string): void {
+    const keyToken = 'access_token';
+    const userEmail = 'userEmail';
+    if (res[keyToken]) {
+      localStorage.removeItem(userEmail);
+      localStorage.setItem('userToken', res[keyToken]);
+      this.router.navigate(['/']);
+    } else {
+      localStorage.setItem('userEmail', email);
+      this.router.navigate(['/verification']);
+    }
+  }
+
+  responseHandlerError(res: any): void {
+
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

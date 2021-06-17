@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule) },
+  { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule)},
+  // { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule), canActivate: [AuthGuard] },
   { path: 'login', loadChildren: () => import('src/app/shared/login/login.module').then(m => m.LoginModule) },
-  { path: 'login-code', loadChildren: () => import('src/app/shared/login-code/login-code.module').then(m => m.LoginCodeModule) },
+  { path: 'logout', loadChildren: () => import('src/app/shared/logout/logout.module').then(m => m.LogoutModule) },
+  { path: 'verification', loadChildren: () => import('src/app/shared/login-code/login-code.module').then(m => m.LoginCodeModule) },
   // { path: '**', loadChildren: () => import('src/app/shared/error/error.module').then(m => m.ErrorModule) }
 ];
 

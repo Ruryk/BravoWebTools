@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginCodeComponent } from './component/login-code.component';
 import { LoginCodeRoutingModule } from './login-code-routing.module';
@@ -14,7 +15,9 @@ import { InputOnlyNumbersDirective } from '../../directives/input-only-numbers.d
   imports: [
     CommonModule,
     LoginCodeRoutingModule,
-    MaterialUiModule
+    MaterialUiModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LoginCodeComponent

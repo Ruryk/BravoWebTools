@@ -16,23 +16,40 @@
           <p>We use this login code so you don’t have to<br>
             remember or type in yet another long password</p>
         </div>
-        <form class="login-form__form">
+        <form class="login-form__form" [formGroup]="codeGroup">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <mat-label [class]="focus?'active':''" >Your login code</mat-label>
-            <input matInput value="" (focusin)="focusIn()" (focusout)="focusOut()" appInputOnlyNumbers>
+            <mat-label [ngClass]="{
+            focus: focus,
+            invalid: codeStatus,
+            valid: valid
+            }">Your login code</mat-label>
+            <input [ngClass]="{valid: valid}" #start formControlName="start"  matInput value="" (focusin)="focusIn($event)"
+                   (focusout)="focusOut()"
+                (input)="changeFocusStartInput($event)" (click)="setSelectionStart($event)" appInputOnlyNumbers
+                   maxlength="3">
           </mat-form-field>
           <span>&mdash;</span>
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-            <input matInput value="" (focusin)="focusIn()" (focusout)="focusOut()" appInputOnlyNumbers>
+            <input [ngClass]="{valid: valid}" #end formControlName="end" matInput value="" (focusin)="focusIn($event)"
+            (focusout)="focusOut()"
+                   (input)="changeFocusEndInput($event)" (click)="setSelectionStart($event)" appInputOnlyNumbers maxlength="3">
           </mat-form-field>
+          <div *ngIf="codeStatus && codeGroup.status === 'VALID'" class="error-message">
+            Code is not valid
+          </div>
         </form>
-        <div class="code-form__description">
+        <div *ngIf="!valid" class="code-form__description">
           <p>
             We've sent a 6 digit login code to example@email.com<br>
             Can't find it? Check your spam folder.
           </p>
         </div>
+        <div class="code-spinner" *ngIf="valid">
+          <mat-spinner></mat-spinner>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<input #def class="hidden-input">

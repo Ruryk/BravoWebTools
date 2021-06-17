@@ -218,6 +218,7 @@
                 width: 0;
                 height: 0;
                 visibility: hidden;
+                position: absolute;
               }
             }
 
@@ -539,5 +540,28 @@
 
       }
     }
+  }
+
+  // mat-availability
+  .mat-select-panel{
+    background: $white;
+    span.mat-option-text{
+      color: $black;
+    }
+    .mat-pseudo-checkbox{
+      color: $lightgray;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate{
+    background: $blue !important;
+  }
+  .mat-pseudo-checkbox::after{
+    color: $white;
+  }
+  .mat-pseudo-checkbox-checked::after{
+    top: 5px !important;
+    left: 2px !important;
   }
 }

@@ -35,7 +35,7 @@
         </div>
         <div class="login-form__submit">
           <button [class]="loginGroup.controls['login'].status.toLowerCase()" mat-flat-button type="submit"
-                  (click)="submitLoginForm($event)">Log
+                  (click)="submitLoginForm()" [disabled]="userStatus!=='VALID'">Log
             In
           </button>
         </div>

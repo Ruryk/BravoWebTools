@@ -7,6 +7,7 @@ import { MainModule } from './main/main.module';
 import { CustomersModule } from './customers/customers.module';
 import { CatalogModule } from './catalog/catalog.module';
 import { OrdersModule } from './orders/orders.module';
+import { LogoutModule } from './logout/logout.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import { OrdersModule } from './orders/orders.module';
     MainModule,
     CustomersModule,
     CatalogModule,
-    OrdersModule
+    OrdersModule,
+    LogoutModule
   ],
   exports: [
     MaterialUiModule,
@@ -27,7 +29,8 @@ import { OrdersModule } from './orders/orders.module';
     MainModule,
     CustomersModule,
     CatalogModule,
-    OrdersModule
+    OrdersModule,
+    LogoutModule
   ]
 })
 export class SharedModule {

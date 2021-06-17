@@ -34,7 +34,7 @@
   &__form-control {
     input {
       width: 156px;
-      padding: 12px;
+      padding: 12px 20px;
       background: $white;
       border: 1px solid $bordergray;
       border-radius: 8px;
@@ -57,16 +57,44 @@
     }
 
   }
+  ::ng-deep{
+    mat-spinner{
+      width: 30px !important;
+      height: 30px !important;
+      svg{
+        width: 30px !important;
+        height: 30px !important;
+        circle{
+          stroke: $gray;
+        }
+      }
+    }
+  }
 
   & form {
+    .valid{
+      opacity: 0.5;
+    }
     margin-top: 22px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     mat-form-field {
       width: 47%;
+    }
+
+    .error-message {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-size: 10px;
+      font-family: $fontfamily;
+      font-style: normal;
+      font-weight: normal;
+      color: $red;
     }
 
     ::ng-deep {
@@ -76,10 +104,13 @@
         border-radius: 8px;
         min-height: 48px;
         width: 100%;
-        padding: 12px;
-        font-size: 16px;
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 1.7rem;
       }
-      .mat-input-element:focus{
+
+      .mat-input-element:focus {
         border: 3px solid $blue;
       }
 
@@ -96,6 +127,11 @@
       mat-label.active {
         color: $blue;
       }
+
+      mat-label.active.invalid,  mat-label.invalid {
+        color: $red !important;
+      }
+
 
       .mat-form-field-underline,
       .mat-form-field-subscript-wrapper {
@@ -127,4 +163,13 @@
     letter-spacing: 0.0168em;
     color: $stronggray;
   }
+}
+
+
+.hidden-input {
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

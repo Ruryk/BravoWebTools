@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { onSideNavChange, animateText } from 'src/app/animations/animations';
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
+import { AuthenticationService } from '../../../services/authentication/authentication.service';
 
 interface NavigationList {
   link: string;
@@ -30,13 +31,23 @@ export class SideNavComponent implements OnDestroy {
     { name: 'Log Out', link: 'logout', icon: 'log-out' }
   ];
 
-  constructor(private sidenavService: SidenavService) {
+  constructor(
+    private authentication: AuthenticationService,
+    private sidenavService: SidenavService
+  ) {
     this.sideNavState = true;
     this.linkText = true;
     this.sidenavService.sideNavState$.pipe(takeUntil(this.unsubscribe$)).subscribe((res: boolean) => {
       this.sideNavState = res;
       this.linkText = res;
     });
+  }
+
+  checkPath(event: any): void {
+    if (event.target.getAttribute('path') === 'logout') {
+      event.preventDefault();
+      this.authentication.logout();
+    }
   }
 
   ngOnDestroy(): void {

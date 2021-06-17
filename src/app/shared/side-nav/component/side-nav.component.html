@@ -13,7 +13,8 @@
 
     <div>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let link of navigation" [href]="link.link">
+        <a mat-list-item *ngFor="let link of navigation" [href]="link.link" [attr.path]="link.link"
+           (click)="checkPath($event)">
           <div class="img-container">
             <img class="jim" [src]="'/assets/img/'+link.icon+'.png'" alt="">
           </div>

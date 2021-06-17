@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.focus = false;
   }
 
-  submitLoginForm(event: any): void {
-
+  submitLoginForm(): void {
+    this.authentication.verification(this.loginGroup.get('login')?.value);
   }
 
   ngOnDestroy(): void {
