@@ -5,22 +5,39 @@
     <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close"></button>
   </div>
   <div class="dialog-content">
-    <form class="example-form">
+    <form class="example-form" [formGroup]="addCustomerGroup" (ngSubmit)="addCustomer()">
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
           <mat-label>Customer No</mat-label>
-          <input matInput placeholder="">
+          <input formControlName="customerNo" matInput placeholder="">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="">
+          <input type="text"
+                 placeholder=""
+                 aria-label="Number"
+                 matInput
+                 formControlName="name"
+                 [formControl]="nameControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Delivery Address</mat-label>
+          <input formControlName="address" matInput placeholder="">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <h4 class="dialog-subtitle">Delivery Days</h4>
-        <section class="days-section" [formGroup]="days">
+        <section class="days-section" formGroupName="days">
           <p>
             <mat-checkbox formControlName="Mon">Mon</mat-checkbox>
           </p>
@@ -46,14 +63,31 @@
         </section>
       </div>
       <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Contact Name</mat-label>
+          <input formControlName="contactName" matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item">
+        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <input formControlName="contactPhone" matInput placeholder="Mobile Phone">
+        </mat-form-field>
+      </div>
+      <div class="dialog-item notify">
+          <p>
+            <mat-checkbox formControlName="notify">Notify customer via text message</mat-checkbox>
+          </p>
+      </div>
+      <div class="dialog-item">
         <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">
           <mat-label>Shortlisted Products</mat-label>
-          <textarea matInput placeholder=""></textarea>
+          <textarea formControlName="productsCodes" matInput placeholder=""></textarea>
         </mat-form-field>
       </div>
       <div class="dialog-item control">
         <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
-        <button mat-flat-button color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Add Customer</button>
+        <button mat-flat-button type="submit" color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Add
+          Customer</button>
       </div>
     </form>
   </div>

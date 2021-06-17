@@ -27,6 +27,11 @@
   }
 
   form.example-form {
+    .dialog-item.notify {
+      padding: 0 10px;
+      margin-bottom: 20px;
+    }
+
     .dialog-item {
       .mat-form-field {
 
@@ -124,6 +129,10 @@
     font-size: 14px;
   }
 
+  .mat-input-element::placeholder {
+    color: $gray
+  }
+
   .mat-h4, .mat-subheading-1, .mat-typography h4.dialog-subtitle {
     font-size: 12px;
     padding-left: 14px;
@@ -159,6 +168,20 @@
 
     .mat-checkbox-checkmark-path {
       stroke: $white !important;
+    }
+  }
+
+  .mat-autocomplete-panel {
+    background: $white;
+
+    .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
+      background: $lightgray;
+    }
+    .mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled){
+      background: $lightgray;
+    }
+    span.mat-option-text {
+      color: $black;
     }
   }
 }

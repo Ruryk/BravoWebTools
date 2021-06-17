@@ -10,6 +10,7 @@ import { EditCustomerModalComponent } from './edit-customer-modal/edit-customer-
 import { ICustomers, ICustomersState } from '../../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { getCustomersDataSource, IState } from '../../../reducers';
+import { objectKeys } from 'codelyzer/util/objectKeys';
 
 @Component({
   selector: 'app-customers',
@@ -60,12 +61,15 @@ export class CustomersComponent implements AfterViewInit {
   openModalEditCustomer(event: any): void {
     const code = event.target.parentNode.getAttribute('code');
     const data = this.dataSource.data.filter((item: ICustomers) => item.customerNo === code)[0];
-    console.log(data);
     this.dialog.open(EditCustomerModalComponent, {
       maxHeight: '100vh',
       data: {
         dataRow: data
       }
     });
+  }
+
+  getListDays(days: any): string {
+    return Object.keys(days).filter(key => days[key] === true).join(',');
   }
 }

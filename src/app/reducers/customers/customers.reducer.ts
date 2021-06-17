@@ -9,18 +9,36 @@ const customersState: ICustomersState = {
     customerNo: 'BB-123',
     name: 'Burger Bar',
     address: 'Main Street, 1234 Zurich',
-    days: ['Mon', 'Wed', 'Fri'],
+    days: {
+      Mon: true,
+      Tue: false,
+      Wed: true,
+      Thu: false,
+      Fri: false,
+      Sat: true,
+      Sun: false
+    },
+    notify: false,
     contactName: 'Vlad',
-    phone: '0639999999',
+    contactPhone: '0639999999',
     productsCodes: ['APP123', 'TOM53', 'CUC997']
   },
   'GZ-889': {
     customerNo: 'GZ-889',
     name: 'Gyoza SS',
     address: 'Second Street 3421 Geneva',
-    days: ['Tue', 'Thu', 'Sat'],
+    days: {
+      Mon: false,
+      Tue: true,
+      Wed: false,
+      Thu: false,
+      Fri: true,
+      Sat: false,
+      Sun: true
+    },
+    notify: false,
     contactName: 'Artem',
-    phone: '0639999999',
+    contactPhone: '0639999999',
     productsCodes: ['APP123', 'TOM53', 'CUC997']
   }
 };
@@ -32,6 +50,13 @@ export const customersReducer = (state = customersState, action: Action): ICusto
       return {
         ...state,
         [customerActions.payload.code]: customerActions.payload.data
+      };
+    case customersActionsType.editCustomers:
+      const editState: ICustomersState = { ...state };
+      delete editState[customerActions.payload.code];
+      return {
+        ...editState,
+        [customerActions.payload.newCode]: customerActions.payload.data
       };
     case customersActionsType.deleteCustomers:
       const newState: ICustomersState = { ...state };

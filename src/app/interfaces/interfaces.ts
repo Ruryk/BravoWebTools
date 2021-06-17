@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 export interface OrdersTableElement {
   dropdown: string;
   order: string;
@@ -28,14 +30,25 @@ export interface CatalogTableElement {
 
 
 // ========================Store=======================
+export interface IDays {
+  Mon: boolean;
+  Tue: boolean;
+  Wed: boolean;
+  Thu: boolean;
+  Fri: boolean;
+  Sat: boolean;
+  Sun: boolean;
+}
+
 export interface ICustomers {
   customerNo?: string;
   name?: string;
   address?: string;
-  days?: string[];
+  days?: IDays;
+  notify?: boolean;
   productsCodes?: string[];
   contactName?: string;
-  phone?: string;
+  contactPhone?: string;
 }
 
 export interface ICustomersState {

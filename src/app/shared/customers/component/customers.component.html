@@ -52,7 +52,9 @@
 
           <ng-container matColumnDef="days">
             <th mat-header-cell *matHeaderCellDef>Delivery Days</th>
-            <td mat-cell *matCellDef="let element"> {{element.days}} </td>
+            <td mat-cell *matCellDef="let element">
+              {{ getListDays(element.days) }}
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
