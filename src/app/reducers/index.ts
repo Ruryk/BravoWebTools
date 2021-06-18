@@ -42,5 +42,9 @@ export const getOrdersDataSource = createSelector(
   getOrdersState,
   ordersSelector.selectOrdersDataSource
 );
+export const getOrdersDataSourceForId = createSelector(
+  getOrdersState,
+  ordersSelector.selectOrdersDataSourceForId
+);
 
 export const metaReducers: MetaReducer<IState>[] = !environment.production ? [] : [];

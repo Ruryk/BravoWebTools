@@ -477,6 +477,7 @@ tr.example-element-row:not(.example-expanded-row):active {
           color: $black;
           display: flex;
           align-items: center;
+          cursor: pointer;
           @include fontType($fontfamily, normal, 600, 14px, 142%);
           letter-spacing: 0.005em;
         }
@@ -488,6 +489,11 @@ tr.example-element-row:not(.example-expanded-row):active {
           height: 20px;
           background-image: url("/assets/img/print.png");
           margin-right: 10px;
+        }
+      }
+      .detail-header__item.print{
+        a{
+          text-decoration: none;
         }
       }
     }

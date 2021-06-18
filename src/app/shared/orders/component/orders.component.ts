@@ -105,4 +105,8 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   confirmOrder(order: string): void {
     this.store.dispatch(new ConfirmOrdersAction({code: order}));
   }
+
+  printOrders(order: string): void{
+
+  }
 }

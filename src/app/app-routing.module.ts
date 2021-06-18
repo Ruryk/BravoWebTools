@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('src/app/shared/login/login.module').then(m => m.LoginModule) },
   { path: 'logout', loadChildren: () => import('src/app/shared/logout/logout.module').then(m => m.LogoutModule) },
   { path: 'verification', loadChildren: () => import('src/app/shared/login-code/login-code.module').then(m => m.LoginCodeModule) },
+  { path: 'print-view/:id/:id', loadChildren: () => import('src/app/shared/print-view/print-view.module').then(m => m.PrintViewModule) },
   // { path: '**', loadChildren: () => import('src/app/shared/error/error.module').then(m => m.ErrorModule) }
 ];
 
