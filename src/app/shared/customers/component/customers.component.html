@@ -58,7 +58,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row (click)="openModalEditCustomer($event)" [attr.code]="row.customerNo"
+          <tr mat-row (click)="openModalEditCustomer($event, row.customerNo)" [attr.code]="row.customerNo"
               *matRowDef="let row; columns: displayedColumns;"></tr>
 
           <tr class="mat-row" *matNoDataRow>

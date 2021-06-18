@@ -58,8 +58,7 @@ export class CustomersComponent implements AfterViewInit {
     });
   }
 
-  openModalEditCustomer(event: any): void {
-    const code = event.target.parentNode.getAttribute('code');
+  openModalEditCustomer(event: any, code: string): void {
     const data = this.dataSource.data.filter((item: ICustomers) => item.customerNo === code)[0];
     this.dialog.open(EditCustomerModalComponent, {
       maxHeight: '100vh',

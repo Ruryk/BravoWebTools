@@ -14,7 +14,7 @@ const ordersState: IOrdersState = {
     notes: 'Please deliver...',
     ordered: 1623045600000,
     delivery: 1623045600000,
-    status: 'confirm',
+    status: false,
     product: {
       productCode: 'APP123',
       productName: 'Apples',
@@ -31,7 +31,7 @@ const ordersState: IOrdersState = {
     notes: 'Confirmed',
     ordered: 1623132000000,
     delivery: 1623132000000,
-    status: 'confirmed',
+    status: true,
     product: {
       productCode: 'TOM53',
       productName: 'Tomatos',
@@ -48,7 +48,7 @@ const ordersState: IOrdersState = {
     notes: '+1 Bottle Coc...',
     ordered: 1623218400000,
     delivery: 1623218400000,
-    status: 'confirmed',
+    status: true,
     product: {
       productCode: 'CUC997',
       productName: 'Cucumber',

@@ -30,7 +30,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
               <button
-                class="open-dropdown">
+                class="open-dropdown" (click)="expandedElement = expandedElement === element ? null : element">
                 <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M2.34292 0.753906L0.928711 2.16812L7.99976 9.23922L15.0708 2.16815L13.6566 0.753935L7.99978 6.41077L2.34292 0.753906Z"
@@ -146,9 +146,9 @@
             <td mat-cell *matCellDef="let element">
               <div class="status-container">
                 <button mat-flat-button color="primary" class="confirm"
-                        [disabled]="(element.status === 'confirm')?false:true">{{(element.status !== 'confirm') ?
-                  'Confirmed' :
-                  'Confirm'}}</button>
+                        [disabled]="element.status" (click)="confirmOrder(element.orderNo)">
+                  {{(element.status) ? 'Confirmed' : 'Confirm'}}
+                </button>
               </div>
             </td>
           </ng-container>
@@ -201,8 +201,8 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let element; columns: displayedColumns;"
               class="example-element-row"
-              [class.example-expanded-row]="expandedElement === element"
-              (click)="expandedElement = expandedElement === element ? null : element">
+              [class.example-expanded-row]="expandedElement === element">
+<!--              (click)="expandedElement = expandedElement === element ? null : element">-->
           </tr>
           <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 

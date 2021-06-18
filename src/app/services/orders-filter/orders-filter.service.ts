@@ -3,7 +3,6 @@ import { IOrders, IOrdersState, OrdersTableElement, OrdersTableElementItem } fro
 import { getOrdersDataSource, IState } from '../../reducers';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +23,7 @@ export class OrdersFilterService {
     customer: [],
     column: 'customer'
   };
+
   constructor(private store: Store<IState>) {
     this.expandedElement = null;
     this.dataSource = new MatTableDataSource<IOrders>();
@@ -48,13 +48,17 @@ export class OrdersFilterService {
       const column = searchString.column;
       let isPositionAvailable = false;
       if (searchString.customer.length) {
-        if (column !== 'delivery' && column !== 'orderNo') {
+        if (column !== 'delivery' && column !== 'orderNo' && column !== 'status') {
           for (const d of searchString.customer) {
             if (data[column].trim() === d) {
               isPositionAvailable = true;
             }
           }
-        }else if(column ===  'orderNo'){
+        } else if (column === 'status') {
+          if (data[column] === searchString.customer[0]) {
+            isPositionAvailable = true;
+          }
+        } else if (column === 'orderNo') {
           if (data[column].toString().includes(searchString.customer[0].toString())) {
             isPositionAvailable = true;
           }
@@ -79,11 +83,11 @@ export class OrdersFilterService {
   }
 
   statusFilter(value: string): void {
+    const status = (value === 'confirmed') ? true : false;
     if (value === '') {
       this.dataSource.filter = JSON.stringify({ customer: [] });
-
     } else {
-      this.dataSource.filter = JSON.stringify({ customer: [value], column: 'status' });
+      this.dataSource.filter = JSON.stringify({ customer: [status], column: 'status' });
     }
   }
 

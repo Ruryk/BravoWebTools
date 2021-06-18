@@ -83,7 +83,7 @@ export interface IOrders {
   notes?: string;
   ordered?: number;
   delivery?: number;
-  status?: string;
+  status?: boolean;
   product?: {
     productCode?: string;
     productName?: string;

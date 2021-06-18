@@ -100,4 +100,8 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     const endDate = new Date(this.dateRange.controls[endKey].value).getTime();
     this.dataFilter.dateFilter(startDate, endDate);
   }
+
+  confirmOrder(order: string): void{
+
+  }
 }

@@ -61,9 +61,7 @@ export class CatalogComponent implements AfterViewInit, OnInit {
 
   openReplaceModal(): void {
     this.dialog.open(ReplaceCatalogModalComponent, {
-      data: {
-        animal: 'panda'
-      }
+      data: {}
     }).afterClosed().subscribe(() => this.openProgressFileModal());
   }
 
@@ -73,9 +71,8 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     }).afterClosed().subscribe(() => this.openProgressAddModal());
   }
 
-  openEditModal(event: any): void {
+  openEditModal(event: any, code: string): void {
     if (event.target.localName === 'td') {
-      const code = event.target.parentNode.getAttribute('code');
       const data = this.dataSource.data.filter((item: ICatalog) => item.code === code)[0];
       this.dialog.open(EditCatalogModalComponent, {
         data: {
