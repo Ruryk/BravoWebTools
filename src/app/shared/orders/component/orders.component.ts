@@ -10,8 +10,7 @@ import { MatChipList } from '@angular/material/chips';
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import {
   IOrders,
-  OrdersTableElement,
-  OrdersTableElementItem
+  OrdersTableElement
 } from 'src/app/interfaces/interfaces';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OrdersFilterService } from '../../../services/orders-filter/orders-filter.service';
@@ -40,7 +39,6 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   public displayedColumnsItem: string[];
   public expandedElement: OrdersTableElement | null;
   public dataSource: MatTableDataSource<IOrders>;
-  public dataSourceItem: MatTableDataSource<OrdersTableElementItem[]>;
 
   @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
@@ -68,7 +66,6 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     this.displayedColumnsItem = this.dataFilter.displayedColumnsItem;
     this.status = this.dataFilter.status;
     this.dataSource = this.dataFilter.dataSource;
-    this.dataSourceItem = this.dataFilter.dataSourceItem;
   }
 
 
