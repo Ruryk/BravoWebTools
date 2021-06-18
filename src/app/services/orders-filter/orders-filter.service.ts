@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IOrders, IOrdersState, OrdersTableElement, OrdersTableElementItem } from '../../interfaces/interfaces';
+import { IOrders, IOrdersState, OrdersTableElement } from '../../interfaces/interfaces';
 import { getOrdersDataSource, IState } from '../../reducers';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';

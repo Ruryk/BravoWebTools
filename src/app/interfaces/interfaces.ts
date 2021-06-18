@@ -90,12 +90,6 @@ export interface IOrders {
   ordered?: number;
   delivery?: number;
   status?: boolean;
-  product?: {
-    productCode?: string;
-    productName?: string;
-    unit?: string;
-    quantity?: number;
-  };
   address?: string;
   products?: IProducts[];
 }

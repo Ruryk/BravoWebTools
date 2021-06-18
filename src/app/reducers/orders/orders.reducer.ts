@@ -15,12 +15,6 @@ const ordersState: IOrdersState = {
     ordered: 1623045600000,
     delivery: 1623045600000,
     status: false,
-    product: {
-      productCode: 'APP123',
-      productName: 'Apples',
-      unit: 'kg',
-      quantity: 14
-    },
     address: 'West Street 23, 1453 Zurich',
     products: [
       { productCode: 'APP123', productName: 'Apples', unit: 'kg', quantity: 14 },
@@ -38,12 +32,6 @@ const ordersState: IOrdersState = {
     ordered: 1623132000000,
     delivery: 1623132000000,
     status: true,
-    product: {
-      productCode: 'TOM53',
-      productName: 'Tomatos',
-      unit: 'box',
-      quantity: 4
-    },
     address: 'Main Street 23, 1453 Cers',
     products: [
       { productCode: 'TOM53', productName: 'Tomatos', unit: 'box', quantity: 4 },
@@ -61,12 +49,6 @@ const ordersState: IOrdersState = {
     ordered: 1623218400000,
     delivery: 1623218400000,
     status: true,
-    product: {
-      productCode: 'CUC997',
-      productName: 'Cucumber',
-      unit: 'pcs',
-      quantity: 36
-    },
     address: 'Nord Street 32, 5664 Upres',
     products: [
       { productCode: 'CUC997', productName: 'Cucumber', unit: 'pcs', quantity: 36 },
