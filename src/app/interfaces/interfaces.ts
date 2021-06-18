@@ -73,6 +73,12 @@ export interface ICatalog {
 export interface ICatalogState {
   [code: string]: ICatalog;
 }
+export interface IProducts {
+  productCode?: string;
+  productName?: string;
+  unit?: string;
+  quantity?: number;
+}
 
 export interface IOrders {
   dropdown?: string;
@@ -91,7 +97,7 @@ export interface IOrders {
     quantity?: number;
   };
   address?: string;
-
+  products?: IProducts[];
 }
 
 export interface IOrdersState {

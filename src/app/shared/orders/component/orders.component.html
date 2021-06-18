@@ -163,33 +163,33 @@
                   <div class="detail-header">
                     <div class="detail-header__item">
                       <span>Notes:</span><br>
-                      +1 Bottle Coca Cola Please, Need to be delivered Today!
+                      {{ element.notes }}
                     </div>
                     <div class="detail-header__item">
                       <span>Delivery Address:</span><br>
-                      Main Street 23, 1453 Zurich
+                      {{ element.address }}
                     </div>
                     <div class="detail-header__item print">
                       <button class="print">Print Order</button>
                     </div>
                   </div>
                   <div class="detail-table">
-                    <table mat-table [dataSource]="dataSourceItem" class="mat-elevation-z8 detail-table-content">
+                    <table mat-table [dataSource]="element.products" class="mat-elevation-z8 detail-table-content">
                       <ng-container matColumnDef="productCode">
                         <th mat-header-cell *matHeaderCellDef>Product Code</th>
-                        <td mat-cell *matCellDef="let element"> {{element.productCode}} </td>
+                        <td mat-cell *matCellDef="let product"> {{product.productCode}} </td>
                       </ng-container>
                       <ng-container matColumnDef="productName">
                         <th mat-header-cell *matHeaderCellDef>Product</th>
-                        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                        <td mat-cell *matCellDef="let product"> {{product.productName}} </td>
                       </ng-container>
                       <ng-container matColumnDef="unit">
                         <th mat-header-cell *matHeaderCellDef>Unit</th>
-                        <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
+                        <td mat-cell *matCellDef="let product"> {{product.unit}} </td>
                       </ng-container>
                       <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef>Quantity</th>
-                        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                        <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
                       </ng-container>
                       <tr mat-header-row *matHeaderRowDef="displayedColumnsItem"></tr>
                       <tr mat-row *matRowDef="let row; columns: displayedColumnsItem;"></tr>
