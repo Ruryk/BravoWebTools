@@ -19,30 +19,6 @@
           <input formControlName="name" matInput placeholder="Apple">
         </mat-form-field>
       </div>
-<!--      <div class="dialog-item multiple">-->
-<!--        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">-->
-<!--          <mat-label>Unit</mat-label>-->
-<!--          <input matInput placeholder="kg">-->
-<!--        </mat-form-field>-->
-<!--        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">-->
-<!--          <mat-label>Price</mat-label>-->
-<!--          <input matInput placeholder="2.03">-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--      <div class="dialog-item multiple-new-item">-->
-<!--        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">-->
-<!--          <mat-label>Unit - 2</mat-label>-->
-<!--          <input matInput placeholder="box">-->
-<!--        </mat-form-field>-->
-<!--        <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">-->
-<!--          <mat-label>Price</mat-label>-->
-<!--          <input matInput placeholder="10.90">-->
-<!--          <button class="delete-unit"></button>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--      <div class="dialog-item">-->
-<!--        <button class="dialog-add-unit-btn">Add Unit</button>-->
-<!--      </div>-->
       <ng-container formArrayName="units">
         <ng-container *ngFor="let key of getArrayUnitsControls().controls; index as i">
           <div class="dialog-item multiple-new-item" [formGroupName]="i">
@@ -94,7 +70,7 @@
       <div class="dialog-item control">
         <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
         <button mat-flat-button color="primary" class="dialog-add-btn"
-                (click)="editCatalog()"[mat-dialog-close]="true">Add Product</button>
+                (click)="editCatalog()"[mat-dialog-close]="true">Edit Product</button>
       </div>
     </form>
   </div>

@@ -5,11 +5,11 @@
   </div>
   <div class="dialog-delete content">
     <p>
-      Are you sure you want to delete <span>“Apple”</span> from the<br> catalog?
+      Are you sure you want to delete <span>“{{ catalogName }}”</span> from the<br> catalog?
     </p>
   </div>
   <div class="dialog-delete control">
     <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
-    <button mat-flat-button color="primary" class="dialog-delete-btn" [mat-dialog-close]="true">Delete</button>
+    <button mat-flat-button color="primary" class="dialog-delete-btn" (click)="deleteCatalog()" [mat-dialog-close]="true">Delete</button>
   </div>
 </div>

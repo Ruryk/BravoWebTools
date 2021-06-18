@@ -50,10 +50,11 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     this.dataSource = this.dataFilter.dataSource;
   }
 
-  openDeleteModal(): void {
+  openDeleteModal(event: any, name: string, code: string): void {
     this.dialog.open(DeleteCatalogModalComponent, {
       data: {
-        animal: 'panda'
+        catalogCode: code,
+        catalogName: name
       }
     });
   }
@@ -68,21 +69,20 @@ export class CatalogComponent implements AfterViewInit, OnInit {
 
   openAddModal(): void {
     this.dialog.open(AddCatalogModalComponent, {
-      data: {
-        animal: 'panda'
-      }
+      data: {}
     }).afterClosed().subscribe(() => this.openProgressAddModal());
   }
 
   openEditModal(event: any): void {
-    console.log(event.target);
-    const code = event.target.parentNode.getAttribute('code');
-    const data = this.dataSource.data.filter((item: ICatalog) => item.code === code)[0];
-    this.dialog.open(EditCatalogModalComponent, {
-      data: {
-        dataRow: data
-      }
-    });
+    if (event.target.localName === 'td') {
+      const code = event.target.parentNode.getAttribute('code');
+      const data = this.dataSource.data.filter((item: ICatalog) => item.code === code)[0];
+      this.dialog.open(EditCatalogModalComponent, {
+        data: {
+          dataRow: data
+        }
+      });
+    }
   }
 
   openProgressAddModal(): void {
@@ -90,7 +90,7 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     const timerId = setInterval(() => {
       if (this.valueAddModal < 105) {
         this.valueAddModal++;
-      }else {
+      } else {
         this.progressAddModalStatus = false;
         clearTimeout(timerId);
       }
@@ -103,7 +103,7 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     const timerId = setInterval(() => {
       if (this.valueFileModal < 105) {
         this.valueFileModal++;
-      }else {
+      } else {
         this.progressFileModalStatus = false;
         clearTimeout(timerId);
       }
