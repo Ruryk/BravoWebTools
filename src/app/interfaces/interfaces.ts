@@ -90,6 +90,8 @@ export interface IOrders {
     unit?: string;
     quantity?: number;
   };
+  address?: string;
+
 }
 
 export interface IOrdersState {

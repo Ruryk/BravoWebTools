@@ -15,6 +15,9 @@ import {
 } from 'src/app/interfaces/interfaces';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OrdersFilterService } from '../../../services/orders-filter/orders-filter.service';
+import { Store } from '@ngrx/store';
+import { IState } from '../../../reducers';
+import { ConfirmOrdersAction } from '../../../reducers/orders/orders.actions';
 
 @Component({
   selector: 'app-orders',
@@ -37,7 +40,7 @@ export class OrdersComponent implements AfterViewInit, OnInit {
   public displayedColumnsItem: string[];
   public expandedElement: OrdersTableElement | null;
   public dataSource: MatTableDataSource<IOrders>;
-  public dataSourceItem: MatTableDataSource<OrdersTableElementItem>;
+  public dataSourceItem: MatTableDataSource<OrdersTableElementItem[]>;
 
   @ViewChild('customersInput') customersInput?: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
@@ -45,9 +48,10 @@ export class OrdersComponent implements AfterViewInit, OnInit {
 
   public dateRange: FormGroup;
   public status: any;
+
   constructor(
     private dataFilter: OrdersFilterService,
-    // private store: Store<IState>,
+    private store: Store<IState>,
     private sidenavService: SidenavService
   ) {
     this.paginator = null;
@@ -101,7 +105,7 @@ export class OrdersComponent implements AfterViewInit, OnInit {
     this.dataFilter.dateFilter(startDate, endDate);
   }
 
-  confirmOrder(order: string): void{
-
+  confirmOrder(order: string): void {
+    this.store.dispatch(new ConfirmOrdersAction({code: order}));
   }
 }

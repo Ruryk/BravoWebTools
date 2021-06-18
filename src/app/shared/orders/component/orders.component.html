@@ -67,7 +67,9 @@
 
           <ng-container matColumnDef="notes">
             <th mat-header-cell *matHeaderCellDef>Notes</th>
-            <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+            <td mat-cell *matCellDef="let element">
+              {{(element.notes.length > 14) ? element.notes.substr(0, 13) + '...' : element.notes}}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="ordered">
@@ -110,11 +112,11 @@
                   <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
                     <input matStartDate formControlName="start" placeholder="Start date">
                     <input matEndDate formControlName="end" placeholder="End date"
-                           (dateChange)="dateFilter()" >
+                           (dateChange)="dateFilter()">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <!-- #docregion date-range-picker-actions -->
-                  <mat-date-range-picker #rangePicker >
+                  <mat-date-range-picker #rangePicker>
                     <mat-date-range-picker-actions>
                       <button mat-button matDateRangePickerCancel>Cancel</button>
                       <button mat-raised-button color="primary" matDateRangePickerApply>Done</button>
@@ -202,7 +204,6 @@
           <tr mat-row *matRowDef="let element; columns: displayedColumns;"
               class="example-element-row"
               [class.example-expanded-row]="expandedElement === element">
-<!--              (click)="expandedElement = expandedElement === element ? null : element">-->
           </tr>
           <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 

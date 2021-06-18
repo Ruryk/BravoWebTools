@@ -11,7 +11,7 @@ const ordersState: IOrdersState = {
     customer: 'Burger Bar',
     customerNo: 'BB-243',
     items: 12,
-    notes: 'Please deliver...',
+    notes: 'Please deliver this to Tom in person.',
     ordered: 1623045600000,
     delivery: 1623045600000,
     status: false,
@@ -20,7 +20,8 @@ const ordersState: IOrdersState = {
       productName: 'Apples',
       unit: 'kg',
       quantity: 14
-    }
+    },
+    address: 'West Street 23, 1453 Zurich'
   },
   '32342': {
     dropdown: 'chevron-down',
@@ -37,7 +38,8 @@ const ordersState: IOrdersState = {
       productName: 'Tomatos',
       unit: 'box',
       quantity: 4
-    }
+    },
+    address: 'Main Street 23, 1453 Cers'
   },
   '23424': {
     dropdown: 'chevron-down',
@@ -45,7 +47,7 @@ const ordersState: IOrdersState = {
     customer: 'Burger Bar',
     customerNo: 'BB-243',
     items: 9,
-    notes: '+1 Bottle Coc...',
+    notes: '+1 Bottle Coca Cola Please, Need to be delivered Today!',
     ordered: 1623218400000,
     delivery: 1623218400000,
     status: true,
@@ -54,7 +56,8 @@ const ordersState: IOrdersState = {
       productName: 'Cucumber',
       unit: 'pcs',
       quantity: 36
-    }
+    },
+    address: 'Nord Street 32, 5664 Upres'
   }
 };
 
@@ -66,7 +69,7 @@ export const ordersReducer = (state = ordersState, action: Action): IOrdersState
         ...state,
         [ordersActions.payload.code]: {
           ...state[ordersActions.payload.code],
-          status: 'confirmed'
+          status: true
         }
       };
     default:

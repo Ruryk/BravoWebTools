@@ -13,7 +13,7 @@ export class OrdersFilterService {
   public expandedElement: OrdersTableElement | null;
   public dataOrders = this.store.select(getOrdersDataSource);
   public dataSource: MatTableDataSource<IOrders>;
-  public dataSourceItem: MatTableDataSource<OrdersTableElementItem>;
+  public dataSourceItem: MatTableDataSource<OrdersTableElementItem[]>;
   public status: any = [
     { value: '', viewValue: 'All' },
     { value: 'confirm', viewValue: 'Confirm' },
@@ -27,7 +27,7 @@ export class OrdersFilterService {
   constructor(private store: Store<IState>) {
     this.expandedElement = null;
     this.dataSource = new MatTableDataSource<IOrders>();
-    this.dataSourceItem = new MatTableDataSource<OrdersTableElementItem>();
+    this.dataSourceItem = new MatTableDataSource<OrdersTableElementItem[]>();
     this.dataOrders.subscribe((data: IOrdersState) => this.dataSource.data = Object.values(data));
     this.dataSourceItem = this.dataSource.data.reduce((acc: any, item: IOrders) => {
       const data = {
