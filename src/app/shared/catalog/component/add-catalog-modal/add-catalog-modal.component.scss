@@ -59,6 +59,11 @@
       }
     }
     .dialog-item {
+      p.text-center {
+        text-align: center;
+        @include fontType($fontfamily, normal, 400, 10px, 130%);
+        letter-spacing: 0.03em;
+      }
       .mat-form-field {
 
         display: block;
@@ -114,10 +119,6 @@
           min-width: 50px;
           margin: 0px 10px 25px 12px;
         }
-      }
-
-      button {
-
       }
 
       button.dialog-add-unit-btn {

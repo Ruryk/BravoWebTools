@@ -52,9 +52,9 @@
 
           <ng-container matColumnDef="unit">
             <th mat-header-cell *matHeaderCellDef>Unit</th>
-            <td mat-cell *matCellDef="let element">{{ element.unit[0] }}
+            <td mat-cell *matCellDef="let element">{{ element.units[0].unit }}
               <span>
-              {{(element.unit.length > 1) ? ' + ' + (element.unit.length - 1) + ' more' : ''}}
+              {{(element.units.length > 1) ? ' + ' + (element.units.length - 1) + ' more' : ''}}
               </span>
             </td>
           </ng-container>
@@ -90,7 +90,8 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row (click)="openEditModal()" *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-row [attr.code]="row.code" (click)="openEditModal($event)" *matRowDef="let row; columns:
+          displayedColumns;"></tr>
 
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="6">

@@ -8,26 +8,38 @@ const catalogState: ICatalogState = {
   APP123: {
     code: 'APP123',
     name: 'Apples',
-    unit: ['kg', 'pcs', 'box'], // 'kg +2 more'
-    price: 2.03,
+    units: [
+      { unit: 'kg', price: '2.03' },
+      { unit: 'pcs', price: '0.5' },
+      { unit: 'box', price: '5.2' }
+    ],
     availability: `In stock`,
-    actions: `trash`
+    actions: `trash`,
+    exclusively: ['TOM53', 'APP123'],
+    replacementProducts: ['13423-kd']
   },
   TOM53: {
     code: 'TOM53',
     name: 'Tomatos',
-    unit: ['box', 'pcs'], // 'box +1 more'
-    price: 12.03,
+    units: [
+      { unit: 'box', price: '5.2' },
+      { unit: 'kg', price: '2.03' }
+    ],
     availability: `In stock`,
-    actions: `trash`
+    actions: `trash`,
+    exclusively: ['TOM53', 'APP123'],
+    replacementProducts: ['13423-kd']
   },
   CUC997: {
     code: 'CUC997',
     name: 'Cucumbers',
-    unit: ['pcs'],
-    price: 0.52,
+    units: [
+      { unit: 'pcs', price: '0.5' }
+    ],
     availability: `Out of stock`,
-    actions: `trash`
+    actions: `trash`,
+    exclusively: ['CUC997'],
+    replacementProducts: ['13423-kd']
   }
 };
 
@@ -38,6 +50,13 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...state,
         [catalogActions.payload.code]: catalogActions.payload.data
+      };
+    case catalogActionsType.editCatalog:
+      const editState = {...state};
+      delete editState[catalogActions.payload.code];
+      return  {
+        ...editState,
+        [catalogActions.payload.newCode]: catalogActions.payload.data
       };
     case catalogActionsType.replaceCatalog:
       return {

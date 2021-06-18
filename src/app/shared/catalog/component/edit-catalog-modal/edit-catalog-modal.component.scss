@@ -36,16 +36,26 @@
       }
     }
 
+    .dialog-item {
+      p.text-center {
+        text-align: center;
+        @include fontType($fontfamily, normal, 400, 10px, 130%);
+        letter-spacing: 0.03em;
+      }
+    }
+
     .dialog-item.multiple-new-item {
       display: flex;
       justify-content: space-between;
+
       .mat-form-field:nth-child(2) {
         ::ng-deep .mat-form-field-infix {
           display: flex;
           align-items: center;
         }
       }
-      button.delete-unit{
+
+      button.delete-unit {
         cursor: pointer;
         background: url("/assets/img/trash.svg") center center;
         border-radius: 50%;

@@ -55,13 +55,19 @@ export interface ICustomersState {
   [code: string]: ICustomers;
 }
 
+export interface IUnits {
+  unit?: string;
+  price?: string;
+}
+
 export interface ICatalog {
   code?: string;
   name?: string;
-  unit?: string[];
-  price?: number;
+  units?: IUnits[];
   availability?: string;
   actions?: string;
+  exclusively?: string[];
+  replacementProducts?: string[];
 }
 
 export interface ICatalogState {

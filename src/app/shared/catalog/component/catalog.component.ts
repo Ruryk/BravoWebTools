@@ -74,10 +74,13 @@ export class CatalogComponent implements AfterViewInit, OnInit {
     }).afterClosed().subscribe(() => this.openProgressAddModal());
   }
 
-  openEditModal(): void {
+  openEditModal(event: any): void {
+    console.log(event.target);
+    const code = event.target.parentNode.getAttribute('code');
+    const data = this.dataSource.data.filter((item: ICatalog) => item.code === code)[0];
     this.dialog.open(EditCatalogModalComponent, {
       data: {
-        animal: 'panda'
+        dataRow: data
       }
     });
   }
