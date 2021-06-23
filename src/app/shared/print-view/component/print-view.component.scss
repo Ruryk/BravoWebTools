@@ -1,0 +1,129 @@
+@import "src/assets/scss/variables";
+
+.container {
+  height: 607px;
+  width: 556px;
+  margin: 20px auto;
+
+  .order-container {
+    .order-header {
+      &__logo {
+      }
+
+      &__title {
+        margin: 24px 0 16px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title-item {
+          h1 {
+            @include fontType($fontfamily, normal, 900, 24px, 132%);
+          }
+
+          div.time {
+            color: $gray;
+            @include fontType($fontfamily, normal, 400, 14px, 132%);
+          }
+
+          div.status {
+            color: $green;
+            @include fontType($fontfamily, normal, 600, 18px, 150%);
+          }
+        }
+      }
+
+      &__description {
+        .description-item {
+          display: flex;
+          justify-content: space-between;
+          .customer, .request {
+            width: 50%;
+          }
+
+          h4 {
+            @include fontType($fontfamily, normal, 900, 16px, 132%);
+          }
+
+          p {
+            @include fontType($fontfamily, normal, 400, 16px, 150%);
+          }
+
+          ul {
+            text-decoration: none;
+            padding-inline-start: 0 !important;
+            margin-block-start: 0 !important;
+            li {
+              list-style-type: none;
+              @include fontType($fontfamily, normal, 400, 16px, 150%);
+            }
+          }
+        }
+      }
+    }
+
+    .order-body {
+      margin-top: 20px;
+      &__table {
+        table {
+          width: 100%;
+          border: 2px solid $lightgray;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+      }
+
+      &__total {
+        display: flex;
+        justify-content: flex-end;
+
+        p {
+          color: $gray;
+          margin-top: 12px;
+          @include fontType($fontfamily, normal, 400, 14px, 132%);
+        }
+      ;
+      }
+    }
+  }
+}
+.download{
+  display: flex;
+  justify-content: center;
+  button{
+    background: $blue;
+  }
+}
+
+::ng-deep {
+  .mat-table {
+    background: $white;
+  }
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }
+
+  .mat-header-cell {
+    color: $black;
+    @include fontType($fontfamily, normal, 900, 14px, 142%);
+    border-bottom: 2px solid $lightgray !important;
+  }
+
+  .mat-cell, .mat-footer-cell {
+    color: $black;
+    border-bottom: 2px solid $lightgray !important;
+  }
+
+  tr.mat-row.cdk-row:last-child {
+    td {
+      border-bottom: none !important;
+    }
+  }
+  .mat-h4, .mat-subheading-1, .mat-typography h4 {
+    margin: 0 0 6px !important;
+  }
+  .mat-h1, .mat-headline, .mat-typography h1 {
+    margin: 0 0 6px !important;
+  }
+}
