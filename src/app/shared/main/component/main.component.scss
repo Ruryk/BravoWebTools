@@ -33,8 +33,28 @@ mat-sidenav-container {
 
   ::ng-deep div[fxlayout='column'] div:last-child {
     flex: 1 0 auto;
-    mat-nav-list{
-      div.item-link:last-child{
+
+    mat-nav-list {
+      margin-top: 40px;
+      div.item-link{
+        span.ng-trigger{
+          @include fontType($fontfamily, normal, 900, 16px, 150%);
+        }
+      }
+      div.item-link.active-link {
+        background: $lightBlue;
+        border-radius: 0px 15px 15px 0;
+        span.ng-trigger{
+          color: $blue;
+        }
+        svg{
+          path{
+            fill: $blue;
+          }
+        }
+      }
+
+      div.item-link:last-child {
         flex: 1 0 auto;
         display: flex;
         flex-direction: column;

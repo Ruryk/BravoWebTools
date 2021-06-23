@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -12,6 +12,8 @@ import { CatalogFilterService } from 'src/app/services/catalog-filter/catalog-fi
 import { ReplaceCatalogModalComponent } from './replace-catalog-modal/replace-catalog-modal.component';
 import { AddCatalogModalComponent } from './add-catalog-modal/add-catalog-modal.component';
 import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-modal.component';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -19,9 +21,11 @@ import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-mod
   styleUrls: ['./catalog.component.scss'],
   providers: [CatalogFilterService]
 })
-export class CatalogComponent implements AfterViewInit, OnInit {
+export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
+  public unsubscribe$: Subject<void>;
+  public deleteModalOpened: { status: boolean, code: string };
   public sideMenuStatus: boolean;
   public displayedColumns: string[];
   public availabilityList: string[];
@@ -35,11 +39,15 @@ export class CatalogComponent implements AfterViewInit, OnInit {
   public progressFileModalStatus: boolean;
 
   constructor(
-    // private store: Store<IState>,
     private dataFilter: CatalogFilterService,
     private sidenavService: SidenavService,
     public dialog: MatDialog
   ) {
+    this.unsubscribe$ = new Subject<void>();
+    this.deleteModalOpened = {
+      status: false,
+      code: ''
+    };
     this.progressAddModalStatus = false;
     this.progressFileModalStatus = false;
     this.paginator = null;
@@ -51,24 +59,29 @@ export class CatalogComponent implements AfterViewInit, OnInit {
   }
 
   openDeleteModal(event: any, name: string, code: string): void {
+    this.deleteModalOpened.status = true;
+    this.deleteModalOpened.code = code;
     this.dialog.open(DeleteCatalogModalComponent, {
       data: {
         catalogCode: code,
         catalogName: name
       }
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+      this.deleteModalOpened.status = false;
+      this.deleteModalOpened.code = '';
     });
   }
 
   openReplaceModal(): void {
     this.dialog.open(ReplaceCatalogModalComponent, {
       data: {}
-    }).afterClosed().subscribe(() => this.openProgressFileModal());
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.openProgressFileModal());
   }
 
   openAddModal(): void {
     this.dialog.open(AddCatalogModalComponent, {
       data: {}
-    }).afterClosed().subscribe(() => this.openProgressAddModal());
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.openProgressAddModal());
   }
 
   openEditModal(event: any, code: string): void {
@@ -129,4 +142,10 @@ export class CatalogComponent implements AfterViewInit, OnInit {
   availabilityFilter(filterValue: string[]): void {
     this.dataFilter.availabilityFilter(filterValue);
   }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
 }

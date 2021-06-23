@@ -160,6 +160,19 @@
               span.sort-size {
                 margin-left: 10px;
                 position: relative;
+                background: transparent;
+                border-radius: 50%;
+                padding: 2px 5px;
+              }
+
+              span.sort-size.active, span.sort-size:hover {
+                background: $lightBlue;
+                cursor: pointer;
+                svg{
+                  path{
+                    fill: $blue;
+                  }
+                }
               }
 
               .sort-name {

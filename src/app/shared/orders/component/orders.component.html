@@ -48,8 +48,21 @@
           <ng-container matColumnDef="customer">
             <th mat-header-cell *matHeaderCellDef>
               Customer
-              <span [matMenuTriggerFor]="menuCustomersFilter" class="sort-size">
-                <img src="/assets/img/sort-size.png" alt="sort-size">
+              <span #matMenuTrigger [matMenuTriggerFor]="menuCustomersFilter"
+                    (onMenuOpen)="matMenuTrigger.classList.add('active')"
+                    (onMenuClose)="matMenuTrigger.classList.remove('active')"
+                    class="sort-size">
+<svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+  d="M0 1.5C0 0.947715 0.447715 0.5 1 0.5H11C11.5523 0.5 12 0.947715 12 1.5C12 2.05228 11.5523 2.5 11 2.5H1C0.447715 2.5 0 2.05228 0 1.5Z"
+  fill="black"/>
+<path
+  d="M2 5.5C2 4.94772 2.44772 4.5 3 4.5H9C9.55229 4.5 10 4.94772 10 5.5C10 6.05228 9.55229 6.5 9 6.5H3C2.44772 6.5 2 6.05228 2 5.5Z"
+  fill="black"/>
+<path
+  d="M5 8.5C4.44772 8.5 4 8.94771 4 9.5C4 10.0523 4.44772 10.5 5 10.5H7C7.55228 10.5 8 10.0523 8 9.5C8 8.94771 7.55228 8.5 7 8.5H5Z"
+  fill="black"/>
+</svg>
               </span>
             </th>
             <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
@@ -75,8 +88,18 @@
           <ng-container matColumnDef="ordered">
             <th mat-header-cell *matHeaderCellDef>
               Ordered
-              <span (click)="rangePicker.open()" class="sort-size">
-                <img src="/assets/img/sort-size.png" alt="sort-size">
+              <span (click)="rangePicker.open()" [ngClass]="{ active: rangePicker.opened }" class="sort-size">
+               <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+  d="M0 1.5C0 0.947715 0.447715 0.5 1 0.5H11C11.5523 0.5 12 0.947715 12 1.5C12 2.05228 11.5523 2.5 11 2.5H1C0.447715 2.5 0 2.05228 0 1.5Z"
+  fill="black"/>
+<path
+  d="M2 5.5C2 4.94772 2.44772 4.5 3 4.5H9C9.55229 4.5 10 4.94772 10 5.5C10 6.05228 9.55229 6.5 9 6.5H3C2.44772 6.5 2 6.05228 2 5.5Z"
+  fill="black"/>
+<path
+  d="M5 8.5C4.44772 8.5 4 8.94771 4 9.5C4 10.0523 4.44772 10.5 5 10.5H7C7.55228 10.5 8 10.0523 8 9.5C8 8.94771 7.55228 8.5 7 8.5H5Z"
+  fill="black"/>
+</svg>
               </span>
               <ng-container>
                 <mat-form-field appearance="fill" class="example-form-field">
@@ -103,8 +126,19 @@
           <ng-container matColumnDef="delivery">
             <th mat-header-cell *matHeaderCellDef>
               Req. Delivery
-              <span (click)="rangePicker.open()" class="sort-size">
-                <img src="/assets/img/sort-size.png" alt="sort-size">
+              <span (click)="rangePicker.open()"  [ngClass]="{ active: rangePicker.opened }"
+                    class="sort-size">
+              <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+  d="M0 1.5C0 0.947715 0.447715 0.5 1 0.5H11C11.5523 0.5 12 0.947715 12 1.5C12 2.05228 11.5523 2.5 11 2.5H1C0.447715 2.5 0 2.05228 0 1.5Z"
+  fill="black"/>
+<path
+  d="M2 5.5C2 4.94772 2.44772 4.5 3 4.5H9C9.55229 4.5 10 4.94772 10 5.5C10 6.05228 9.55229 6.5 9 6.5H3C2.44772 6.5 2 6.05228 2 5.5Z"
+  fill="black"/>
+<path
+  d="M5 8.5C4.44772 8.5 4 8.94771 4 9.5C4 10.0523 4.44772 10.5 5 10.5H7C7.55228 10.5 8 10.0523 8 9.5C8 8.94771 7.55228 8.5 7 8.5H5Z"
+  fill="black"/>
+</svg>
               </span>
               <ng-container>
                 <mat-form-field appearance="fill" class="example-form-field">
@@ -141,8 +175,19 @@
                 </mat-form-field>
               </ng-container>
               Status
-              <span (click)="selectMenuStatus.open()" class="sort-size">
-                <img src="/assets/img/sort-size.png" alt="sort-size">
+              <span (click)="selectMenuStatus.open()" [ngClass]="{ active: selectMenuStatus.openedChange | async }"
+                    class="sort-size">
+               <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+  d="M0 1.5C0 0.947715 0.447715 0.5 1 0.5H11C11.5523 0.5 12 0.947715 12 1.5C12 2.05228 11.5523 2.5 11 2.5H1C0.447715 2.5 0 2.05228 0 1.5Z"
+  fill="black"/>
+<path
+  d="M2 5.5C2 4.94772 2.44772 4.5 3 4.5H9C9.55229 4.5 10 4.94772 10 5.5C10 6.05228 9.55229 6.5 9 6.5H3C2.44772 6.5 2 6.05228 2 5.5Z"
+  fill="black"/>
+<path
+  d="M5 8.5C4.44772 8.5 4 8.94771 4 9.5C4 10.0523 4.44772 10.5 5 10.5H7C7.55228 10.5 8 10.0523 8 9.5C8 8.94771 7.55228 8.5 7 8.5H5Z"
+  fill="black"/>
+</svg>
               </span>
             </th>
             <td mat-cell *matCellDef="let element">
@@ -170,10 +215,13 @@
                       {{ element.address }}
                     </div>
                     <div class="detail-header__item print">
-                      <a [routerLink]="['/orders', element.orderNo]" target="_blank"><button
-                        (click)="printOrders(element.orderNo)"
-                                                              class="print">Print
-                        Order</button></a>
+                      <a [routerLink]="['/orders', element.orderNo]" target="_blank">
+                        <button
+                          (click)="printOrders(element.orderNo)"
+                          class="print">Print
+                          Order
+                        </button>
+                      </a>
                     </div>
                   </div>
                   <div class="detail-table">

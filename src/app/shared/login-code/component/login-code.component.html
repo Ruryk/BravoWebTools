@@ -19,7 +19,7 @@
         <form class="login-form__form" [formGroup]="codeGroup">
           <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
             <mat-label [ngClass]="{
-            focus: focus,
+            active: focus,
             invalid: codeStatus,
             valid: valid
             }">Your login code</mat-label>

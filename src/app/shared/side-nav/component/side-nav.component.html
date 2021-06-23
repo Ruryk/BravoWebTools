@@ -13,38 +13,51 @@
 
     <div>
       <mat-nav-list>
-        <div class="item-link">
+        <div class="item-link"  routerLinkActive="active-link">
           <a mat-list-item routerLink="/orders" attr.path="orders"
              (click)="checkPath($event)">
             <div class="img-container">
-              <img class="jim" src="/assets/img/shopping-cart.png" alt="">
+              <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2609 0L0.469238 0L0.469238 2L3.68764 2L6.45644 14.6776H6.46924V15H19.4692V14.7519L21.6625 5.09095L22 4L6.12444 4L5.55409 1.38852L5.2609 0ZM19.4561 6L6.56124 6L8.09005 13H17.867L19.4561 6Z" fill="#616161"/>
+                <path d="M9.46924 20C10.5738 20 11.4692 19.1046 11.4692 18C11.4692 16.8954 10.5738 16 9.46924 16C8.36467 16 7.46924 16.8954 7.46924 18C7.46924 19.1046 8.36467 20 9.46924 20Z" fill="#616161"/>
+                <path d="M18.4692 18C18.4692 19.1046 17.5738 20 16.4692 20C15.3647 20 14.4692 19.1046 14.4692 18C14.4692 16.8954 15.3647 16 16.4692 16C17.5738 16 18.4692 16.8954 18.4692 18Z" fill="#616161"/>
+              </svg>
             </div>
             <span [@animateText]="linkText ? 'show' : 'hide'">Orders</span>
           </a>
         </div>
-        <div class="item-link">
+        <div class="item-link"  routerLinkActive="active-link">
           <a mat-list-item routerLink="/catalog" attr.path="catalog"
              (click)="checkPath($event)">
             <div class="img-container">
-              <img class="jim" src="/assets/img/tag.png" alt="">
+              <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.95123 3V11C2.95123 11.5523 3.39895 12 3.95123 12H15.5714C15.8634 12 16.1407 11.8724 16.3307 11.6508L19.7593 7.65079C20.0802 7.2763 20.0802 6.7237 19.7593 6.34921L16.3307 2.34921C16.1407 2.12756 15.8634 2 15.5714 2L3.95123 2C3.39895 2 2.95123 2.44772 2.95123 3ZM0.951233 3V11C0.951233 12.6569 2.29438 14 3.95123 14H15.5714C16.4472 14 17.2793 13.6173 17.8492 12.9524L21.2778 8.95237C22.2407 7.8289 22.2407 6.1711 21.2778 5.04763L17.8492 1.04763C17.2793 0.382688 16.4472 0 15.5714 0L3.95123 0C2.29438 0 0.951233 1.34315 0.951233 3Z" fill="#616161"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9512 8C14.5035 8 14.9512 7.55228 14.9512 7C14.9512 6.44772 14.5035 6 13.9512 6C13.3989 6 12.9512 6.44772 12.9512 7C12.9512 7.55228 13.3989 8 13.9512 8ZM13.9512 10C15.6081 10 16.9512 8.65685 16.9512 7C16.9512 5.34315 15.6081 4 13.9512 4C12.2944 4 10.9512 5.34315 10.9512 7C10.9512 8.65685 12.2944 10 13.9512 10Z" fill="#616161"/>
+              </svg>
             </div>
             <span [@animateText]="linkText ? 'show' : 'hide'">Catalog</span>
           </a>
         </div>
-        <div class="item-link">
+        <div class="item-link"  routerLinkActive="active-link">
           <a mat-list-item routerLink="/customers" attr.path="customers"
              (click)="checkPath($event)">
             <div class="img-container">
-              <img class="jim" src="/assets/img/user.png" alt="">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 4C3 6.20914 4.79086 8 7 8C9.20914 8 11 6.20914 11 4C11 1.79086 9.20914 0 7 0C4.79086 0 3 1.79086 3 4ZM5 4C5 5.10457 5.89543 6 7 6C8.10457 6 9 5.10457 9 4C9 2.89543 8.10457 2 7 2C5.89543 2 5 2.89543 5 4Z" fill="#616161"/>
+                <path d="M2 12C2 11.4477 2.44772 11 3 11H11C11.5523 11 12 11.4477 12 12V18H14V12C14 10.3431 12.6569 9 11 9H3C1.34315 9 0 10.3431 0 12V18H2V12Z" fill="#616161"/>
+              </svg>
             </div>
             <span [@animateText]="linkText ? 'show' : 'hide'">Customers</span>
           </a>
         </div>
-        <div class="item-link">
+        <div class="item-link" routerLinkActive="active-link">
           <a mat-list-item routerLink="/logout" attr.path="logout"
              (click)="checkPath($event)">
             <div class="img-container">
-              <img class="jim" src="/assets/img/log-out.png" alt="">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.4858 16H17.4858C18.5904 16 19.4858 15.1046 19.4858 14V2C19.4858 0.895431 18.5904 0 17.4858 0L13.4858 0V2L17.4858 2V14H13.4858V16Z" fill="#616161"/>
+                <path d="M8.15833 13.385L6.73812 11.9768L10.6573 8.02422L1.51439 8.02417C0.962109 8.02417 0.514397 7.57645 0.514399 7.02417C0.514402 6.47189 0.96212 6.02417 1.5144 6.02418L10.6766 6.02422L6.69611 2.0774L8.10431 0.657202L14.4952 6.9941L8.15833 13.385Z" fill="#616161"/>
+              </svg>
             </div>
             <span [@animateText]="linkText ? 'show' : 'hide'">Log Out</span>
           </a>

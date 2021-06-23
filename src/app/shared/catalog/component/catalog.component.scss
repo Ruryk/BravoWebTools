@@ -111,6 +111,7 @@
           background: $white;
           color: $gray;
           @include fontType($fontfamily, normal, 400, 14px, 142%);
+
           ::ng-deep.mat-form-field-underline {
             display: none;
           }
@@ -157,6 +158,19 @@
 
               span.sort-size {
                 margin-left: 10px;
+                background: transparent;
+                border-radius: 50%;
+                padding: 2px 5px;
+              }
+
+              span.sort-size.active, span.sort-size:hover {
+                background: $lightBlue;
+                cursor: pointer;
+                svg{
+                  path{
+                    fill: $blue;
+                  }
+                }
               }
 
               .sort-name {
@@ -219,6 +233,16 @@
                 background: transparent;
                 border: none;
                 cursor: pointer;
+                border-radius: 50%;
+                padding: 8px 10px;
+              }
+              button.remove:hover,button.remove.active {
+                background: $lightred;
+                border: none;
+                cursor: pointer;
+                svg path{
+                  fill: $red;
+                }
               }
 
               .no-data {

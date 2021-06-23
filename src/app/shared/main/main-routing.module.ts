@@ -12,6 +12,11 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'customers',
+        pathMatch: 'full'
+      },
+      {
         path: 'customers',
         component: CustomersComponent,
         pathMatch: 'full'
