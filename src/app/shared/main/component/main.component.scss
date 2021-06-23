@@ -33,17 +33,15 @@ mat-sidenav-container {
 
   ::ng-deep div[fxlayout='column'] div:last-child {
     flex: 1 0 auto;
-
-    mat-nav-list {
-      flex: 1 0 auto;
-      display: flex;
-      flex-direction: column;
-
-    }
-    mat-nav-list a:last-child {
-      flex: 1 0 auto;
-      display: flex;
-      align-items: flex-end;
+    mat-nav-list{
+      div.item-link:last-child{
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-content: flex-end;
+        padding-bottom: 20px;
+      }
     }
   }
 }

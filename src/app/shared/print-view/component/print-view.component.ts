@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { getOrdersDataSourceForId, IState } from '../../../reducers';
+import { Component } from '@angular/core';
 import { IOrders } from '../../../interfaces/interfaces';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,21 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './print-view.component.html',
   styleUrls: ['./print-view.component.scss']
 })
-export class PrintViewComponent implements OnInit {
-  public dateOrder: IOrders;
-  public orderId: string;
+export class PrintViewComponent {
+  private dataOrder: IOrders;
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<IState>
-  ) {
-    this.dateOrder = {};
-    this.orderId = this.route.snapshot.params.id;
-    this.store.select(getOrdersDataSourceForId, { id: this.orderId }).subscribe(data => this.dateOrder = data);
+  constructor(private route: ActivatedRoute) {
+    this.dataOrder = this.route.snapshot.data.post.data;
   }
-
-  ngOnInit(): void {
-    console.log(this.dateOrder);
-  }
-
 }

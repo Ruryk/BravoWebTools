@@ -24,13 +24,6 @@ export class SideNavComponent implements OnDestroy {
   public linkText: boolean;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  public navigation: NavigationList[] = [
-    { name: 'Orders', link: 'orders', icon: 'shopping-cart' },
-    { name: 'Catalog', link: 'catalog', icon: 'tag' },
-    { name: 'Customers', link: 'customers', icon: 'user' },
-    { name: 'Log Out', link: 'logout', icon: 'log-out' }
-  ];
-
   constructor(
     private authentication: AuthenticationService,
     private sidenavService: SidenavService

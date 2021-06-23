@@ -13,13 +13,43 @@
 
     <div>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let link of navigation" [routerLink]="link.link" [attr.path]="link.link"
-           (click)="checkPath($event)">
-          <div class="img-container">
-            <img class="jim" [src]="'/assets/img/'+link.icon+'.png'" alt="">
-          </div>
-          <span [@animateText]="linkText ? 'show' : 'hide'">{{ link?.name }} </span>
-        </a>
+        <div class="item-link">
+          <a mat-list-item routerLink="/orders" attr.path="orders"
+             (click)="checkPath($event)">
+            <div class="img-container">
+              <img class="jim" src="/assets/img/shopping-cart.png" alt="">
+            </div>
+            <span [@animateText]="linkText ? 'show' : 'hide'">Orders</span>
+          </a>
+        </div>
+        <div class="item-link">
+          <a mat-list-item routerLink="/catalog" attr.path="catalog"
+             (click)="checkPath($event)">
+            <div class="img-container">
+              <img class="jim" src="/assets/img/tag.png" alt="">
+            </div>
+            <span [@animateText]="linkText ? 'show' : 'hide'">Catalog</span>
+          </a>
+        </div>
+        <div class="item-link">
+          <a mat-list-item routerLink="/customers" attr.path="customers"
+             (click)="checkPath($event)">
+            <div class="img-container">
+              <img class="jim" src="/assets/img/user.png" alt="">
+            </div>
+            <span [@animateText]="linkText ? 'show' : 'hide'">Customers</span>
+          </a>
+        </div>
+        <div class="item-link">
+          <a mat-list-item routerLink="/logout" attr.path="logout"
+             (click)="checkPath($event)">
+            <div class="img-container">
+              <img class="jim" src="/assets/img/log-out.png" alt="">
+            </div>
+            <span [@animateText]="linkText ? 'show' : 'hide'">Log Out</span>
+          </a>
+        </div>
+
       </mat-nav-list>
     </div>
   </div>

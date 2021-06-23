@@ -170,7 +170,7 @@
                       {{ element.address }}
                     </div>
                     <div class="detail-header__item print">
-                      <a [routerLink]="['/print-view', 'orders', element.orderNo]" target="_blank"><button
+                      <a [routerLink]="['/orders', element.orderNo]" target="_blank"><button
                         (click)="printOrders(element.orderNo)"
                                                               class="print">Print
                         Order</button></a>
