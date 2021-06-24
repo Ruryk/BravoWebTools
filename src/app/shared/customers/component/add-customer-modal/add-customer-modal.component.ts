@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, startWith, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IState } from '../../../../reducers';
+import { getCatalogDataSource, IState } from '../../../../reducers';
 import { AddNewCustomersAction } from '../../../../reducers/customers/customers.actions';
 
 
@@ -13,16 +13,24 @@ import { AddNewCustomersAction } from '../../../../reducers/customers/customers.
   styleUrls: ['./add-customer-modal.component.scss']
 })
 export class AddCustomerModalComponent implements OnInit {
+  public catalogDataSource: string[];
   public addCustomerGroup: FormGroup;
   public nameControl = new FormControl();
   public options: string[] = ['Burger King', 'Burger Bar', 'Gyoza SS'];
   public filteredOptions: Observable<string[]>;
   public validation: boolean;
+  public invalid: boolean;
+  public unsubscribe$: Subject<void>;
+  public productsNoneCodes: string[];
 
   constructor(
     private fb: FormBuilder,
     private store: Store<IState>
   ) {
+    this.productsNoneCodes = [];
+    this.unsubscribe$ = new Subject<void>();
+    this.catalogDataSource = [];
+    this.invalid = false;
     this.validation = false;
     this.addCustomerGroup = fb.group({
       customerNo: new FormControl('BB-135', [Validators.required]),
@@ -40,9 +48,12 @@ export class AddCustomerModalComponent implements OnInit {
       contactName: new FormControl('Sam Smith', [Validators.required]),
       contactPhone: new FormControl('0630000000', [Validators.required]),
       notify: new FormControl(false),
-      productsCodes: new FormControl('B-3535, A-3721, BB-135', [Validators.required])
+      productsCodes: new FormControl('APP123, CUC997, TOM53', [Validators.required])
     });
     this.filteredOptions = new Observable<string[]>();
+    this.store.select(getCatalogDataSource)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(data => this.catalogDataSource = Object.keys(data));
   }
 
   ngOnInit(): void {
@@ -50,6 +61,16 @@ export class AddCustomerModalComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+    this.addCustomerGroup.controls.productsCodes.valueChanges
+      .subscribe(value => {
+        const status = value.split(', ').filter((item: string) => !this.catalogDataSource.includes(item));
+        if (status.length > 0) {
+          this.invalid = true;
+          this.productsNoneCodes = status;
+        } else {
+          this.invalid = false;
+        }
+      });
   }
 
   private _filter(value: string): string[] {

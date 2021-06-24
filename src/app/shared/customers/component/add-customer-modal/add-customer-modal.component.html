@@ -2,7 +2,8 @@
   <div class="dialog-header">
     <h1 mat-dialog-title class="dialog-title">Add Customer
     </h1>
-    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close"></button>
+    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close">
+    </button>
   </div>
   <div class="dialog-content">
     <form class="example-form" [formGroup]="addCustomerGroup" (ngSubmit)="addCustomer()">
@@ -70,24 +71,32 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
+          <mat-label>Phone</mat-label>
           <input formControlName="contactPhone" matInput placeholder="Mobile Phone">
         </mat-form-field>
       </div>
       <div class="dialog-item notify">
-          <p>
-            <mat-checkbox formControlName="notify">Notify customer via text message</mat-checkbox>
-          </p>
+        <p>
+          <mat-checkbox formControlName="notify">Notify customer via text message</mat-checkbox>
+        </p>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Shortlisted Products</mat-label>
-          <textarea formControlName="productsCodes" matInput placeholder=""></textarea>
+          <mat-label [ngClass]="{invalid:invalid}">Shortlisted Products</mat-label>
+          <textarea [ngClass]="{invalid:invalid}" formControlName="productsCodes" matInput placeholder=""></textarea>
+          <div *ngIf="invalid" class="error-message">
+            Products {{ productsNoneCodes.join(', ') }} {{(productsNoneCodes.length > 1) ? 'were' : 'was'}} not found in
+            the
+            catalog.
+          </div>
         </mat-form-field>
       </div>
       <div class="dialog-item control">
         <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
-        <button mat-flat-button type="submit" color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Add
-          Customer</button>
+        <button mat-flat-button type="submit" [disabled]="invalid" color="primary" class="dialog-add-btn"
+                [mat-dialog-close]="true">Add
+          Customer
+        </button>
       </div>
     </form>
   </div>

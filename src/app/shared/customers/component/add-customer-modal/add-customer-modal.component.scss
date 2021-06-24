@@ -34,8 +34,15 @@
 
     .dialog-item {
       .mat-form-field {
-
         display: block;
+
+        .error-message {
+          position: absolute;
+          bottom: -10px;
+          color: $red;
+          @include fontType($fontfamily, normal, 400, 12px, 130%);
+          margin-left: 10px;
+        }
 
         label {
           @include fontType($fontfamily, normal, 400, 12px, 130%);
@@ -56,6 +63,10 @@
         textarea {
           min-height: 120px;
           resize: none;
+        }
+
+        textarea.invalid {
+          border: 1.5px solid $red;
         }
       }
 
@@ -82,6 +93,10 @@
         border-radius: 10px;
       }
 
+      button.dialog-add-btn[disabled] {
+        opacity: 0.5;
+      }
+
       button.dialog-add-btn::before {
         content: '';
         display: inline-block;
@@ -106,6 +121,7 @@
     }
 
     .dialog-item.control {
+      margin-top: 20px;
       display: flex;
       justify-content: flex-end;
     }
@@ -127,6 +143,10 @@
     color: $gray;
     padding-left: 15px;
     font-size: 14px;
+  }
+
+  mat-label.invalid {
+    color: $red;
   }
 
   .mat-input-element::placeholder {
@@ -177,9 +197,11 @@
     .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
       background: $lightgray;
     }
-    .mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled){
+
+    .mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled) {
       background: $lightgray;
     }
+
     span.mat-option-text {
       color: $black;
     }

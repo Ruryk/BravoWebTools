@@ -170,7 +170,7 @@
         Product was added sucesfully
       </p>
     </div>
-    <button class="progress-bar-close-btn"></button>
+    <button (click)="closeProgressAddModal()" class="progress-bar-close-btn"></button>
   </div>
   <div class="progress-bar-body">
     <mat-progress-bar class="example-margin" color="primary" [value]="valueAddModal"
@@ -192,7 +192,7 @@
         It may take several seconds.
       </p>
     </div>
-    <button class="progress-bar-close-btn"></button>
+    <button (click)="closeProgressFileModal()" class="progress-bar-close-btn"></button>
   </div>
   <div class="progress-bar-body">
     <mat-progress-bar class="example-margin" color="primary" [value]="valueFileModal"

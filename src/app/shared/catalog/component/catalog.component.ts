@@ -108,6 +108,11 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.valueAddModal = 0;
   }
 
+  closeProgressAddModal(): void{
+    this.progressAddModalStatus = false;
+    this.valueAddModal = 0;
+  }
+
   openProgressFileModal(): void {
     this.progressFileModalStatus = true;
     const timerId = setInterval(() => {
@@ -118,6 +123,11 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
         clearTimeout(timerId);
       }
     }, 30);
+    this.valueFileModal = 0;
+  }
+
+  closeProgressFileModal(): void{
+    this.progressFileModalStatus = false;
     this.valueFileModal = 0;
   }
 
