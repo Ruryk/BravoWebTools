@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { getCatalogDataSource, IState } from '../../../../reducers';
@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditCatalogAction } from '../../../../reducers/catalog/catalog.actions';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-edit-catalog-modal',

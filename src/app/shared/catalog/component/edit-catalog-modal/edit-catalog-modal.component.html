@@ -9,8 +9,10 @@
     <form class="example-form" [formGroup]="editCatalogGroup">
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label [ngClass]="{invalid: invalid}">Product Code</mat-label>
-          <input formControlName="code" matInput placeholder="APP123" [ngClass]="{invalid: invalid}">
+          <mat-label [ngClass]="{invalid: invalid}" #productCodeLabel>Product Code</mat-label>
+          <input formControlName="code" matInput placeholder="APP123" [ngClass]="{invalid: invalid}"
+                 (focus)="productCodeLabel.classList.add('focus')"
+                 (focusout)="productCodeLabel.classList.remove('focus')">
           <div *ngIf="invalid" class="error-code">
             This product code already exists in the system!
           </div>
@@ -31,20 +33,26 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Name</mat-label>
-          <input formControlName="name" matInput placeholder="Apple">
+          <mat-label #nameLabel>Name</mat-label>
+          <input formControlName="name" matInput placeholder="Apple"
+                 (focus)="nameLabel.classList.add('focus')"
+                 (focusout)="nameLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <ng-container formArrayName="units">
         <ng-container *ngFor="let key of getArrayUnitsControls().controls; index as i">
           <div class="dialog-item multiple-new-item" [formGroupName]="i">
             <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-              <mat-label>Unit{{ (i > 0) ? ' - ' + (i + 1) : '' }}</mat-label>
-              <input formControlName="unit" matInput placeholder="box">
+              <mat-label #unitLabel>Unit{{ (i > 0) ? ' - ' + (i + 1) : '' }}</mat-label>
+              <input formControlName="unit" matInput placeholder="box"
+                     (focus)="unitLabel.classList.add('focus')"
+                     (focusout)="unitLabel.classList.remove('focus')">
             </mat-form-field>
             <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-              <mat-label>Price</mat-label>
-              <input formControlName="price" matInput placeholder="10.30">
+              <mat-label #priceLabel>Price</mat-label>
+              <input formControlName="price" matInput placeholder="10.30"
+                     (focus)="priceLabel.classList.add('focus')"
+                     (focusout)="priceLabel.classList.remove('focus')">
               <button *ngIf="i>0" class="delete-unit" (click)="deleteUnit(i)">
                 <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M14 3.5V2.5C14 1.39543 13.1046 0.5 12 0.5H6C4.89543 0.5 4 1.39543 4 2.5V3.5H1C0.447716 3.5 0 3.94772 0 4.5C0 5.05228 0.447716 5.5 1 5.5H2V16.5C2 18.1569 3.34315 19.5 5 19.5H13C14.6569 19.5 16 18.1569 16 16.5V5.5H17C17.5523 5.5 18 5.05228 18 4.5C18 3.94772 17.5523 3.5 17 3.5H14ZM12 2.5H6V3.5H12V2.5ZM14 5.5H4V16.5C4 17.0523 4.44772 17.5 5 17.5H13C13.5523 17.5 14 17.0523 14 16.5V5.5Z" fill="#818181"/>
@@ -79,14 +87,18 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Exclusively for (Customer Numbers)</mat-label>
-          <input formControlName="exclusively" matInput placeholder="Exclusively for (Customer Numbers)">
+          <mat-label #exclusivelyLabel>Exclusively for (Customer Numbers)</mat-label>
+          <input formControlName="exclusively" matInput placeholder="Exclusively for (Customer Numbers)"
+                 (focus)="exclusivelyLabel.classList.add('focus')"
+                 (focusout)="exclusivelyLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Replacement Products (SKUs)</mat-label>
-          <input formControlName="replacementProducts" matInput placeholder="Replacement Products (SKUs)">
+          <mat-label #replacementProductsLabel>Replacement Products (SKUs)</mat-label>
+          <input formControlName="replacementProducts" matInput placeholder="Replacement Products (SKUs)"
+                 (focus)="replacementProductsLabel.classList.add('focus')"
+                 (focusout)="replacementProductsLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item control">

@@ -98,6 +98,10 @@
           font-size: 16px;
         }
 
+        input:focus{
+          border: 1.5px solid $blue;
+        }
+
         input.invalid {
           border: 1.5px solid $red;
         }
@@ -240,6 +244,9 @@
     color: $gray;
     padding-left: 15px;
     font-size: 14px;
+  }
+  mat-label.focus {
+    color: $blue;
   }
 
   mat-label.invalid {

@@ -95,7 +95,12 @@
           padding: 12px;
           font-size: 16px;
         }
-        input.invalid{
+
+        input:focus{
+          border: 1.5px solid $blue;
+        }
+
+        input.invalid {
           border: 1.5px solid $red;
         }
 
@@ -169,7 +174,7 @@
         border-radius: 10px;
       }
 
-      button.dialog-add-btn[disabled]{
+      button.dialog-add-btn[disabled] {
         opacity: 0.5;
       }
 
@@ -205,18 +210,20 @@
 
 ::ng-deep {
   .mat-form-field-wrapper {
-    div.error-code{
+    div.error-code {
       position: absolute;
       color: $red;
       bottom: -5px;
       margin-left: 10px;
       @include fontType($fontfamily, normal, 400, 12px, 132%);
     }
-    div.error-icon{
+
+    div.error-icon {
       position: absolute;
       right: 15px;
       bottom: calc(50% - 10px);
     }
+
     .mat-form-field-flex {
       padding: 0;
     }
@@ -230,6 +237,9 @@
     color: $gray;
     padding-left: 15px;
     font-size: 14px;
+  }
+  mat-label.focus {
+    color: $blue;
   }
   mat-label.invalid {
     color: $red;

@@ -9,20 +9,24 @@
     <form class="example-form" [formGroup]="addCustomerGroup" (ngSubmit)="addCustomer()">
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Customer No</mat-label>
-          <input formControlName="customerNo" matInput placeholder="">
+          <mat-label #customerNoLabel>Customer No</mat-label>
+          <input formControlName="customerNo" matInput placeholder=""
+                 (focus)="customerNoLabel.classList.add('focus')"
+                 (focusout)="customerNoLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Name</mat-label>
+          <mat-label #nameLabel>Name</mat-label>
           <input type="text"
                  placeholder=""
                  aria-label="Number"
                  matInput
                  formControlName="name"
                  [formControl]="nameControl"
-                 [matAutocomplete]="auto">
+                 [matAutocomplete]="auto"
+                 (focus)="nameLabel.classList.add('focus')"
+                 (focusout)="nameLabel.classList.remove('focus')">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -32,8 +36,10 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Delivery Address</mat-label>
-          <input formControlName="address" matInput placeholder="">
+          <mat-label #addressLabel>Delivery Address</mat-label>
+          <input formControlName="address" matInput placeholder=""
+                 (focus)="addressLabel.classList.add('focus')"
+                 (focusout)="addressLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
@@ -65,14 +71,18 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Contact Name</mat-label>
-          <input formControlName="contactName" matInput placeholder="">
+          <mat-label #contactNameLabel>Contact Name</mat-label>
+          <input formControlName="contactName" matInput placeholder=""
+                 (focus)="contactNameLabel.classList.add('focus')"
+                 (focusout)="contactNameLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Phone</mat-label>
-          <input formControlName="contactPhone" matInput placeholder="Mobile Phone">
+          <mat-label #phoneLabel>Phone</mat-label>
+          <input formControlName="contactPhone" matInput placeholder="Mobile Phone"
+                 (focus)="phoneLabel.classList.add('focus')"
+                 (focusout)="phoneLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item notify">
@@ -82,8 +92,10 @@
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width  mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label [ngClass]="{invalid:invalid}">Shortlisted Products</mat-label>
-          <textarea [ngClass]="{invalid:invalid}" formControlName="productsCodes" matInput placeholder=""></textarea>
+          <mat-label [ngClass]="{invalid:invalid}" #productsCodesLabel>Shortlisted Products</mat-label>
+          <textarea [ngClass]="{invalid:invalid}" formControlName="productsCodes" matInput placeholder=""
+                    (focus)="productsCodesLabel.classList.add('focus')"
+                    (focusout)="productsCodesLabel.classList.remove('focus')"></textarea>
           <div *ngIf="invalid" class="error-message">
             Products {{ productsNoneCodes.join(', ') }} {{(productsNoneCodes.length > 1) ? 'were' : 'was'}} not found in
             the

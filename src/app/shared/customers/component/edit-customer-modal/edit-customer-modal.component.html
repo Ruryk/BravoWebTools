@@ -2,26 +2,33 @@
   <div class="dialog-header">
     <h1 mat-dialog-title class="dialog-title">Edit Customer
     </h1>
-    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close"></button>
+    <button class="dialog-close-modal-btn" [mat-dialog-close]="true"><img src="/assets/img/close.png" alt="close">
+    </button>
   </div>
   <div class="dialog-content">
     <form class="example-form" [formGroup]="editCustomersGroup" (ngSubmit)="editCustomers()">
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Customer No</mat-label>
-          <input formControlName="customerNo" matInput placeholder="BB-135" [value]="">
+          <mat-label #customerNoLabel>Customer No</mat-label>
+          <input formControlName="customerNo" matInput placeholder="BB-135"
+                 (focus)="customerNoLabel.classList.add('focus')"
+                 (focusout)="customerNoLabel.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Name</mat-label>
-          <input formControlName="name" matInput placeholder="Burger Bar">
+          <mat-label #name>Name</mat-label>
+          <input formControlName="name" matInput placeholder="Burger Bar"
+                 (focus)="name.classList.add('focus')"
+                 (focusout)="name.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Delivery Address</mat-label>
-          <input formControlName="address" matInput placeholder="Second Street 3421 Geneva">
+          <mat-label #address>Delivery Address</mat-label>
+          <input formControlName="address" matInput placeholder="Second Street 3421 Geneva"
+                 (focus)="address.classList.add('focus')"
+                 (focusout)="address.classList.remove('focus')">
         </mat-form-field>
       </div>
       <div class="dialog-item">
@@ -53,7 +60,8 @@
       </div>
       <div class="dialog-item control">
         <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
-        <button type="submit" mat-flat-button color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Saves</button>
+        <button type="submit" mat-flat-button color="primary" class="dialog-add-btn" [mat-dialog-close]="true">Saves
+        </button>
       </div>
     </form>
   </div>
