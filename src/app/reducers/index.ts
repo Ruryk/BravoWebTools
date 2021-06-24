@@ -1,7 +1,7 @@
 import { ActionReducerMap, createSelector, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 
-import { ICatalogState, ICustomersState, IOrdersState } from 'src/app/interfaces/interfaces';
+import { ICatalogState, ICustomersState,  IOrdersState } from 'src/app/interfaces/interfaces';
 import { customersNode, customersReducer } from 'src/app/reducers/customers/customers.reducer';
 import { catalogNode, catalogReducer } from './catalog/catalog.reducer';
 import { ordersNode, ordersReducer } from './orders/orders.reducer';
@@ -23,7 +23,7 @@ export const reducers: ActionReducerMap<IState> = {
 
 export const getCustomersState = (state: IState): ICustomersState => state[customersNode];
 export const getCatalogState = (state: IState): ICatalogState => state[catalogNode];
-export const getOrdersState = (state: IState): IOrdersState => state[ordersNode];
+export const getOrdersState = (state: IState): IOrdersState => state[ordersNode]
 
 // Customers Selectors
 export const getCustomersDataSource = createSelector(

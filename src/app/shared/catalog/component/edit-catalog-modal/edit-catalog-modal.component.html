@@ -9,8 +9,24 @@
     <form class="example-form" [formGroup]="editCatalogGroup">
       <div class="dialog-item">
         <mat-form-field class="example-full-width mat-focused mat-form-field-should-float" floatLabel="always">
-          <mat-label>Product Code</mat-label>
-          <input formControlName="code" matInput placeholder="APP123">
+          <mat-label [ngClass]="{invalid: invalid}">Product Code</mat-label>
+          <input formControlName="code" matInput placeholder="APP123" [ngClass]="{invalid: invalid}">
+          <div *ngIf="invalid" class="error-code">
+            This product code already exists in the system!
+          </div>
+          <div *ngIf="invalid" class="error-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10 4C10.5523 4 11 4.44772 11 5V11C11 11.5523 10.5523 12 10 12C9.44771 12 9 11.5523 9 11V5C9 4.44772 9.44771 4 10 4Z"
+                fill="#F5413D"/>
+              <path
+                d="M10 14C9.44771 14 9 14.4477 9 15C9 15.5523 9.44771 16 10 16C10.5523 16 11 15.5523 11 15C11 14.4477 10.5523 14 10 14Z"
+                fill="#F5413D"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0ZM2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10Z"
+                    fill="#F5413D"/>
+            </svg>
+          </div>
         </mat-form-field>
       </div>
       <div class="dialog-item">
@@ -76,7 +92,7 @@
       <div class="dialog-item control">
         <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="true">Cancel</button>
         <button mat-flat-button color="primary" class="dialog-add-btn"
-                (click)="editCatalog()"[mat-dialog-close]="true">Edit Product</button>
+                (click)="editCatalog()"[mat-dialog-close]="true" [disabled]="invalid">Edit Product</button>
       </div>
     </form>
   </div>

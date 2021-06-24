@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { IState } from '../../../../reducers';
+import { getCatalogDataSource, IState } from '../../../../reducers';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditCatalogAction } from '../../../../reducers/catalog/catalog.actions';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-edit-catalog-modal',
@@ -11,8 +13,10 @@ import { EditCatalogAction } from '../../../../reducers/catalog/catalog.actions'
   styleUrls: ['./edit-catalog-modal.component.scss']
 })
 export class EditCatalogModalComponent implements OnInit {
+  public catalogDataSource: string[];
   public editCatalogGroup: FormGroup;
   public validation: boolean;
+  public invalid: boolean;
   public data: any;
   public availability: any = [
     { value: 'In stock', viewValue: 'In stock' },
@@ -20,13 +24,16 @@ export class EditCatalogModalComponent implements OnInit {
     { value: 'Discontinued', viewValue: 'Discontinued' }
   ];
   public selected = new FormControl('In stock');
-
+  public unsubscribe$: Subject<void>;
   constructor(
     private store: Store<IState>,
     @Inject(MAT_DIALOG_DATA) public dataRow: any,
     private fb: FormBuilder
   ) {
+    this.catalogDataSource = [];
+    this.invalid = false;
     this.data = dataRow.dataRow;
+    this.unsubscribe$ = new Subject<void>();
     this.validation = false;
     this.editCatalogGroup = fb.group({
       code: new FormControl(this.data.code, [Validators.required]),
@@ -42,11 +49,17 @@ export class EditCatalogModalComponent implements OnInit {
         price: new FormControl(unit.price, [Validators.required])
       }));
     });
+    this.store.select(getCatalogDataSource)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(data => this.catalogDataSource = Object.keys(data));
   }
 
   ngOnInit(): void {
     localStorage.setItem('catalogCode', this.data.code);
-
+    const catalogCode = localStorage.getItem('catalogCode');
+    this.editCatalogGroup.controls.code.valueChanges
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(value => this.invalid = this.catalogDataSource.includes(value) && catalogCode !== value);
   }
 
   addUnit(): void {

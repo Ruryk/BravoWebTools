@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IState } from '../../../../reducers';
+import { getCatalogDataSource, IState } from '../../../../reducers';
 import { Store } from '@ngrx/store';
 import { AddNewCatalogAction } from '../../../../reducers/catalog/catalog.actions';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-catalog-modal',
   templateUrl: './add-catalog-modal.component.html',
   styleUrls: ['./add-catalog-modal.component.scss']
 })
-export class AddCatalogModalComponent implements OnInit {
+export class AddCatalogModalComponent implements OnInit, OnDestroy {
+  public catalogDataSource: string[];
   public addCatalogGroup: FormGroup;
   public validation: boolean;
+  public invalid: boolean;
   public availability: any = [
     { value: 'In stock', viewValue: 'In stock' },
     { value: 'Out of stock', viewValue: 'Out of stock' },
     { value: 'Discontinued', viewValue: 'Discontinued' }
   ];
+  public unsubscribe$: Subject<void>;
 
   constructor(
     private store: Store<IState>,
     private fb: FormBuilder
   ) {
+    this.catalogDataSource = [];
+    this.unsubscribe$ = new Subject<void>();
+    this.invalid = false;
     this.validation = false;
     this.addCatalogGroup = fb.group({
       code: new FormControl('REG88', [Validators.required]),
@@ -36,9 +44,15 @@ export class AddCatalogModalComponent implements OnInit {
       exclusively: new FormControl('TOM53, APP123', [Validators.required]),
       replacementProducts: new FormControl('13423-kd', [Validators.required])
     });
+    this.store.select(getCatalogDataSource)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(data => this.catalogDataSource = Object.keys(data));
   }
 
   ngOnInit(): void {
+    this.addCatalogGroup.controls.code.valueChanges
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(value => this.invalid = this.catalogDataSource.includes(value));
   }
 
   addUnit(): void {
@@ -69,7 +83,12 @@ export class AddCatalogModalComponent implements OnInit {
     }
   }
 
-  getArrayUnitsControls(): any{
+  getArrayUnitsControls(): any {
     return this.addCatalogGroup.controls.units as FormArray;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
