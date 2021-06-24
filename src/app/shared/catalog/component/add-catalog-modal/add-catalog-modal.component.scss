@@ -36,36 +36,46 @@
       }
 
     }
+
     .dialog-item.multiple-new-item {
       display: flex;
       justify-content: space-between;
+
       .mat-form-field:nth-child(2) {
         ::ng-deep .mat-form-field-infix {
           display: flex;
           align-items: center;
         }
       }
-      button.delete-unit{
+
+      button.delete-unit {
         cursor: pointer;
-        background: url("/assets/img/trash-red.svg") center center;
         border-radius: 50%;
-        background-color: $lightred;
-        background-repeat: no-repeat;
-        padding: 20px;
-        width: 18px;
+        background-color: transparent;
+        padding: 20px 12px;
         height: 20px;
         border: none;
         margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button.delete-unit:hover{
+        background-color: $lightred;
+        svg path{
+          fill: $red;
+        }
       }
     }
+
     .dialog-item {
       p.text-center {
         text-align: center;
         @include fontType($fontfamily, normal, 400, 10px, 130%);
         letter-spacing: 0.03em;
       }
-      .mat-form-field {
 
+      .mat-form-field {
         display: block;
 
         label {
@@ -102,12 +112,11 @@
 
             .mat-select-arrow-wrapper {
               vertical-align: middle;
-              padding-right:15px;
+              padding-right: 15px;
               transform: none;
             }
           }
         }
-
       }
 
       section.days-section {

@@ -76,12 +76,12 @@
         align-items: center;
         padding: 10px 15px;
         background: $white;
-        border: 1px solid $lightgray;
+        border: 2px solid $lightgray;
         box-sizing: border-box;
         border-radius: 8px;
 
         .search-icon {
-          img {
+          svg {
             display: block;
             margin-right: 15px;
           }
@@ -92,10 +92,25 @@
             width: 270px;
             border: none;
             min-height: 25px;
+            caret-color: $blue;
+          }
+
+          input:focus {
+            outline: none;
           }
 
           input::-webkit-search-cancel-button {
             color: red;
+          }
+        }
+      }
+
+      .searh.active {
+        border: 2px solid $blue;
+
+        .search-icon {
+          svg path {
+            fill: $blue;
           }
         }
       }
@@ -168,8 +183,9 @@
               span.sort-size.active, span.sort-size:hover {
                 background: $lightBlue;
                 cursor: pointer;
-                svg{
-                  path{
+
+                svg {
+                  path {
                     fill: $blue;
                   }
                 }
@@ -243,7 +259,7 @@
                 padding: 5px;
               }
 
-              button.open-dropdown:hover  {
+              button.open-dropdown:hover {
                 background: #D3E4FB !important;
 
                 svg path {
@@ -515,8 +531,9 @@ tr.example-element-row:not(.example-expanded-row):active {
           margin-right: 10px;
         }
       }
-      .detail-header__item.print{
-        a{
+
+      .detail-header__item.print {
+        a {
           text-decoration: none;
         }
       }
@@ -778,24 +795,37 @@ tr.example-element-row:not(.example-expanded-row):active {
 
   .mat-autocomplete-panel {
     background: $white;
+
     span.mat-option-text {
       color: $black;
 
     }
   }
-  .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled){
+
+  .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
     background: $lightgray;
   }
-  .mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover){
+
+  .mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover) {
     background: $lightgray;
   }
-  .mat-chip.mat-standard-chip{
+
+  .mat-chip.mat-standard-chip {
     background: $lightBlue;
     color: $black;
-    mat-icon{
+
+    mat-icon {
       color: $black !important;
       opacity: 1 !important;
     }
+  }
+
+  div.mat-select-arrow {
+    color: $black !important;
+  }
+
+  .mat-select-arrow-wrapper {
+    transform: none !important;
   }
 }
 

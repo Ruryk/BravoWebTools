@@ -57,15 +57,21 @@
 
       button.delete-unit {
         cursor: pointer;
-        background: url("/assets/img/trash-red.svg") center center;
         border-radius: 50%;
-        background-color: $lightred;
-        background-repeat: no-repeat;
-        padding: 20px;
-        width: 18px;
+        background-color: transparent;
+        padding: 20px 12px;
         height: 20px;
         border: none;
         margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button.delete-unit:hover{
+        background-color: $lightred;
+        svg path{
+          fill: $red;
+        }
       }
     }
 
