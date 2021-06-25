@@ -36,11 +36,9 @@ export class SideNavComponent implements OnDestroy {
     });
   }
 
-  checkPath(event: any): void {
-    if (event.target.getAttribute('path') === 'logout') {
+  logout(event: any): void {
       event.preventDefault();
       this.authentication.logout();
-    }
   }
 
   ngOnDestroy(): void {
