@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -75,13 +75,21 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   openReplaceModal(): void {
     this.dialog.open(ReplaceCatalogModalComponent, {
       data: {}
-    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.openProgressFileModal());
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe((status) => {
+      if (status) {
+        this.openProgressFileModal();
+      }
+    });
   }
 
   openAddModal(): void {
     this.dialog.open(AddCatalogModalComponent, {
       data: {}
-    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.openProgressAddModal());
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe((status) => {
+      if (status) {
+        this.openProgressAddModal();
+      }
+    });
   }
 
   openEditModal(event: any, code: string): void {
@@ -108,7 +116,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.valueAddModal = 0;
   }
 
-  closeProgressAddModal(): void{
+  closeProgressAddModal(): void {
     this.progressAddModalStatus = false;
     this.valueAddModal = 0;
   }
@@ -126,7 +134,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.valueFileModal = 0;
   }
 
-  closeProgressFileModal(): void{
+  closeProgressFileModal(): void {
     this.progressFileModalStatus = false;
     this.valueFileModal = 0;
   }
