@@ -1,6 +1,7 @@
-import { CustomersActions, customersActionsType } from 'src/app/reducers/customers/customers.actions';
-import { ICustomersState } from '../../interfaces/interfaces';
 import { Action } from '@ngrx/store';
+
+import { ICustomersState } from 'src/app/interfaces/interfaces';
+import { CustomersActions, customersActionsType } from 'src/app/reducers/customers/customers.actions';
 
 export const customersNode = 'customers';
 

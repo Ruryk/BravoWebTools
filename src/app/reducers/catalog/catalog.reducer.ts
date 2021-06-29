@@ -1,6 +1,7 @@
-import { CatalogActions, catalogActionsType } from 'src/app/reducers/catalog/catalog.actions';
-import { ICatalogState } from '../../interfaces/interfaces';
 import { Action } from '@ngrx/store';
+
+import { CatalogActions, catalogActionsType } from 'src/app/reducers/catalog/catalog.actions';
+import { ICatalogState } from 'src/app/interfaces/interfaces';
 
 export const catalogNode = 'catalog';
 

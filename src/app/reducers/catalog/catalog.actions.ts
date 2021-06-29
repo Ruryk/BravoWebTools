@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { ICatalog } from '../../interfaces/interfaces';
+
+import { ICatalog } from 'src/app/interfaces/interfaces';
 
 export enum catalogActionsType {
   addNewCatalog = '[CATALOG] addNewCatalog',

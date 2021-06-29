@@ -1,10 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getOrdersDataSourceForId, IState } from '../../reducers';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { IOrders } from '../../interfaces/interfaces';
+
+import { getOrdersDataSourceForId, IState } from 'src/app/reducers';
+import { IOrders } from 'src/app/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'

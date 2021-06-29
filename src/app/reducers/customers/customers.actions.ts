@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { ICustomers } from '../../interfaces/interfaces';
+
+import { ICustomers } from 'src/app/interfaces/interfaces';
 
 export enum customersActionsType {
   addNewCustomers = '[CUSTOMERS] addNewCustomers',
