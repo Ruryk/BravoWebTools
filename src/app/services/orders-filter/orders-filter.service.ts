@@ -34,34 +34,22 @@ export class OrdersFilterService {
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
       const searchString = JSON.parse(filter);
       const column = searchString.column;
-      let isPositionAvailable = false;
       if (searchString.customer.length) {
-        if (column !== EOrdersColumn.Delivery && column !== EOrdersColumn.OrderNo && column !== EOrdersColumn.Status) {
-          for (const d of searchString.customer) {
-            if (data[column].trim() === d) {
-              isPositionAvailable = true;
+        switch (column) {
+          case EOrdersColumn.Status:
+            return data[column] === searchString.customer[0];
+          case EOrdersColumn.OrderNo:
+            return data[column].toString().includes(searchString.customer[0].toString());
+          case EOrdersColumn.Delivery:
+            if (searchString.customer.length === 2) {
+              return (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
             }
-          }
-        } else if (column === EOrdersColumn.Status) {
-          if (data[column] === searchString.customer[0]) {
-            isPositionAvailable = true;
-          }
-        } else if (column === EOrdersColumn.OrderNo) {
-          if (data[column].toString().includes(searchString.customer[0].toString())) {
-            isPositionAvailable = true;
-          }
-        } else {
-          if (searchString.customer.length === 2) {
-            isPositionAvailable = (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
-          } else {
-            isPositionAvailable = (data[column] >= searchString.customer[0]) ? true : false;
-          }
+            return (data[column] >= searchString.customer[0]) ? true : false;
+          default:
+            return Object.values(searchString.customer).some((value: any) => value.toLowerCase() === data[column].trim().toLowerCase());
         }
-      } else {
-        isPositionAvailable = true;
       }
-      return isPositionAvailable;
-
+      return true;
     };
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }

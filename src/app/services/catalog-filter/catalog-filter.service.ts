@@ -9,7 +9,7 @@ import { ECatalogColumn } from 'src/app/enums/enums';
 @Injectable({
   providedIn: 'root'
 })
-export class CatalogFilterService{
+export class CatalogFilterService {
   public filterValues: IFilterValues = {
     customer: [],
     column: ECatalogColumn.Availability
@@ -29,33 +29,36 @@ export class CatalogFilterService{
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
       const searchString = JSON.parse(filter);
       const column = searchString.column;
-      let isPositionAvailable = false;
       if (searchString.customer.length) {
-        if (column !== ECatalogColumn.Name) {
-          for (const d of searchString.customer) {
-            if (data[column].trim().toLowerCase() === d.toLowerCase()) {
-              isPositionAvailable = true;
-            }
-          }
-        }else{
-          if (data[column].trim().toLowerCase().includes(searchString.customer[0].toLowerCase())) {
-            isPositionAvailable = true;
-          }
+        switch (column) {
+          case ECatalogColumn.Name:
+            return this.setCatalogNameFilter(data, column, searchString);
+          default:
+            return this.setDefaultFilter(data, column, searchString);
         }
-      } else {
-        isPositionAvailable = true;
       }
-      return isPositionAvailable;
+      return true;
     };
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-  applyFilter(filterValue: string): void{
+  setCatalogNameFilter(data: any, column: string, searchString: any): boolean {
+    return data[column]
+      .trim()
+      .toLowerCase()
+      .includes(searchString.customer[0].toLowerCase());
+  }
+
+  setDefaultFilter(data: any, column: string, searchString: any): boolean {
+    return Object.values(searchString.customer)
+      .some((value: any) => value.toLowerCase() === data[column].trim().toLowerCase());
+  }
+
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = JSON.stringify({ customer: [filterValue], column: ECatalogColumn.Name });
   }
 
   setAvailabilityFilter(filterValue: string[]): void {
     this.dataSource.filter = JSON.stringify({ customer: [...filterValue], column: ECatalogColumn.Availability });
   }
-
 }

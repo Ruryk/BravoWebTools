@@ -24,7 +24,9 @@ export class SideNavComponent implements OnDestroy {
   ) {
     this.sideNavState = true;
     this.linkText = true;
-    this.sidenavService.sideNavState$.pipe(takeUntil(this.unsubscribe$)).subscribe((res: boolean) => {
+    this.sidenavService.sideNavState$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res: boolean) => {
       this.sideNavState = res;
       this.linkText = res;
     });
