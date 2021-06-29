@@ -4,13 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { onSideNavChange, animateText } from 'src/app/animations/animations';
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
-
-interface NavigationList {
-  link: string;
-  name: string;
-  icon: string;
-}
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-side-nav',

@@ -151,7 +151,7 @@
                   <mat-date-range-input [formGroup]="dateRange" [rangePicker]="rangePicker">
                     <input matStartDate formControlName="start" placeholder="Start date">
                     <input matEndDate formControlName="end" placeholder="End date"
-                           (dateChange)="dateFilter()">
+                           (dateChange)="setDateFilter()">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <!-- #docregion date-range-picker-actions -->
@@ -172,7 +172,7 @@
             <th mat-header-cell *matHeaderCellDef>
               <ng-container>
                 <mat-form-field appearance="fill" class="sort-status">
-                  <mat-select #selectMenuStatus (selectionChange)="statusFilter($event.value)">
+                  <mat-select #selectMenuStatus (selectionChange)="setStatusFilter($event.value)">
                     <mat-option *ngFor="let item of status" [value]="item.value">
                       {{item.viewValue}}
                     </mat-option>
@@ -222,7 +222,6 @@
                     <div class="detail-header__item print">
                       <a [routerLink]="['/orders', element.orderNo]" target="_blank">
                         <button
-                          (click)="printOrders(element.orderNo)"
                           class="print">Print
                           Order
                         </button>
@@ -293,7 +292,6 @@
               </div>
             </td>
           </tr>
-
         </table>
 
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

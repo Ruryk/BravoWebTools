@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IOrders, IProducts } from '../../../interfaces/interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+
+import { IOrders, IProducts } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-print-view',
@@ -17,10 +18,10 @@ export class PrintViewComponent {
   public displayedColumnsItem: string[] = ['productCode', 'productName', 'unit', 'quantity'];
   public dateObj: Date;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute) {
     this.orderContainer = null;
     this.dateObj = new Date();
-    this.dataOrder = this.route.snapshot.data.post.data;
+    this.dataOrder = this.activatedRoute.snapshot.data.post.data;
     this.dataSourceTable = new MatTableDataSource(this.dataOrder.products);
   }
 

@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditCustomersAction } from '../../../../reducers/customers/customers.actions';
-import { Store } from '@ngrx/store';
-import { IState } from '../../../../reducers';
+
+import { EditCustomersAction } from 'src/app/reducers/customers/customers.actions';
+import { IState } from 'src/app/reducers';
 
 @Component({
   selector: 'app-edit-customer-modal',

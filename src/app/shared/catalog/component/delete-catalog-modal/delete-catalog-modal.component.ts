@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { IState } from '../../../../reducers';
-import { DeleteCatalogAction } from '../../../../reducers/catalog/catalog.actions';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { IState } from 'src/app/reducers';
+import { DeleteCatalogAction } from 'src/app/reducers/catalog/catalog.actions';
 
 @Component({
   selector: 'app-delete-catalog-modal',

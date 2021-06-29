@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, startWith, takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { getCatalogDataSource, IState } from '../../../../reducers';
-import { AddNewCustomersAction } from '../../../../reducers/customers/customers.actions';
+import { Observable, Subject } from 'rxjs';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 
+import { getCatalogDataSource, IState } from 'src/app/reducers';
+import { AddNewCustomersAction } from 'src/app/reducers/customers/customers.actions';
 
 @Component({
   selector: 'app-add-customer-modal',

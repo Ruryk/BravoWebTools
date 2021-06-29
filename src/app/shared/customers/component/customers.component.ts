@@ -1,16 +1,15 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
+import { ICustomers, ICustomersState } from 'src/app/interfaces/interfaces';
+import { getCustomersDataSource, IState } from 'src/app/reducers';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { EditCustomerModalComponent } from './edit-customer-modal/edit-customer-modal.component';
-import { ICustomers, ICustomersState } from '../../../interfaces/interfaces';
-import { Store } from '@ngrx/store';
-import { getCustomersDataSource, IState } from '../../../reducers';
-import { objectKeys } from 'codelyzer/util/objectKeys';
 
 @Component({
   selector: 'app-customers',

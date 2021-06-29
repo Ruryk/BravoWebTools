@@ -2,13 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
-import { map, startWith } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatMenuTrigger, MatMenuPanel } from '@angular/material/menu';
 
-import { OrdersFilterService } from '../../../services/orders-filter/orders-filter.service';
+import { OrdersFilterService } from 'src/app/services/orders-filter/orders-filter.service';
 
 @Component({
   selector: 'app-select-filter-menu',
@@ -54,7 +54,7 @@ export class SelectFilterMenuComponent implements OnInit {
     this.dataFilter.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-  add(event: MatChipInputEvent): void {
+  addCustomerChipFilterValue(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
       this.customers.push(value);
@@ -65,7 +65,7 @@ export class SelectFilterMenuComponent implements OnInit {
     this.filterCustomers();
   }
 
-  remove(customer: string): void {
+  removeCustomerChipFilterValue(customer: string): void {
     const index = this.customers.indexOf(customer);
     if (index >= 0) {
       this.customers.splice(index, 1);
@@ -73,7 +73,7 @@ export class SelectFilterMenuComponent implements OnInit {
     this.filterCustomers();
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  selectCustomerChipFilterValue(event: MatAutocompleteSelectedEvent): void {
     this.customers.push(event.option.viewValue);
     this.customersInput!.nativeElement.value = '';
     this.customersCtrl.setValue(null);

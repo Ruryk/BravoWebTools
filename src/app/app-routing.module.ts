@@ -4,8 +4,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { OrdersResolverService } from './services/orders-resolver/orders-resolver.service';
 
 const routes: Routes = [
-  // { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule) },
-  { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule), canActivate: [AuthGuard] },
+  { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule) },
+  // { path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule), canActivate: [AuthGuard] },
   { path: 'login', loadChildren: () => import('src/app/shared/login/login.module').then(m => m.LoginModule) },
   { path: 'verification', loadChildren: () => import('src/app/shared/login-code/login-code.module').then(m => m.LoginCodeModule) },
   {

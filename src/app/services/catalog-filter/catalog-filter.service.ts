@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { getCatalogDataSource, IState } from '../../reducers';
-import { MatTableDataSource } from '@angular/material/table';
-import { ICatalog, ICatalogState } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { getCatalogDataSource, IState } from 'src/app/reducers';
+import { ICatalog, ICatalogState, IFilterValues } from 'src/app/interfaces/interfaces';
+import { ECatalogColumn } from 'src/app/enums/enums';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogFilterService{
-  public displayedColumns: string[] = ['code', 'name', 'unit', 'price', 'availability', 'actions'];
-  public availabilityList: string[] = ['In stock', 'Out of stock', 'Discontinued'];
-  public filterValues: any = {
+  public filterValues: IFilterValues = {
     customer: [],
-    column: 'availability'
+    column: ECatalogColumn.Availability
   };
   public dataCatalog = this.store.select(getCatalogDataSource);
   public dataSource: MatTableDataSource<ICatalog>;
@@ -31,7 +31,7 @@ export class CatalogFilterService{
       const column = searchString.column;
       let isPositionAvailable = false;
       if (searchString.customer.length) {
-        if (column !== 'name') {
+        if (column !== ECatalogColumn.Name) {
           for (const d of searchString.customer) {
             if (data[column].trim().toLowerCase() === d.toLowerCase()) {
               isPositionAvailable = true;
@@ -51,11 +51,11 @@ export class CatalogFilterService{
   }
 
   applyFilter(filterValue: string): void{
-    this.dataSource.filter = JSON.stringify({ customer: [filterValue], column: 'name' });
+    this.dataSource.filter = JSON.stringify({ customer: [filterValue], column: ECatalogColumn.Name });
   }
 
-  availabilityFilter(filterValue: string[]): void {
-    this.dataSource.filter = JSON.stringify({ customer: [...filterValue], column: 'availability' });
+  setAvailabilityFilter(filterValue: string[]): void {
+    this.dataSource.filter = JSON.stringify({ customer: [...filterValue], column: ECatalogColumn.Availability });
   }
 
 }

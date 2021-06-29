@@ -90,7 +90,7 @@
               </span>
 
               <mat-form-field appearance="fill">
-                <mat-select multiple #selectMenuAvailability (selectionChange)="availabilityFilter($event.value)">
+                <mat-select multiple #selectMenuAvailability (selectionChange)="setAvailabilityFilter($event.value)">
                   <mat-option *ngFor="let item of availabilityList"
                               [value]="item">{{item}}
                   </mat-option>

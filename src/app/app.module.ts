@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +14,6 @@ import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { SidenavService } from './services/sidenav/sidenav.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

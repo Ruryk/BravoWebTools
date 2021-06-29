@@ -16,7 +16,9 @@
       <p>
         Note, that only .CSV files are<br>supported
       </p>
-      <input type="file" class="file-input" #inputFile (change)="handleFileInput($event)">
+      <input type="file" class="file-input"
+             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+             #inputFile (change)="handleFileInput($event)">
     </div>
   </ng-container>
   <ng-container *ngIf="fileLoad">
@@ -32,7 +34,7 @@
   </ng-container>
   <div class="dialog-replace download">
     <p>
-      <a [href]="fileLoad" download=""><span>Download</span></a> our Template as a help.
+      <a [href]="fileLoad" download><span>Download</span></a> our Template as a help.
     </p>
   </div>
   <div class="dialog-replace control">

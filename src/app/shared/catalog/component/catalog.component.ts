@@ -3,17 +3,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import { ICatalog } from 'src/app/interfaces/interfaces';
-import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
-import { Store } from '@ngrx/store';
 import { CatalogFilterService } from 'src/app/services/catalog-filter/catalog-filter.service';
+import { CAvailabilityList, CDisplayedCatalogColumns } from 'src/app/constantes/constantes';
 import { ReplaceCatalogModalComponent } from './replace-catalog-modal/replace-catalog-modal.component';
+import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
 import { AddCatalogModalComponent } from './add-catalog-modal/add-catalog-modal.component';
 import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-modal.component';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -27,8 +27,8 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public unsubscribe$: Subject<void>;
   public deleteModalOpened: { status: boolean, code: string };
   public sideMenuStatus: boolean;
-  public displayedColumns: string[];
-  public availabilityList: string[];
+  public displayedColumns: string[] = CDisplayedCatalogColumns;
+  public availabilityList: string[] = CAvailabilityList;
   public dataSource!: MatTableDataSource<ICatalog>;
   // progress bar
   public valueAddModal = 0;
@@ -39,7 +39,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public progressFileModalStatus: boolean;
 
   constructor(
-    private dataFilter: CatalogFilterService,
+    private dataFilterFilterService: CatalogFilterService,
     private sidenavService: SidenavService,
     public dialog: MatDialog
   ) {
@@ -53,9 +53,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.paginator = null;
     this.sort = null;
     this.sideMenuStatus = true;
-    this.displayedColumns = this.dataFilter.displayedColumns;
-    this.availabilityList = this.dataFilter.availabilityList;
-    this.dataSource = this.dataFilter.dataSource;
+    this.dataSource = this.dataFilterFilterService.dataSource;
   }
 
   openDeleteModal(event: any, name: string, code: string): void {
@@ -143,8 +141,8 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.dataFilter.dataSource!.paginator = this.paginator;
-    this.dataFilter.dataSource!.sort = this.sort;
+    this.dataFilterFilterService.dataSource!.paginator = this.paginator;
+    this.dataFilterFilterService.dataSource!.sort = this.sort;
   }
 
   onSideNavToggle(): void {
@@ -154,11 +152,11 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataFilter.applyFilter(filterValue);
+    this.dataFilterFilterService.applyFilter(filterValue);
   }
 
-  availabilityFilter(filterValue: string[]): void {
-    this.dataFilter.availabilityFilter(filterValue);
+  setAvailabilityFilter(filterValue: string[]): void {
+    this.dataFilterFilterService.setAvailabilityFilter(filterValue);
   }
 
   ngOnDestroy(): void {

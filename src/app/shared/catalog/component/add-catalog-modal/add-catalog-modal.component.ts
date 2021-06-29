@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { getCatalogDataSource, IState } from '../../../../reducers';
 import { Store } from '@ngrx/store';
-import { AddNewCatalogAction } from '../../../../reducers/catalog/catalog.actions';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import { getCatalogDataSource, IState } from 'src/app/reducers';
+import { AddNewCatalogAction } from 'src/app/reducers/catalog/catalog.actions';
 
 @Component({
   selector: 'app-add-catalog-modal',

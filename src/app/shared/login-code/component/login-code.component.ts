@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { interval, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
+
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login-code',

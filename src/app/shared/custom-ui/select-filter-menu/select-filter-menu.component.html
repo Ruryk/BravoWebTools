@@ -6,7 +6,7 @@
       *ngFor="let customer of customers"
       [selectable]="selectable"
       [removable]="removable"
-      (removed)="remove(customer)">
+      (removed)="removeCustomerChipFilterValue(customer)">
       {{customer}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
@@ -17,10 +17,10 @@
       [matAutocomplete]="auto"
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)">
+      (matChipInputTokenEnd)="addCustomerChipFilterValue($event)">
   </mat-chip-list>
 
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectCustomerChipFilterValue($event)">
     <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
       {{customer}}
     </mat-option>

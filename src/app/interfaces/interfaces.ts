@@ -1,5 +1,3 @@
-import { FormControl } from '@angular/forms';
-
 export interface OrdersTableElement {
   dropdown: string;
   order: string;
@@ -12,22 +10,15 @@ export interface OrdersTableElement {
   status: string;
 }
 
-export interface OrdersTableElementItem {
-  code: string;
-  product: string;
-  unit: string;
-  quantity: number;
+export interface IStatus {
+  value: string;
+  viewValue: string;
 }
 
-export interface CatalogTableElement {
-  code: string;
-  name: string;
-  unit: string;
-  price: number;
-  availability: string;
-  actions: string;
+export interface IFilterValues {
+  customer: string[];
+  column: string;
 }
-
 
 // ========================Store=======================
 export interface IDays {
@@ -73,6 +64,7 @@ export interface ICatalog {
 export interface ICatalogState {
   [code: string]: ICatalog;
 }
+
 export interface IProducts {
   productCode?: string;
   productName?: string;
