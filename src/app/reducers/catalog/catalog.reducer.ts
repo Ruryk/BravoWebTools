@@ -52,7 +52,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
         ...state,
         ...catalogActions.payload.data
       };
-      case catalogActionsType.addNewCatalog:
+      case catalogActionsType.addNewCatalogSubmit:
       return {
         ...state,
         [catalogActions.payload.code]: catalogActions.payload.data

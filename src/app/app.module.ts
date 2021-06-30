@@ -27,10 +27,10 @@ import { SidenavService } from './services/sidenav/sidenav.service';
       metaReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    EffectsModule.forRoot()
   ],
   providers: [
     SidenavService,

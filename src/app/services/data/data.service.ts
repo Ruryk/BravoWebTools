@@ -27,4 +27,10 @@ export class DataService {
       this.store.dispatch(new SetCatalogStateAction({ data: catalogState }));
     });
   }
+
+  async addNewCatalog(data: ICatalog): Promise<any> {
+    this.http.post(`${ config.server }/catalog/new`, { data }).subscribe(res => console.log(res));
+    // return this.http.post(`${ config.server }/catalog/new`, { data });
+    return true;
+  }
 }

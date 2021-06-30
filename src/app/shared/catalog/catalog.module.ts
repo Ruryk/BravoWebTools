@@ -9,6 +9,8 @@ import { DeleteCatalogModalComponent } from './component/delete-catalog-modal/de
 import { ReplaceCatalogModalComponent } from './component/replace-catalog-modal/replace-catalog-modal.component';
 import { AddCatalogModalComponent } from './component/add-catalog-modal/add-catalog-modal.component';
 import { EditCatalogModalComponent } from './component/edit-catalog-modal/edit-catalog-modal.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CatalogEffects } from '../../reducers/catalog/catalog.effects';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { EditCatalogModalComponent } from './component/edit-catalog-modal/edit-c
     CatalogRoutingModule,
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forFeature([CatalogEffects])
   ],
   exports: [
     CatalogComponent
