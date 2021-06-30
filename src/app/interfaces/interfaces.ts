@@ -52,13 +52,14 @@ export interface IUnits {
 }
 
 export interface ICatalog {
-  code?: string;
-  name?: string;
-  units?: IUnits[];
-  availability?: string;
-  actions?: string;
-  exclusively?: string[];
-  replacementProducts?: string[];
+  _id: string;
+  code: string;
+  name: string;
+  units: IUnits[];
+  availability: string;
+  actions: string;
+  exclusively: string[];
+  replacementProducts: string[];
 }
 
 export interface ICatalogState {

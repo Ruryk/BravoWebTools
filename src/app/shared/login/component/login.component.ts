@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         [
           Validators.required,
           Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')
         ]
       )
     });
@@ -43,7 +43,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authentication.loginCheck(this.loginGroup.get('login')?.value)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
-              (res: any) => this.userStatus = 'VALID',
+              (res: any) => {
+                if (res) {
+                  this.userStatus = 'VALID';
+                } else {
+                  this.userStatus = 'INVALID';
+                }
+              },
               (error => this.userStatus = 'INVALID')
             );
         } else {

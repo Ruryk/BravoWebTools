@@ -5,3 +5,7 @@ export const CAvailabilityList: string[] = ['In stock', 'Out of stock', 'Discont
 export const CDisplayedOrdersColumns: string[] = ['dropdown', 'orderNo', 'customer', 'customerNo', 'items', 'notes', 'ordered', 'delivery', 'status'];
 
 export const CDisplayedOrdersColumnsItems: string[] = ['productCode', 'productName', 'unit', 'quantity'];
+
+export const config = {
+  server: 'http://localhost:3000'
+};

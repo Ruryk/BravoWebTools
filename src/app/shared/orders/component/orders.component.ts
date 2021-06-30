@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { MatChipList } from '@angular/material/chips';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import { OrdersFilterService } from 'src/app/services/orders-filter/orders-filter.service';
-import {  IOrders, IStatus, OrdersTableElement } from 'src/app/interfaces/interfaces';
+import { IOrders, IStatus, OrdersTableElement } from 'src/app/interfaces/interfaces';
 import { EAnimation } from 'src/app/enums/enums';
 import { CDisplayedOrdersColumns, CDisplayedOrdersColumnsItems } from 'src/app/constantes/constantes';
 import { IState } from 'src/app/reducers';
@@ -58,8 +58,8 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.expandedElement = this.dataOrdersFilterService.expandedElement;
 
     this.dateRange = new FormGroup({
-      start: new FormControl(''),
-      end: new FormControl('')
+      start: new FormControl('', [Validators.required]),
+      end: new FormControl('', [Validators.required])
     });
 
     this.status = this.dataOrdersFilterService.status;
@@ -67,7 +67,10 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.dateRange.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(date => {
+    this.dateRange.valueChanges.pipe(
+      takeUntil(this.unsubscribe$),
+      distinctUntilChanged()
+    ).subscribe(date => {
       this.setDateFilter();
     });
   }

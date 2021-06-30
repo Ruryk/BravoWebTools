@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
 import { onMainContentChange } from 'src/app/animations/animations';
+import { DataService } from '../../../services/data/data.service';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +14,10 @@ export class MainComponent implements OnInit {
 
   public onSideNavChange?: boolean;
 
-  constructor(private sidenavService: SidenavService) {
+  constructor(
+    private dataService: DataService,
+    private sidenavService: SidenavService
+  ) {
     this.onSideNavChange = true;
     this.sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
@@ -21,5 +25,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataService.getCatalogList();
   }
 }

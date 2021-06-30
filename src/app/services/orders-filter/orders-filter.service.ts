@@ -42,11 +42,12 @@ export class OrdersFilterService {
             return data[column].toString().includes(searchString.customer[0].toString());
           case EOrdersColumn.Delivery:
             if (searchString.customer.length === 2) {
-              return (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]) ? true : false;
+              return (data[column] >= searchString.customer[0] && data[column] <= searchString.customer[1]);
             }
-            return (data[column] >= searchString.customer[0]) ? true : false;
+            return (data[column] >= searchString.customer[0]);
           default:
-            return Object.values(searchString.customer).some((value: any) => value.toLowerCase() === data[column].trim().toLowerCase());
+            return Object.values(searchString.customer)
+              .some((value: any) => value.toLowerCase() === data[column].trim().toLowerCase());
         }
       }
       return true;
@@ -59,7 +60,7 @@ export class OrdersFilterService {
   }
 
   setStatusFilter(value: string): void {
-    const status = (value === EStatus.Confirmed) ? true : false;
+    const status = (value === EStatus.Confirmed);
     if (value === '') {
       this.dataSource.filter = JSON.stringify({ customer: [] });
     } else {
@@ -68,6 +69,7 @@ export class OrdersFilterService {
   }
 
   setDateFilter(startDate: number, endDate: number): void {
+    console.log(endDate);
     if (!isNaN(endDate)) {
       this.dataSource.filter = JSON.stringify({ customer: [startDate, endDate + 100000], column: EOrdersColumn.Delivery });
     } else {
