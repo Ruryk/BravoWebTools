@@ -1,11 +1,17 @@
 import { Action } from '@ngrx/store';
 
-import { ICustomers } from 'src/app/interfaces/interfaces';
+import { ICustomers, ICustomersData } from 'src/app/interfaces/interfaces';
 
 export enum customersActionsType {
+  setCustomersState = '[CUSTOMERS] setCustomersState',
   addNewCustomers = '[CUSTOMERS] addNewCustomers',
   editCustomers = '[CUSTOMERS] editCustomers',
   deleteCustomers = '[CUSTOMERS] deleteCustomers'
+}
+
+export class SetCustomersStateAction implements Action {
+  readonly type = customersActionsType.setCustomersState;
+  constructor(public payload: { data: ICustomersData }) { }
 }
 
 export class AddNewCustomersAction implements Action {
@@ -23,4 +29,4 @@ export class DeleteCustomersAction implements Action {
   constructor(public payload: { code: string }) { }
 }
 
-export type CustomersActions = AddNewCustomersAction | DeleteCustomersAction | EditCustomersAction;
+export type CustomersActions = SetCustomersStateAction | AddNewCustomersAction | DeleteCustomersAction | EditCustomersAction;

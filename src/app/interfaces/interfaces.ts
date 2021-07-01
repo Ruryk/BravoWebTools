@@ -32,18 +32,23 @@ export interface IDays {
 }
 
 export interface ICustomers {
-  customerNo?: string;
-  name?: string;
-  address?: string;
-  days?: IDays;
-  notify?: boolean;
-  productsCodes?: string[];
-  contactName?: string;
-  contactPhone?: string;
+  customerNo: string;
+  name: string;
+  address: string;
+  days: IDays;
+  notify: boolean;
+  productsCodes: string[];
+  contactName: string;
+  contactPhone: string;
+}
+
+export interface ICustomersData {
+  [code: string]: ICustomers;
 }
 
 export interface ICustomersState {
-  [code: string]: ICustomers;
+  errorMessage: string;
+  data: ICustomersData;
 }
 
 export interface IUnits {
