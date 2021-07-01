@@ -161,13 +161,13 @@
 </section>
 
 
-<div [class]="(progressAddModalStatus)?'progress-bar add-modal active':'progress-bar add-modal'">
+<div class="progress-bar add-modal" [ngClass]="{active: progressAddModalStatus}">
   <div class="progress-bar-content">
     <div>
       <img src="/assets/img/check.svg" alt="check">
       <p>
         <span>Product Add</span><br>
-        Product was added sucesfully
+        Product was added successfully
       </p>
     </div>
     <button (click)="closeProgressAddModal()" class="progress-bar-close-btn"></button>
@@ -179,7 +179,7 @@
   </div>
 </div>
 
-<div [class]="(progressFileModalStatus)?'progress-bar file-modal active':'progress-bar file-modal'">
+<div class="progress-bar file-modal" [ngClass]="{active: progressFileModalStatus}">
   <div class="progress-bar-content">
     <div>
       <mat-progress-spinner

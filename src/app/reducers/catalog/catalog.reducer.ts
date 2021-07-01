@@ -6,43 +6,10 @@ import { ICatalogState } from 'src/app/interfaces/interfaces';
 export const catalogNode = 'catalog';
 
 const catalogState: ICatalogState = {
-  // APP123: {
-  //   code: 'APP123',
-  //   name: 'Apples',
-  //   units: [
-  //     { unit: 'kg', price: '2.03' },
-  //     { unit: 'pcs', price: '0.5' },
-  //     { unit: 'box', price: '5.2' }
-  //   ],
-  //   availability: `In stock`,
-  //   actions: `trash`,
-  //   exclusively: ['TOM53', 'APP123'],
-  //   replacementProducts: ['13423-kd']
-  // },
-  // TOM53: {
-  //   code: 'TOM53',
-  //   name: 'Tomatoes',
-  //   units: [
-  //     { unit: 'box', price: '5.2' },
-  //     { unit: 'kg', price: '2.03' }
-  //   ],
-  //   availability: `In stock`,
-  //   actions: `trash`,
-  //   exclusively: ['TOM53', 'APP123'],
-  //   replacementProducts: ['13423-kd']
-  // },
-  // CUC997: {
-  //   code: 'CUC997',
-  //   name: 'Cucumbers',
-  //   units: [
-  //     { unit: 'pcs', price: '0.5' }
-  //   ],
-  //   availability: `Out of stock`,
-  //   actions: `trash`,
-  //   exclusively: ['CUC997'],
-  //   replacementProducts: ['13423-kd']
-  // }
-};
+    errorMessage: '',
+    data: {}
+  }
+;
 
 export const catalogReducer = (state = catalogState, action: Action): ICatalogState => {
   const catalogActions = action as CatalogActions;
@@ -50,29 +17,64 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.setCatalogState:
       return {
         ...state,
-        ...catalogActions.payload.data
+        data: {
+          ...state.data,
+          ...catalogActions.payload.data
+        }
       };
-      case catalogActionsType.addNewCatalogSubmit:
+    case catalogActionsType.addNewCatalogSuccess:
       return {
         ...state,
-        [catalogActions.payload.code]: catalogActions.payload.data
+        errorMessage: '',
+        data: {
+          ...state.data,
+          [catalogActions.payload.code]: catalogActions.payload.data
+        }
       };
-    case catalogActionsType.editCatalog:
-      const editState = {...state};
-      delete editState[catalogActions.payload.code];
-      return  {
+    case catalogActionsType.addNewCatalogFail:
+      return {
+        ...state,
+        errorMessage: catalogActions.payload.message
+      };
+    case catalogActionsType.editCatalogSuccess:
+      const editState = { ...state };
+      const editDataState = { ...editState.data };
+      delete editDataState[catalogActions.payload.code];
+      return {
         ...editState,
-        [catalogActions.payload.newCode]: catalogActions.payload.data
+        data: {
+          ...editDataState,
+          [catalogActions.payload.newCode]: catalogActions.payload.data
+        }
+      };
+    case catalogActionsType.editCatalogFail:
+      return {
+        ...state,
+        errorMessage: catalogActions.payload.message
       };
     case catalogActionsType.replaceCatalog:
       return {
         ...state,
-        [catalogActions.payload.code]: catalogActions.payload.data
+        data: {
+          ...state.data,
+          [catalogActions.payload.code]: catalogActions.payload.data
+        }
       };
-    case catalogActionsType.deleteCatalog:
+    case catalogActionsType.deleteCatalogSuccess:
       const newState: ICatalogState = { ...state };
-      delete newState[catalogActions.payload.code];
-      return newState;
+      const newDataState = { ...newState.data };
+      delete newDataState[catalogActions.payload.code];
+      return {
+        ...newState,
+        data: {
+          ...newDataState
+        }
+      };
+    case catalogActionsType.deleteCatalogFail:
+      return {
+        ...state,
+        errorMessage: catalogActions.payload.message
+      };
     default:
       return state;
   }

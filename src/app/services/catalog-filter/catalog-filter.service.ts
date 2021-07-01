@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { getCatalogDataSource, IState } from 'src/app/reducers';
-import { ICatalog, ICatalogState, IFilterValues } from 'src/app/interfaces/interfaces';
+import { ICatalog, ICatalogData,  IFilterValues } from 'src/app/interfaces/interfaces';
 import { ECatalogColumn } from 'src/app/enums/enums';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class CatalogFilterService {
 
   constructor(private store: Store<IState>) {
     this.dataSource = new MatTableDataSource<ICatalog>();
-    this.dataCatalog.subscribe((data: ICatalogState) => {
+    this.dataCatalog.subscribe((data: ICatalogData) => {
       this.dataSource.data = Object.values(data);
     });
     this.setDataSourceFiltering();

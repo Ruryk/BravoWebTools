@@ -1,20 +1,25 @@
 import { Action } from '@ngrx/store';
 
-import { ICatalog, ICatalogState } from 'src/app/interfaces/interfaces';
+import { ICatalog, ICatalogData, ICatalogState } from 'src/app/interfaces/interfaces';
 
 export enum catalogActionsType {
   setCatalogState = '[CATALOG] setCatalogState',
-  addNewCatalog = '[CATALOG] addNewCatalog',
   editCatalog = '[CATALOG] editCatalog',
+  editCatalogSuccess = '[CATALOG] editCatalogSuccess',
+  editCatalogFail = '[CATALOG] editCatalogFail',
   deleteCatalog = '[CATALOG] deleteCatalog',
+  deleteCatalogSuccess = '[CATALOG] deleteCatalogSuccess',
+  deleteCatalogFail = '[CATALOG] deleteCatalogFail',
   replaceCatalog = '[CATALOG] replaceCatalog',
-  addNewCatalogSubmit = '[CATALOG] addNewCatalogSubmit'
+  addNewCatalog = '[CATALOG] addNewCatalog',
+  addNewCatalogSuccess = '[CATALOG] addNewCatalogSuccess',
+  addNewCatalogFail= '[CATALOG] addNewCatalogFail'
 }
 
 export class SetCatalogStateAction implements Action {
   readonly type = catalogActionsType.setCatalogState;
 
-  constructor(public payload: { data: ICatalogState }) {
+  constructor(public payload: { data: ICatalogData }) {
   }
 }
 
@@ -25,10 +30,17 @@ export class AddNewCatalogAction implements Action {
   }
 }
 
-export class AddNewCatalogSubmitAction implements Action {
-  readonly type = catalogActionsType.addNewCatalogSubmit;
+export class AddNewCatalogSuccessAction implements Action {
+  readonly type = catalogActionsType.addNewCatalogSuccess;
 
   constructor(public payload: { code: string, data: ICatalog }) {
+  }
+}
+
+export class AddNewCatalogFailAction implements Action {
+  readonly type = catalogActionsType.addNewCatalogFail;
+
+  constructor(public payload: { message: string }) {
   }
 }
 
@@ -39,10 +51,38 @@ export class EditCatalogAction implements Action {
   }
 }
 
+export class EditCatalogSuccessAction implements Action {
+  readonly type = catalogActionsType.editCatalogSuccess;
+
+  constructor(public payload: { code: string, newCode: string, data: ICatalog }) {
+  }
+}
+
+export class EditCatalogFailAction implements Action {
+  readonly type = catalogActionsType.editCatalogFail;
+
+  constructor(public payload: { message: string }) {
+  }
+}
+
 export class DeleteCatalogAction implements Action {
   readonly type = catalogActionsType.deleteCatalog;
 
   constructor(public payload: { code: string }) {
+  }
+}
+
+export class DeleteCatalogSuccessAction implements Action {
+  readonly type = catalogActionsType.deleteCatalogSuccess;
+
+  constructor(public payload: { code: string }) {
+  }
+}
+
+export class DeleteCatalogFailAction implements Action {
+  readonly type = catalogActionsType.deleteCatalogFail;
+
+  constructor(public payload: { message: string }) {
   }
 }
 
@@ -54,8 +94,13 @@ export class ReplaceCatalogAction implements Action {
 }
 
 export type CatalogActions = SetCatalogStateAction |
-  AddNewCatalogAction |
   DeleteCatalogAction |
+  DeleteCatalogSuccessAction |
+  DeleteCatalogFailAction |
   ReplaceCatalogAction |
   EditCatalogAction |
-  AddNewCatalogSubmitAction;
+  EditCatalogSuccessAction|
+  EditCatalogFailAction |
+  AddNewCatalogAction |
+  AddNewCatalogSuccessAction |
+  AddNewCatalogFailAction;

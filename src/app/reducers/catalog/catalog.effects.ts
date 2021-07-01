@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { map, tap } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 
-import { AddNewCatalogAction, AddNewCatalogSubmitAction, catalogActionsType } from 'src/app/reducers/catalog/catalog.actions';
-import { IState } from 'src/app/reducers/index';
-import { ICatalog } from '../../interfaces/interfaces';
+import {
+  AddNewCatalogFailAction,
+  AddNewCatalogSuccessAction,
+  catalogActionsType,
+  DeleteCatalogFailAction,
+  DeleteCatalogSuccessAction,
+  EditCatalogFailAction,
+  EditCatalogSuccessAction
+} from 'src/app/reducers/catalog/catalog.actions';
 import { DataService } from '../../services/data/data.service';
+import { Observable, of, from } from 'rxjs';
 
 @Injectable()
 export class CatalogEffects {
   constructor(
     private actions$: Actions,
-    private dataService: DataService
+    private dataService: DataService,
   ) {
   }
 
@@ -20,11 +26,60 @@ export class CatalogEffects {
     () =>
       this.actions$.pipe(
         ofType(catalogActionsType.addNewCatalog),
-        map((action: any): any => {
-          this.dataService.addNewCatalog(action.payload.data).then(res => {
-            return new AddNewCatalogSubmitAction({ code: action.payload.code, data: action.payload.data });
-          });
-          return new AddNewCatalogSubmitAction({ code: action.payload.code, data: action.payload.data });
+        mergeMap((action: any): Observable<any> => {
+          return this.dataService.addNewCatalog(action.payload.data).pipe(
+            map((res: object) => {
+              if (res) {
+                return new AddNewCatalogSuccessAction({ code: action.payload.code, data: action.payload.data });
+              }
+              throw new Error();
+            }),
+            catchError((s) => of(new AddNewCatalogFailAction({ message: 'Error adding catalog' })))
+          );
+        })
+      ),
+    { useEffectsErrorHandler: false }
+  );
+
+  catalogEditAction$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(catalogActionsType.editCatalog),
+        mergeMap((action: any): Observable<any> => {
+          return this.dataService.editCatalog(action.payload.code, action.payload.data).pipe(
+            map((res: object) => {
+              if (res) {
+                return new EditCatalogSuccessAction({
+                  code: action.payload.code,
+                  newCode: action.payload.newCode,
+                  data: action.payload.data
+                });
+              }
+              throw new Error();
+            }),
+            catchError((s) => of(new EditCatalogFailAction({ message: 'Error editing catalog' })))
+          );
+        })
+      ),
+    { useEffectsErrorHandler: false }
+  );
+
+  catalogDeleteAction$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(catalogActionsType.deleteCatalog),
+        mergeMap((action: any): Observable<any> => {
+          return this.dataService.deleteCatalog(action.payload.code).pipe(
+            map((res: object) => {
+              if (!res) {
+                return new DeleteCatalogSuccessAction({
+                  code: action.payload.code
+                });
+              }
+              throw new Error();
+            }),
+            catchError((s) => of(new DeleteCatalogFailAction({ message: 'Error deleting catalog' })))
+          );
         })
       ),
     { useEffectsErrorHandler: false }

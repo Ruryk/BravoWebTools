@@ -62,8 +62,13 @@ export interface ICatalog {
   replacementProducts: string[];
 }
 
-export interface ICatalogState {
+export interface ICatalogData {
   [code: string]: ICatalog;
+}
+
+export interface ICatalogState {
+  errorMessage: string;
+  data: ICatalogData;
 }
 
 export interface IProducts {
@@ -89,4 +94,18 @@ export interface IOrders {
 
 export interface IOrdersState {
   [code: string]: IOrders;
+}
+
+
+export interface IErrorState {
+  catalog: {
+    addAction?: boolean;
+    editAction?: boolean;
+    replaceAction?: boolean;
+    deleteAction?: boolean;
+  };
+  customers: {
+    addAction?: boolean;
+    editAction?: boolean;
+  };
 }
