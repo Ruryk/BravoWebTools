@@ -7,6 +7,7 @@ import { IState } from 'src/app/reducers';
 import { config } from 'src/app/constantes/constantes';
 import { SetCatalogStateAction } from '../../reducers/catalog/catalog.actions';
 import { Observable } from 'rxjs';
+import { SetCustomersStateAction } from '../../reducers/customers/customers.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class DataService {
         data[item.customerNo] = item;
         return data;
       }, {} as ICustomersData);
-      this.store.dispatch(new SetCatalogStateAction({ data: customersState }));
+      this.store.dispatch(new SetCustomersStateAction({ data: customersState }));
     });
   }
 

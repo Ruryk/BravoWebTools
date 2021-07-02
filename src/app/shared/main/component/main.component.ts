@@ -26,5 +26,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getCatalogList();
+    this.dataService.getCustomersList();
   }
 }

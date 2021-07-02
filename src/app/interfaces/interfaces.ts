@@ -32,6 +32,7 @@ export interface IDays {
 }
 
 export interface ICustomers {
+  _id: string;
   customerNo: string;
   name: string;
   address: string;

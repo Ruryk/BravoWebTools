@@ -1,3 +1,3 @@
-import { ICustomersState } from 'src/app/interfaces/interfaces';
+import { ICustomersData, ICustomersState } from 'src/app/interfaces/interfaces';
 
-export const selectCustomersDataSource = (state: ICustomersState): ICustomersState => state;
+export const selectCustomersDataSource = (state: ICustomersState): ICustomersData => state.data;

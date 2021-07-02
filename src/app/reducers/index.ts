@@ -23,7 +23,7 @@ export const reducers: ActionReducerMap<IState> = {
 
 export const getCustomersState = (state: IState): ICustomersState => state[customersNode];
 export const getCatalogState = (state: IState): ICatalogState => state[catalogNode];
-export const getOrdersState = (state: IState): IOrdersState => state[ordersNode]
+export const getOrdersState = (state: IState): IOrdersState => state[ordersNode];
 
 // Customers Selectors
 export const getCustomersDataSource = createSelector(

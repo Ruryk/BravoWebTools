@@ -10,7 +10,7 @@ const customersState: ICustomersState = {
   data: {}
 };
 
-export const customersReducer = (state = customersState, action: Action): ICustomersState => {
+export const customersReducer = (state: ICustomersState = customersState, action: Action): ICustomersState => {
   const customerActions = action as CustomersActions;
   switch (customerActions.type) {
     case customersActionsType.setCustomersState:

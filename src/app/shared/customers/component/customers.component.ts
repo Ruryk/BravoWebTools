@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { ICustomers, ICustomersState } from 'src/app/interfaces/interfaces';
+import { ICustomers, ICustomersData, ICustomersState } from 'src/app/interfaces/interfaces';
 import { getCustomersDataSource, IState } from 'src/app/reducers';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { EditCustomerModalComponent } from './edit-customer-modal/edit-customer-modal.component';
@@ -33,7 +33,7 @@ export class CustomersComponent implements AfterViewInit {
     this.sort = null;
     this.sideMenuStatus = true;
     this.dataSource = new MatTableDataSource<ICustomers>();
-    this.dataCustomers.subscribe((data: ICustomersState) => this.dataSource.data = Object.values(data));
+    this.dataCustomers.subscribe((data: ICustomersData) => this.dataSource.data = Object.values(data));
   }
 
   ngAfterViewInit(): void {
