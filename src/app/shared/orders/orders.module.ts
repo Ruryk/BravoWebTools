@@ -6,6 +6,8 @@ import { OrdersComponent } from './component/orders.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { SelectFilterMenuComponent } from '../custom-ui/select-filter-menu/select-filter-menu.component';
+import { EffectsModule } from '@ngrx/effects';
+import { OrdersEffects } from '../../reducers/orders/orders.effects';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { SelectFilterMenuComponent } from '../custom-ui/select-filter-menu/selec
     OrdersRoutingModule,
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forFeature([OrdersEffects])
   ],
   exports: [
     OrdersComponent

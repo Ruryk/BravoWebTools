@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { IFilterValues, IOrders, IOrdersState, IStatus, OrdersTableElement } from 'src/app/interfaces/interfaces';
+import { IFilterValues, IOrders, IOrdersData, IOrdersState, IStatus, OrdersTableElement } from 'src/app/interfaces/interfaces';
 import { getOrdersDataSource, IState } from 'src/app/reducers';
 import { EOrdersColumn, EStatus } from 'src/app/enums/enums';
 
@@ -26,7 +26,7 @@ export class OrdersFilterService {
   constructor(private store: Store<IState>) {
     this.expandedElement = null;
     this.dataSource = new MatTableDataSource<IOrders>();
-    this.dataOrders.subscribe((data: IOrdersState) => this.dataSource.data = Object.values(data));
+    this.dataOrders.subscribe((data: IOrdersData) => this.dataSource.data = Object.values(data));
     this.setDataSourceFiltering();
   }
 

@@ -78,28 +78,33 @@ export interface ICatalogState {
 }
 
 export interface IProducts {
-  productCode?: string;
-  productName?: string;
-  unit?: string;
-  quantity?: number;
+  productCode: string;
+  productName: string;
+  unit: string;
+  quantity: number;
 }
 
 export interface IOrders {
-  dropdown?: string;
-  orderNo?: number;
-  customer?: string;
-  customerNo?: string;
-  items?: number;
-  notes?: string;
-  ordered?: number;
-  delivery?: number;
-  status?: boolean;
-  address?: string;
-  products?: IProducts[];
+  dropdown: string;
+  orderNo: number;
+  customer: string;
+  customerNo: string;
+  items: number;
+  notes: string;
+  ordered: number;
+  delivery: number;
+  status: boolean;
+  address: string;
+  products: IProducts[];
+}
+
+export interface IOrdersData {
+  [code: string]: IOrders;
 }
 
 export interface IOrdersState {
-  [code: string]: IOrders;
+  errorMessage: string;
+  data: IOrdersData;
 }
 
 

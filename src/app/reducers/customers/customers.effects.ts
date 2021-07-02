@@ -13,7 +13,7 @@ import {
 } from './customers.actions';
 
 @Injectable()
-export class CatalogEffects {
+export class CustomersEffects {
   constructor(
     private actions$: Actions,
     private dataService: DataService,

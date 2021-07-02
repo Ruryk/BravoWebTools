@@ -19,13 +19,13 @@ export class OrdersResolverService implements Resolve<IOrders>, OnDestroy {
     this.unsubscribe$ = new Subject<void>();
   }
 
-  async resolve(route: ActivatedRouteSnapshot): Promise<object>{
+  async resolve(route: ActivatedRouteSnapshot): Promise<IOrders> {
     const id = route.paramMap.get('id')!.toString();
     let data = {};
     await this.store.select(getOrdersDataSourceForId, { id })
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(res => data = res);
-    return { data };
+    return data as IOrders;
   }
 
   ngOnDestroy(): void {

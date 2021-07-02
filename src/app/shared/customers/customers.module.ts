@@ -7,6 +7,8 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { AddCustomerModalComponent } from './component/add-customer-modal/add-customer-modal.component';
 import { EditCustomerModalComponent } from './component/edit-customer-modal/edit-customer-modal.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CustomersEffects } from '../../reducers/customers/customers.effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { EditCustomerModalComponent } from './component/edit-customer-modal/edit
     CustomersRoutingModule,
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forFeature([CustomersEffects])
   ],
   exports: [
     CustomersComponent
