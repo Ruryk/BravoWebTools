@@ -37,6 +37,11 @@ export const getCatalogDataSource = createSelector(
   catalogSelector.selectCatalogDataSource
 );
 
+export const getCatalogErrorMessage = createSelector(
+  getCatalogState,
+  catalogSelector.selectCatalogErrorMessage
+);
+
 // Orders Selectors
 export const getOrdersDataSource = createSelector(
   getOrdersState,

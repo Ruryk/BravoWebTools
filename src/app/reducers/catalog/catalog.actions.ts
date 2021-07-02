@@ -40,7 +40,7 @@ export class AddNewCatalogSuccessAction implements Action {
 export class AddNewCatalogFailAction implements Action {
   readonly type = catalogActionsType.addNewCatalogFail;
 
-  constructor(public payload: { message: string }) {
+  constructor(public payload: { error: { status: boolean, message: string } }) {
   }
 }
 
@@ -61,7 +61,7 @@ export class EditCatalogSuccessAction implements Action {
 export class EditCatalogFailAction implements Action {
   readonly type = catalogActionsType.editCatalogFail;
 
-  constructor(public payload: { message: string }) {
+  constructor(public payload: { error: { status: boolean, message: string } }) {
   }
 }
 
@@ -82,7 +82,7 @@ export class DeleteCatalogSuccessAction implements Action {
 export class DeleteCatalogFailAction implements Action {
   readonly type = catalogActionsType.deleteCatalogFail;
 
-  constructor(public payload: { message: string }) {
+  constructor(public payload: { error: { status: boolean, message: string } }) {
   }
 }
 

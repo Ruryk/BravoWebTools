@@ -6,7 +6,10 @@ import { ICatalogState } from 'src/app/interfaces/interfaces';
 export const catalogNode = 'catalog';
 
 const catalogState: ICatalogState = {
-    errorMessage: '',
+    error: {
+      status: false,
+      message: ''
+    },
     data: {}
   }
 ;
@@ -25,7 +28,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.addNewCatalogSuccess:
       return {
         ...state,
-        errorMessage: '',
+        error: {
+          status: false,
+          message: ''
+        },
         data: {
           ...state.data,
           [catalogActions.payload.code]: catalogActions.payload.data
@@ -34,7 +40,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.addNewCatalogFail:
       return {
         ...state,
-        errorMessage: catalogActions.payload.message
+        error: {
+          status: catalogActions.payload.error.status,
+          message: catalogActions.payload.error.message
+        }
       };
     case catalogActionsType.editCatalogSuccess:
       const editState = { ...state };
@@ -50,7 +59,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.editCatalogFail:
       return {
         ...state,
-        errorMessage: catalogActions.payload.message
+        error: {
+          status: catalogActions.payload.error.status,
+          message: catalogActions.payload.error.message
+        }
       };
     case catalogActionsType.replaceCatalog:
       return {
@@ -73,7 +85,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.deleteCatalogFail:
       return {
         ...state,
-        errorMessage: catalogActions.payload.message
+        error: {
+          status: catalogActions.payload.error.status,
+          message: catalogActions.payload.error.message
+        }
       };
     default:
       return state;

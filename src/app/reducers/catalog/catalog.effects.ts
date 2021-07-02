@@ -34,7 +34,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new AddNewCatalogFailAction({ message: 'Error adding catalog' })))
+            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: 'Error adding catalog' } })))
           );
         })
       ),
@@ -57,7 +57,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new EditCatalogFailAction({ message: 'Error editing catalog' })))
+            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: 'Error editing catalog' } })))
           );
         })
       ),
@@ -78,7 +78,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new DeleteCatalogFailAction({ message: 'Error deleting catalog' })))
+            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: 'Error deleting catalog' } })))
           );
         })
       ),

@@ -73,7 +73,10 @@ export interface ICatalogData {
 }
 
 export interface ICatalogState {
-  errorMessage: string;
+  error: {
+    status: boolean;
+    message: string;
+  };
   data: ICatalogData;
 }
 

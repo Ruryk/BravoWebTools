@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -14,6 +15,7 @@ import { ReplaceCatalogModalComponent } from './replace-catalog-modal/replace-ca
 import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catalog-modal.component';
 import { AddCatalogModalComponent } from './add-catalog-modal/add-catalog-modal.component';
 import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-modal.component';
+import { getCatalogErrorMessage, IState } from '../../../reducers';
 
 @Component({
   selector: 'app-catalog',
@@ -37,13 +39,17 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public bufferValueFileModal = 100;
   public progressAddModalStatus: boolean;
   public progressFileModalStatus: boolean;
+  private errorStatus: object;
 
   constructor(
     private dataFilterFilterService: CatalogFilterService,
     private sidenavService: SidenavService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public store: Store<IState>
   ) {
+    this.errorStatus = {};
     this.unsubscribe$ = new Subject<void>();
+    this.store.select(getCatalogErrorMessage).pipe(takeUntil(this.unsubscribe$)).subscribe(error => this.errorStatus = error);
     this.deleteModalOpened = {
       status: false,
       code: ''
