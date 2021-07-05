@@ -8,7 +8,7 @@ export const catalogNode = 'catalog';
 const catalogState: ICatalogState = {
     error: {
       status: false,
-      message: ''
+      message: 'Product was added successfully'
     },
     data: {}
   }
@@ -30,7 +30,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
         ...state,
         error: {
           status: false,
-          message: ''
+          message: 'Product was added successfully'
         },
         data: {
           ...state.data,
@@ -51,6 +51,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       delete editDataState[catalogActions.payload.code];
       return {
         ...editState,
+        error: {
+          status: false,
+          message: 'Product was edited successfully'
+        },
         data: {
           ...editDataState,
           [catalogActions.payload.newCode]: catalogActions.payload.data
@@ -78,6 +82,10 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       delete newDataState[catalogActions.payload.code];
       return {
         ...newState,
+        error: {
+          status: false,
+          message: 'Product was deleted successfully'
+        },
         data: {
           ...newDataState
         }

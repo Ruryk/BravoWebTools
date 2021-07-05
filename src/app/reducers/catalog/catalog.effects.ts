@@ -12,7 +12,7 @@ import {
   EditCatalogSuccessAction
 } from 'src/app/reducers/catalog/catalog.actions';
 import { DataService } from '../../services/data/data.service';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class CatalogEffects {
@@ -34,7 +34,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: 'Error adding catalog' } })))
+            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: 'The product was not added. Error' } })))
           );
         })
       ),
@@ -57,7 +57,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: 'Error editing catalog' } })))
+            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: 'The product was not edited. Error' } })))
           );
         })
       ),
@@ -78,7 +78,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: 'Error deleting catalog' } })))
+            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: 'The product was not deleted. Error' } })))
           );
         })
       ),

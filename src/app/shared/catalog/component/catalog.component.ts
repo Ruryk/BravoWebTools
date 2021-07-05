@@ -39,7 +39,8 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public bufferValueFileModal = 100;
   public progressAddModalStatus: boolean;
   public progressFileModalStatus: boolean;
-  private errorStatus: object;
+  public errorStatus$ = this.store.select(getCatalogErrorMessage);
+  public errorStatus: { status: boolean, message: string };
 
   constructor(
     private dataFilterFilterService: CatalogFilterService,
@@ -47,7 +48,11 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     public dialog: MatDialog,
     public store: Store<IState>
   ) {
-    this.errorStatus = {};
+    this.errorStatus = {
+      status: false,
+      message: ''
+    };
+    this.errorStatus$.subscribe(error => this.errorStatus = error);
     this.unsubscribe$ = new Subject<void>();
     this.store.select(getCatalogErrorMessage).pipe(takeUntil(this.unsubscribe$)).subscribe(error => this.errorStatus = error);
     this.deleteModalOpened = {
@@ -70,9 +75,12 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
         catalogCode: code,
         catalogName: name
       }
-    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+    }).afterClosed().pipe(takeUntil(this.unsubscribe$)).subscribe((status) => {
       this.deleteModalOpened.status = false;
       this.deleteModalOpened.code = '';
+      if (status) {
+        this.openProgressAddModal();
+      }
     });
   }
 
