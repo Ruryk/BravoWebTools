@@ -7,6 +7,7 @@ export const catalogNode = 'catalog';
 
 const catalogState: ICatalogState = {
     error: {
+      type: 'Add',
       status: false,
       message: 'Product was added successfully'
     },
@@ -29,6 +30,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...state,
         error: {
+          type: 'Add',
           status: false,
           message: 'Product was added successfully'
         },
@@ -41,6 +43,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...state,
         error: {
+          type: 'Add',
           status: catalogActions.payload.error.status,
           message: catalogActions.payload.error.message
         }
@@ -52,6 +55,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...editState,
         error: {
+          type: 'Edit',
           status: false,
           message: 'Product was edited successfully'
         },
@@ -64,6 +68,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...state,
         error: {
+          type: 'Edit',
           status: catalogActions.payload.error.status,
           message: catalogActions.payload.error.message
         }
@@ -83,6 +88,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...newState,
         error: {
+          type: 'Delete',
           status: false,
           message: 'Product was deleted successfully'
         },
@@ -94,6 +100,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
       return {
         ...state,
         error: {
+          type: 'Delete',
           status: catalogActions.payload.error.status,
           message: catalogActions.payload.error.message
         }

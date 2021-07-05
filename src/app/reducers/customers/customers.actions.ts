@@ -37,7 +37,7 @@ export class AddNewCustomersSuccessAction implements Action {
 export class AddNewCustomersFailAction implements Action {
   readonly type = customersActionsType.addNewCustomersFail;
 
-  constructor(public payload: { message: string }) {
+  constructor(public payload: { error: { status: boolean, message: string } }) {
   }
 }
 
@@ -58,7 +58,7 @@ export class EditCustomersSuccessAction implements Action {
 export class EditCustomersFailAction implements Action {
   readonly type = customersActionsType.editCustomersFail;
 
-  constructor(public payload: { message: string }) {
+  constructor(public payload: {  error: { status: boolean, message: string } }) {
   }
 }
 

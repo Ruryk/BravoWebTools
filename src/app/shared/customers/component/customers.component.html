@@ -98,5 +98,27 @@
   </div>
 </section>
 
-
+<div class="progress-bar add-modal" [ngClass]="{
+  active: progressAddModalStatus,
+  success: !(errorStatus$ | async)!.status,
+  error: (errorStatus$ | async)!.status
+}">
+  <div class="progress-bar-content">
+    <div>
+      <img *ngIf="(errorStatus$ | async)!.status" src="/assets/img/close.svg" alt="close">
+      <img *ngIf="!(errorStatus$ | async)!.status" src="/assets/img/check.svg" alt="check">
+      <p>
+        <span>Customer {{(errorStatus$ | async)!.type}}</span><br>
+        {{(errorStatus$ | async)!.message}}
+      </p>
+    </div>
+    <button (click)="closeProgressAddModal()" class="progress-bar-close-btn"></button>
+  </div>
+  <div class="progress-bar-body">
+    <mat-progress-bar class="example-margin" color="primary"
+                      [value]="valueAddModal"
+                      [bufferValue]="bufferValueAddModal">
+    </mat-progress-bar>
+  </div>
+</div>
 

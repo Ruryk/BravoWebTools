@@ -6,7 +6,11 @@ import { CustomersActions, customersActionsType } from 'src/app/reducers/custome
 export const customersNode = 'customers';
 
 const customersState: ICustomersState = {
-  errorMessage: '',
+  error: {
+    type: 'Add',
+    status: false,
+    message: 'Customer was added successfully'
+  },
   data: {}
 };
 
@@ -18,23 +22,51 @@ export const customersReducer = (state: ICustomersState = customersState, action
         ...state,
         data: customerActions.payload.data
       };
-    case customersActionsType.addNewCustomers:
+    case customersActionsType.addNewCustomersSuccess:
       return {
         ...state,
+        error: {
+          type: 'Add',
+          status: false,
+          message: 'Product was added successfully'
+        },
         data: {
           ...state.data,
           [customerActions.payload.code]: customerActions.payload.data
         }
       };
-    case customersActionsType.editCustomers:
+      case customersActionsType.addNewCustomersFail:
+      return {
+        ...state,
+        error: {
+          type: 'Add',
+          status: customerActions.payload.error.status,
+          message: customerActions.payload.error.message
+        }
+      };
+    case customersActionsType.editCustomersSuccess:
       const editState: ICustomersState = { ...state };
       const editDataState = { ...editState.data };
       delete editDataState[customerActions.payload.code];
       return {
         ...editState,
+        error: {
+          type: 'Edit',
+          status: false,
+          message: 'Product was edited successfully'
+        },
         data: {
           ...editDataState,
           [customerActions.payload.newCode]: customerActions.payload.data
+        }
+      };
+      case customersActionsType.editCustomersFail:
+      return {
+        ...state,
+        error: {
+          type: 'Edit',
+          status: customerActions.payload.error.status,
+          message: customerActions.payload.error.message
         }
       };
     case customersActionsType.deleteCustomers:

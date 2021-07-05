@@ -32,7 +32,7 @@ export class CustomersEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new AddNewCustomersFailAction({ message: 'Error adding catalog' })))
+            catchError((s) => of(new AddNewCustomersFailAction({ error: { status: true, message: 'Customer was not added. Error'  }})))
           );
         })
       ),
@@ -55,7 +55,7 @@ export class CustomersEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new EditCustomersFailAction({ message: 'Error editing catalog' })))
+            catchError((s) => of(new EditCustomersFailAction({ error: { status: true, message: 'Customer was not edited. Error'  }})))
           );
         })
       ),

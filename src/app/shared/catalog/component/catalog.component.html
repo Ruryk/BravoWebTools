@@ -173,7 +173,7 @@
       <img *ngIf="(errorStatus$ | async)!.status" src="/assets/img/close.svg" alt="close">
       <img *ngIf="!(errorStatus$ | async)!.status" src="/assets/img/check.svg" alt="check">
       <p>
-        <span>Product Add</span><br>
+        <span>Product {{(errorStatus$ | async)!.type}}</span><br>
         {{(errorStatus$ | async)!.message}}
       </p>
     </div>

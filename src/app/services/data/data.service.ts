@@ -69,7 +69,6 @@ export class DataService {
     return this.http.post(`${ config.server }/customers/edit`, { code, data });
   }
 
-  // ====================================
   async getOrdersList(): Promise<void> {
     this.http.get(`${ config.server }/orders`).subscribe((res: any) => {
       const ordersState = res.reduce((data: IOrdersData, item: IOrders) => {

@@ -31,6 +31,11 @@ export const getCustomersDataSource = createSelector(
   customerSelector.selectCustomersDataSource
 );
 
+export const getCustomersErrorMessage = createSelector(
+  getCustomersState,
+  customerSelector.selectCustomersErrorMessage
+);
+
 // Catalog Selectors
 export const getCatalogDataSource = createSelector(
   getCatalogState,

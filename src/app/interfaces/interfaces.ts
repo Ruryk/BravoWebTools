@@ -48,7 +48,11 @@ export interface ICustomersData {
 }
 
 export interface ICustomersState {
-  errorMessage: string;
+  error: {
+    type: string;
+    status: boolean;
+    message: string;
+  };
   data: ICustomersData;
 }
 
@@ -74,6 +78,7 @@ export interface ICatalogData {
 
 export interface ICatalogState {
   error: {
+    type: string;
     status: boolean;
     message: string;
   };
