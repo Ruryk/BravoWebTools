@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CsvCheckService } from '../../../../services/csv-check/csv-check.service';
+import { DataService } from '../../../../services/data/data.service';
 
 @Component({
   selector: 'app-replace-catalog-modal',
@@ -10,12 +11,15 @@ import { CsvCheckService } from '../../../../services/csv-check/csv-check.servic
 export class ReplaceCatalogModalComponent implements OnInit {
 
   public fileLoad: any | null;
+  public fileStatus: { status: boolean, errors: object } | object;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private csvService: CsvCheckService
-    ) {
+    private csvService: CsvCheckService,
+    private dataService: DataService
+  ) {
     this.fileLoad = null;
+    this.fileStatus = {};
   }
 
   ngOnInit(): void {
@@ -23,11 +27,18 @@ export class ReplaceCatalogModalComponent implements OnInit {
 
   handleFileInput(event: any): void {
     this.fileLoad = event.target.files[0];
-    console.log(this.fileLoad);
-    this.csvService.sendFile(this.fileLoad);
+    this.csvService.sendFile(this.fileLoad).subscribe((response: any) => {
+     this.fileStatus = response;
+    });
   }
 
-  fileRemove(): void{
+  replaceCatalog(): void {
+    this.csvService.replaceCatalog().subscribe(res => {
+      if (res) { this.dataService.getCatalogList(); }
+    });
+  }
+
+  fileRemove(): void {
     this.fileLoad = null;
   }
 }

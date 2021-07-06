@@ -39,7 +39,9 @@
   </div>
   <div class="dialog-replace control">
     <button mat-flat-button color="warn" class="dialog-cancel-btn" [mat-dialog-close]="false">Cancel</button>
-    <button mat-flat-button color="primary" class="dialog-replace-btn" [mat-dialog-close]="true">Replace Catalog
+    <button mat-flat-button color="primary" class="dialog-replace-btn" [mat-dialog-close]="true"
+            (click)="replaceCatalog()">Replace
+      Catalog
     </button>
   </div>
 </div>
