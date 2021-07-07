@@ -1,10 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 
-import { getOrdersDataSourceForId, IState } from 'src/app/reducers';
+import { IState } from 'src/app/reducers';
 import { IOrders } from 'src/app/interfaces/interfaces';
 import { DataService } from '../data/data.service';
 
