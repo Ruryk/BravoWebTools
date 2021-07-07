@@ -159,12 +159,13 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataFilterFilterService.applyFilter(filterValue);
+    const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataFilterFilterService.productFilterValue.next(filter);
   }
 
   setAvailabilityFilter(filterValue: string[]): void {
-    this.dataFilterFilterService.setAvailabilityFilter(filterValue);
+    const filter = (filterValue.length) ? filterValue : null;
+    this.dataFilterFilterService.availabilityFilterValue.next(filter);
   }
 
   ngOnDestroy(): void {
