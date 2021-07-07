@@ -3,7 +3,7 @@
     <mat-sidenav #leftSidenav mode="side" opened>
       <app-side-nav></app-side-nav>
     </mat-sidenav>
-    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+    <mat-sidenav-content [@onMainContentChange]="(onSideNavChange | async) ? 'open': 'close'">
       <div class="main_content">
         <router-outlet></router-outlet>
       </div>

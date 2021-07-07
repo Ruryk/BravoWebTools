@@ -28,7 +28,6 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public unsubscribe$: Subject<void>;
   public deleteModalOpened: { status: boolean, code: string };
-  public sideMenuStatus: boolean;
   public displayedColumns: string[] = CDisplayedCatalogColumns;
   public availabilityList: string[] = CAvailabilityList;
   public dataSource!: MatTableDataSource<ICatalog>;
@@ -56,7 +55,6 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.progressFileModalStatus = false;
     this.paginator = null;
     this.sort = null;
-    this.sideMenuStatus = true;
     this.dataSource = this.dataFilterFilterService.dataSource;
   }
 
@@ -157,8 +155,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   onSideNavToggle(): void {
-    this.sideMenuStatus = !this.sideMenuStatus;
-    this.sidenavService.sideNavState$.next(this.sideMenuStatus);
+    this.sidenavService.changeSideNavState();
   }
 
   applyFilter(event: Event): void {

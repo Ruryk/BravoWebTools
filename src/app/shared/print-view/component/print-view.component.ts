@@ -5,6 +5,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 import { IOrders, IProducts } from 'src/app/interfaces/interfaces';
+import { DataService } from '../../../services/data/data.service';
 
 @Component({
   selector: 'app-print-view',
@@ -21,7 +22,7 @@ export class PrintViewComponent {
   constructor(private activatedRoute: ActivatedRoute) {
     this.orderContainer = null;
     this.dateObj = new Date();
-    this.dataOrder = this.activatedRoute.snapshot.data.post.data;
+    this.dataOrder = this.activatedRoute.snapshot.data.post[0];
     this.dataSourceTable = new MatTableDataSource(this.dataOrder.products);
   }
 

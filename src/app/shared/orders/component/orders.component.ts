@@ -37,7 +37,6 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('auto') matAutocomplete?: MatAutocomplete;
   @ViewChild('chipList') chipList?: MatChipList;
 
-  public sideMenuStatus: boolean;
   public displayedColumns: string[] = CDisplayedOrdersColumns;
   public displayedColumnsItem: string[] = CDisplayedOrdersColumnsItems;
   public expandedElement: OrdersTableElement | null;
@@ -54,7 +53,6 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.unsubscribe$ = new Subject<void>();
     this.paginator = null;
     this.sort = null;
-    this.sideMenuStatus = true;
     this.expandedElement = this.dataOrdersFilterService.expandedElement;
 
     this.dateRange = new FormGroup({
@@ -81,8 +79,7 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSideNavToggle(): void {
-    this.sideMenuStatus = !this.sideMenuStatus;
-    this.sidenavService.sideNavState$.next(this.sideMenuStatus);
+    this.sidenavService.changeSideNavState();
   }
 
   applyFilter(event: Event): void {

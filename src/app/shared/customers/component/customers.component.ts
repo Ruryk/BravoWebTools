@@ -21,7 +21,6 @@ import { Subject } from 'rxjs';
 export class CustomersComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
-  public sideMenuStatus: boolean;
   public displayedColumns: string[] = ['customerNo', 'name', 'address', 'days'];
   public dataCustomers = this.store.select(getCustomersDataSource);
   public dataSource: MatTableDataSource<ICustomers>;
@@ -45,7 +44,6 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
     };
     this.paginator = null;
     this.sort = null;
-    this.sideMenuStatus = true;
     this.dataSource = new MatTableDataSource<ICustomers>();
     this.dataCustomers.subscribe((data: ICustomersData) => this.dataSource.data = Object.values(data));
   }
@@ -56,8 +54,7 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
   }
 
   onSideNavToggle(): void {
-    this.sideMenuStatus = !this.sideMenuStatus;
-    this.sidenavService.sideNavState$.next(this.sideMenuStatus);
+    this.sidenavService.changeSideNavState();
   }
 
   applyFilter(event: Event): void {

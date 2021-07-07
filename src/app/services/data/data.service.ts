@@ -47,7 +47,7 @@ export class DataService {
     return this.http.post(`${ config.server }/catalog/edit`, { code, data });
   }
 
- deleteCatalog(code: string): Observable<object> {
+  deleteCatalog(code: string): Observable<object> {
     return this.http.post(`${ config.server }/catalog/delete`, { code });
   }
 
@@ -77,6 +77,10 @@ export class DataService {
       }, {} as IOrdersData);
       this.store.dispatch(new SetOrdersStateAction({ data: ordersState }));
     });
+  }
+
+  getOrdersById(id: string): Observable<any> {
+    return this.http.get(`${ config.server }/orders/` + id);
   }
 
   confirmOrders(code: string): Observable<object> {

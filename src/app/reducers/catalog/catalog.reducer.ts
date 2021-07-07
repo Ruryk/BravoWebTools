@@ -21,10 +21,7 @@ export const catalogReducer = (state = catalogState, action: Action): ICatalogSt
     case catalogActionsType.setCatalogState:
       return {
         ...state,
-        data: {
-          ...state.data,
-          ...catalogActions.payload.data
-        }
+        data: catalogActions.payload.data
       };
     case catalogActionsType.addNewCatalogSuccess:
       return {
