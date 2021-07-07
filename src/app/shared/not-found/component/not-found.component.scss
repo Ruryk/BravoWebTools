@@ -1,0 +1,27 @@
+@import "src/assets/scss/variables";
+.container{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  .title{
+    margin-top: -100px;
+  }
+  .title,.subtitle{
+    @include fontType($fontfamily, normal, 600, 72px, 132%);
+  }
+  .text{
+    @include fontType($fontfamily, normal, 600, 24px, 150%);
+    margin-top: 50px;
+  }
+  .control{
+    button{
+      @include fontType($fontfamily, normal, 600, 24px, 132%);
+      padding: 5px 20px;
+      background: $blue;
+    }
+  }
+}

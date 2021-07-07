@@ -8,6 +8,7 @@ import { MainModule } from './main/main.module';
 import { CustomersModule } from './customers/customers.module';
 import { CatalogModule } from './catalog/catalog.module';
 import { OrdersModule } from './orders/orders.module';
+import { NotFoundModule } from './not-found/not-found.module';
 
 @NgModule({
   declarations: [],
@@ -19,7 +20,8 @@ import { OrdersModule } from './orders/orders.module';
     MainModule,
     CustomersModule,
     CatalogModule,
-    OrdersModule
+    OrdersModule,
+    NotFoundModule
   ],
   exports: [
     MaterialUiModule,
@@ -28,7 +30,8 @@ import { OrdersModule } from './orders/orders.module';
     MainModule,
     CustomersModule,
     CatalogModule,
-    OrdersModule
+    OrdersModule,
+    NotFoundModule
   ]
 })
 export class SharedModule {
