@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './component/main.component';
-import { CustomersComponent } from '../customers/component/customers.component';
-import { CatalogComponent } from '../catalog/component/catalog.component';
-import { OrdersComponent } from '../orders/component/orders.component';
 
 const routes: Routes = [
   {
@@ -18,17 +15,17 @@ const routes: Routes = [
       },
       {
         path: 'customers',
-        component: CustomersComponent,
+        loadChildren: () => import('src/app/shared/customers/customers.module').then(m => m.CustomersModule),
         pathMatch: 'full'
       },
       {
         path: 'catalog',
-        component: CatalogComponent,
+        loadChildren: () => import('src/app/shared/catalog/catalog.module').then(m => m.CatalogModule),
         pathMatch: 'full'
       },
       {
         path: 'orders',
-        component: OrdersComponent,
+        loadChildren: () => import('src/app/shared/orders/orders.module').then(m => m.OrdersModule),
         pathMatch: 'full'
       }
     ]
