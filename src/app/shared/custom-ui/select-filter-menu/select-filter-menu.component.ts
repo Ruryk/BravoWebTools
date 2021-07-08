@@ -33,11 +33,9 @@ export class SelectFilterMenuComponent implements OnInit {
   public customers: string[] = [];
   public customersChange$ = new Subject<string[]>();
   public allCustomers: string[] = ['Gyoza SS', 'Burger King', 'Burger Bar'];
-  public filterValues: any;
 
   constructor(private dataFilter: OrdersFilterService) {
     this.dataSource = this.dataFilter.dataSource;
-    this.filterValues = this.dataFilter.filterValues;
     this.filteredCustomers = this.customersCtrl.valueChanges.pipe(
       startWith(null),
       map((customer: string | null) => customer ? this._filter(customer) : this.allCustomers.slice()));
@@ -46,12 +44,9 @@ export class SelectFilterMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterCustomers(): void {
-    const customerKey = 'customer';
-    const columnKey = 'column';
-    this.filterValues[customerKey] = this.customers;
-    this.filterValues[columnKey] = 'customer';
-    this.dataFilter.dataSource.filter = JSON.stringify(this.filterValues);
+  setCustomerFilter(): void {
+    const filterValue = (this.customers.length > 0) ? this.customers : null;
+    this.dataFilter.customerFilterValue.next(filterValue);
   }
 
   addCustomerChipFilterValue(event: MatChipInputEvent): void {
@@ -62,7 +57,7 @@ export class SelectFilterMenuComponent implements OnInit {
     }
     event.input.value = '';
     this.customersCtrl.setValue(null);
-    this.filterCustomers();
+    this.setCustomerFilter();
   }
 
   removeCustomerChipFilterValue(customer: string): void {
@@ -70,14 +65,14 @@ export class SelectFilterMenuComponent implements OnInit {
     if (index >= 0) {
       this.customers.splice(index, 1);
     }
-    this.filterCustomers();
+    this.setCustomerFilter();
   }
 
   selectCustomerChipFilterValue(event: MatAutocompleteSelectedEvent): void {
     this.customers.push(event.option.viewValue);
     this.customersInput!.nativeElement.value = '';
     this.customersCtrl.setValue(null);
-    this.filterCustomers();
+    this.setCustomerFilter();
   }
 
   private _filter(value: string): string[] {

@@ -22,7 +22,7 @@
           </svg>
         </div>
         <div class="search-input">
-          <input type="search" placeholder="Order, Customer, Notes..." (keyup)="applyFilter($event)"
+          <input type="search" placeholder="Order, Customer, Notes..." (keyup)="setSearchStringFilter($event)"
                  (focusin)="search.classList.add('active')" (focusout)="search.classList.remove('active')">
         </div>
       </div>

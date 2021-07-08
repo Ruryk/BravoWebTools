@@ -6,12 +6,13 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SidenavService } from 'src/app/services/sidenav/sidenav.service';
-import { ICustomers, ICustomersData, ICustomersState } from 'src/app/interfaces/interfaces';
-import { getCatalogErrorMessage, getCustomersDataSource, getCustomersErrorMessage, IState } from 'src/app/reducers';
+import { ICustomers } from 'src/app/interfaces/interfaces';
+import { getCustomersErrorMessage, IState } from 'src/app/reducers';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { EditCustomerModalComponent } from './edit-customer-modal/edit-customer-modal.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CustomersFilterService } from '../../../services/customers-filter/customers-filter.service';
 
 @Component({
   selector: 'app-customers',
@@ -22,7 +23,6 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort | null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   public displayedColumns: string[] = ['customerNo', 'name', 'address', 'days'];
-  public dataCustomers = this.store.select(getCustomersDataSource);
   public dataSource: MatTableDataSource<ICustomers>;
   public progressAddModalStatus: boolean;
   public valueAddModal = 0;
@@ -34,7 +34,8 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
   constructor(
     private store: Store<IState>,
     private sidenavService: SidenavService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private dataFilterService: CustomersFilterService
   ) {
     this.unsubscribe$ = new Subject<void>();
     this.progressAddModalStatus = false;
@@ -44,8 +45,7 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
     };
     this.paginator = null;
     this.sort = null;
-    this.dataSource = new MatTableDataSource<ICustomers>();
-    this.dataCustomers.subscribe((data: ICustomersData) => this.dataSource.data = Object.values(data));
+    this.dataSource = this.dataFilterService.dataSource;
   }
 
   ngAfterViewInit(): void {
@@ -57,9 +57,11 @@ export class CustomersComponent implements AfterViewInit, OnDestroy {
     this.sidenavService.changeSideNavState();
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource!.filter = filterValue.trim().toLowerCase();
+  setSearchStringFilter({ target }: Event): void {
+    const elementTarget = target as HTMLInputElement ;
+    const filter = elementTarget.value.trim().toLowerCase().length > 0 ?
+      elementTarget.value.trim().toLowerCase() : null;
+    this.dataFilterService.searchStringFilterValue.next(filter);
   }
 
   openModalAddCustomer(): void {
