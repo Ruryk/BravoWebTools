@@ -82,13 +82,16 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sidenavService.changeSideNavState();
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataOrdersFilterService.applyFilter(filterValue);
+  setSearchStringFilter({ target }: Event): void {
+    const elementTarget = target as HTMLInputElement ;
+    const filter = elementTarget.value.trim().toLowerCase().length > 0 ?
+      elementTarget.value.trim().toLowerCase() : null;
+    this.dataOrdersFilterService.searchStringFilterValue.next(filter);
   }
 
   setStatusFilter(value: string): void {
-    this.dataOrdersFilterService.setStatusFilter(value);
+    const filterValue = value === '' ? null : value;
+    this.dataOrdersFilterService.statusFilterValue.next(filterValue);
   }
 
   setDateFilter(): void {
@@ -96,7 +99,7 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
     const endKey = 'end';
     const startDate = new Date(this.dateRange.controls[startKey].value).getTime();
     const endDate = new Date(this.dateRange.controls[endKey].value).getTime();
-    this.dataOrdersFilterService.setDateFilter(startDate, endDate);
+    this.dataOrdersFilterService.dateFilterValue.next([startDate, endDate]);
   }
 
   confirmOrder(order: string): void {

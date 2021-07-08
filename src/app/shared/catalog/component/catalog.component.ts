@@ -16,6 +16,7 @@ import { DeleteCatalogModalComponent } from './delete-catalog-modal/delete-catal
 import { AddCatalogModalComponent } from './add-catalog-modal/add-catalog-modal.component';
 import { EditCatalogModalComponent } from './edit-catalog-modal/edit-catalog-modal.component';
 import { getCatalogErrorMessage, IState } from '../../../reducers';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-catalog',
@@ -158,9 +159,11 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.sidenavService.changeSideNavState();
   }
 
-  applyFilter(event: Event): void {
-    const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataFilterFilterService.productFilterValue.next(filter);
+  setSearchStringFilter({ target }: Event): void {
+    const elementTarget = target as HTMLInputElement ;
+    const filter = elementTarget.value.trim().toLowerCase().length > 0 ?
+      elementTarget.value.trim().toLowerCase() : null;
+    this.dataFilterFilterService.searchStringFilterValue.next(filter);
   }
 
   setAvailabilityFilter(filterValue: string[]): void {

@@ -12,20 +12,20 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class CatalogFilterService {
   public availabilityFilterValue: BehaviorSubject<string[] | null>;
-  public productFilterValue: BehaviorSubject<string | null>;
+  public searchStringFilterValue: BehaviorSubject<string | null>;
   public dataCatalog = this.store.select(getCatalogDataSource);
   public dataSource: MatTableDataSource<ICatalog>;
 
   constructor(private store: Store<IState>) {
     this.dataSource = new MatTableDataSource<ICatalog>();
     this.availabilityFilterValue = new BehaviorSubject<string[] | null>(null);
-    this.productFilterValue = new BehaviorSubject<string | null>(null);
+    this.searchStringFilterValue = new BehaviorSubject<string | null>(null);
     this.setDataSourceFiltering();
   }
 
   setDataSourceFiltering(): void {
-    combineLatest([this.availabilityFilterValue, this.productFilterValue]).pipe(
-      switchMap(([availabilityFilterSubject, productFilterSubject]) => this.dataCatalog.pipe(
+    combineLatest([this.availabilityFilterValue, this.searchStringFilterValue]).pipe(
+      switchMap(([availabilityFilterSubject, searchStringFilterSubject]) => this.dataCatalog.pipe(
         map((data: any): any => {
           return Object.values(data).filter((obj: any): any => {
             let isAvailability = true;
@@ -33,8 +33,8 @@ export class CatalogFilterService {
             if (availabilityFilterSubject) {
               isAvailability = this.setAvailabilityFiltration(availabilityFilterSubject, obj);
             }
-            if (productFilterSubject) {
-              isSearchString = this.setSearchStringFiltration(productFilterSubject, obj);
+            if (searchStringFilterSubject) {
+              isSearchString = this.setSearchStringFiltration(searchStringFilterSubject, obj);
             }
             return isAvailability && isSearchString;
           });
@@ -47,8 +47,8 @@ export class CatalogFilterService {
     return availabilityFilterSubject?.some((item) => item === obj.availability);
   }
 
-  setSearchStringFiltration(productFilterSubject: string, obj: ICatalog): boolean {
-    return obj.code.toLowerCase().includes(productFilterSubject) ||
-      obj.name.toLowerCase().includes(productFilterSubject);
+  setSearchStringFiltration(searchStringFilterSubject: string, obj: ICatalog): boolean {
+    return obj.code.toLowerCase().includes(searchStringFilterSubject) ||
+      obj.name.toLowerCase().includes(searchStringFilterSubject);
   }
 }
