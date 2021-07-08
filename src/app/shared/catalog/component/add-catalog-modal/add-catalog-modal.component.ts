@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -13,7 +13,6 @@ import { AddNewCatalogAction } from 'src/app/reducers/catalog/catalog.actions';
   styleUrls: ['./add-catalog-modal.component.scss']
 })
 export class AddCatalogModalComponent implements OnInit, OnDestroy {
-  @Output() openAddProgressModal: EventEmitter<boolean>;
   public catalogDataSource: string[];
   public addCatalogGroup: FormGroup;
   public validation: boolean;
@@ -29,7 +28,6 @@ export class AddCatalogModalComponent implements OnInit, OnDestroy {
     private store: Store<IState>,
     private fb: FormBuilder
   ) {
-    this.openAddProgressModal = new EventEmitter();
     this.catalogDataSource = [];
     this.unsubscribe$ = new Subject<void>();
     this.invalid = false;
@@ -84,7 +82,6 @@ export class AddCatalogModalComponent implements OnInit, OnDestroy {
     } else {
       this.validation = true;
     }
-    this.openAddProgressModal?.emit(true);
   }
 
   getArrayUnitsControls(): any {
