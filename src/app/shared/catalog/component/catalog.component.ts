@@ -31,7 +31,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public deleteModalOpened: { status: boolean, code: string };
   public displayedColumns: string[] = CDisplayedCatalogColumns;
   public availabilityList: string[] = CAvailabilityList;
-  public dataSource!: MatTableDataSource<ICatalog>;
+  public dataSource: MatTableDataSource<ICatalog>;
   // progress bar
   public valueAddModal = 0;
   public valueFileModal = 0;
@@ -42,7 +42,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   public errorStatus$ = this.store.select(getCatalogErrorMessage);
 
   constructor(
-    private dataFilterFilterService: CatalogFilterService,
+    private dataFilterService: CatalogFilterService,
     private sidenavService: SidenavService,
     public dialog: MatDialog,
     public store: Store<IState>
@@ -56,7 +56,7 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     this.progressFileModalStatus = false;
     this.paginator = null;
     this.sort = null;
-    this.dataSource = this.dataFilterFilterService.dataSource;
+    this.dataSource = this.dataFilterService.dataSource;
   }
 
   openDeleteModal(event: any, name: string, code: string): void {
@@ -151,8 +151,8 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.dataFilterFilterService.dataSource!.paginator = this.paginator;
-    this.dataFilterFilterService.dataSource!.sort = this.sort;
+    this.dataFilterService.dataSource!.paginator = this.paginator;
+    this.dataFilterService.dataSource!.sort = this.sort;
   }
 
   onSideNavToggle(): void {
@@ -163,12 +163,12 @@ export class CatalogComponent implements AfterViewInit, OnInit, OnDestroy {
     const elementTarget = target as HTMLInputElement ;
     const filter = elementTarget.value.trim().toLowerCase().length > 0 ?
       elementTarget.value.trim().toLowerCase() : null;
-    this.dataFilterFilterService.searchStringFilterValue.next(filter);
+    this.dataFilterService.searchStringFilterValue.next(filter);
   }
 
   setAvailabilityFilter(filterValue: string[]): void {
     const filter = (filterValue.length) ? filterValue : null;
-    this.dataFilterFilterService.availabilityFilterValue.next(filter);
+    this.dataFilterService.availabilityFilterValue.next(filter);
   }
 
   ngOnDestroy(): void {

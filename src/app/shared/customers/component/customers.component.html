@@ -28,7 +28,7 @@
 
         </div>
         <div class="search-input">
-          <input type="search" placeholder="Customer No, Name, Address..." (keyup)="applyFilter($event)"
+          <input type="search" placeholder="Customer No, Name, Address..." (keyup)="setSearchStringFilter($event)"
                  (focusin)="search.classList.add('active')" (focusout)="search.classList.remove('active')">
         </div>
       </div>
