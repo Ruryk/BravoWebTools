@@ -1,5 +1,14 @@
-import { trigger, state, style, transition, animate, animateChild, query, keyframes, group } from '@angular/animations';
-
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  animateChild,
+  query,
+  keyframes,
+  group
+} from '@angular/animations';
 
 export const onSideNavChange = trigger('onSideNavChange', [
   state('close',
@@ -15,7 +24,6 @@ export const onSideNavChange = trigger('onSideNavChange', [
   transition('close => open', animate('250ms ease-in')),
   transition('open => close', animate('250ms ease-in')),
 ]);
-
 
 export const onMainContentChange = trigger('onMainContentChange', [
   state('close',

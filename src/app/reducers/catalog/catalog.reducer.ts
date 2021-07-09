@@ -6,14 +6,13 @@ import { ICatalogState } from 'src/app/interfaces/interfaces';
 export const catalogNode = 'catalog';
 
 const catalogState: ICatalogState = {
-    error: {
-      type: 'Add',
-      status: false,
-      message: 'Product was added successfully'
-    },
-    data: {}
-  }
-;
+  error: {
+    type: 'Add',
+    status: false,
+    message: 'Product was added successfully'
+  },
+  data: {}
+};
 
 export const catalogReducer = (state = catalogState, action: Action): ICatalogState => {
   const catalogActions = action as CatalogActions;

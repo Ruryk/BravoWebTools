@@ -54,12 +54,10 @@ export class OrdersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.paginator = null;
     this.sort = null;
     this.expandedElement = this.dataOrdersFilterService.expandedElement;
-
     this.dateRange = new FormGroup({
       start: new FormControl('', [Validators.required]),
       end: new FormControl('', [Validators.required])
     });
-
     this.status = this.dataOrdersFilterService.status;
     this.dataSource = this.dataOrdersFilterService.dataSource;
   }

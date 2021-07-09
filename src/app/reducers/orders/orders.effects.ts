@@ -24,15 +24,20 @@ export class OrdersEffects {
       this.actions$.pipe(
         ofType(ordersActionsType.confirmOrders),
         mergeMap((action: any): Observable<any> => {
-          return this.dataService.confirmOrders(action.payload.code).pipe(
-            map((res: object) => {
-              if (res) {
-                return new ConfirmOrdersSuccessAction({ code: action.payload.code });
-              }
-              throw new Error();
-            }),
-            catchError((s) => of(new ConfirmOrdersFailAction({ message: EErrorMessages.OrderCompleted })))
-          );
+          return this.dataService.confirmOrders(action.payload.code)
+            .pipe(
+              map((res: object) => {
+                if (res) {
+                  return new ConfirmOrdersSuccessAction({ code: action.payload.code });
+                }
+                throw new Error();
+              }),
+              catchError((s) => of(
+                new ConfirmOrdersFailAction({
+                  message: EErrorMessages.OrderCompleted
+                }))
+              )
+            );
         })
       ),
     { useEffectsErrorHandler: false }

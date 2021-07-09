@@ -28,15 +28,26 @@ export class CatalogEffects {
       this.actions$.pipe(
         ofType(catalogActionsType.addNewCatalog),
         mergeMap((action: any): Observable<any> => {
-          return this.dataService.addNewCatalog(action.payload.data).pipe(
-            map((res: object) => {
-              if (res) {
-                return new AddNewCatalogSuccessAction({ code: action.payload.code, data: action.payload.data });
-              }
-              throw new Error();
-            }),
-            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogAdd } })))
-          );
+          return this.dataService.addNewCatalog(action.payload.data)
+            .pipe(
+              map((res: object) => {
+                if (res) {
+                  return new AddNewCatalogSuccessAction({
+                    code: action.payload.code,
+                    data: action.payload.data
+                  });
+                }
+                throw new Error();
+              }),
+              catchError((s) => of(
+                new AddNewCatalogFailAction({
+                  error: {
+                    status: true,
+                    message: EErrorMessages.CatalogAdd
+                  }
+                }))
+              )
+            );
         })
       ),
     { useEffectsErrorHandler: false }
@@ -47,19 +58,27 @@ export class CatalogEffects {
       this.actions$.pipe(
         ofType(catalogActionsType.editCatalog),
         mergeMap((action: any): Observable<any> => {
-          return this.dataService.editCatalog(action.payload.code, action.payload.data).pipe(
-            map((res: object) => {
-              if (res) {
-                return new EditCatalogSuccessAction({
-                  code: action.payload.code,
-                  newCode: action.payload.newCode,
-                  data: action.payload.data
-                });
-              }
-              throw new Error();
-            }),
-            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogEdit } })))
-          );
+          return this.dataService.editCatalog(action.payload.code, action.payload.data)
+            .pipe(
+              map((res: object) => {
+                if (res) {
+                  return new EditCatalogSuccessAction({
+                    code: action.payload.code,
+                    newCode: action.payload.newCode,
+                    data: action.payload.data
+                  });
+                }
+                throw new Error();
+              }),
+              catchError((s) => of(
+                new EditCatalogFailAction({
+                  error: {
+                    status: true,
+                    message: EErrorMessages.CatalogEdit
+                  }
+                }))
+              )
+            );
         })
       ),
     { useEffectsErrorHandler: false }
@@ -70,17 +89,25 @@ export class CatalogEffects {
       this.actions$.pipe(
         ofType(catalogActionsType.deleteCatalog),
         mergeMap((action: any): Observable<any> => {
-          return this.dataService.deleteCatalog(action.payload.code).pipe(
-            map((res: object) => {
-              if (!res) {
-                return new DeleteCatalogSuccessAction({
-                  code: action.payload.code
-                });
-              }
-              throw new Error();
-            }),
-            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogDelete } })))
-          );
+          return this.dataService.deleteCatalog(action.payload.code)
+            .pipe(
+              map((res: object) => {
+                if (!res) {
+                  return new DeleteCatalogSuccessAction({
+                    code: action.payload.code
+                  });
+                }
+                throw new Error();
+              }),
+              catchError((s) => of(
+                new DeleteCatalogFailAction({
+                  error: {
+                    status: true,
+                    message: EErrorMessages.CatalogDelete
+                  }
+                }))
+              )
+            );
         })
       ),
     { useEffectsErrorHandler: false }

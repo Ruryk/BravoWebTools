@@ -15,5 +15,4 @@ export class InputOnlyNumbersDirective {
       event.stopPropagation();
     }
   }
-
 }
