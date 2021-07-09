@@ -9,6 +9,7 @@ import {
   ConfirmOrdersSuccessAction,
   ConfirmOrdersFailAction
 } from './orders.actions';
+import { EErrorMessages } from '../../enums/enums';
 
 @Injectable()
 export class OrdersEffects {
@@ -30,7 +31,7 @@ export class OrdersEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new ConfirmOrdersFailAction({ message: 'Error confirmed order' })))
+            catchError((s) => of(new ConfirmOrdersFailAction({ message: EErrorMessages.OrderCompleted })))
           );
         })
       ),

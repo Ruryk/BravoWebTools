@@ -13,6 +13,7 @@ import {
 } from 'src/app/reducers/catalog/catalog.actions';
 import { DataService } from '../../services/data/data.service';
 import { Observable, of } from 'rxjs';
+import { EErrorMessages } from '../../enums/enums';
 
 @Injectable()
 export class CatalogEffects {
@@ -34,7 +35,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: 'The product was not added. Error' } })))
+            catchError((s) => of(new AddNewCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogAdd } })))
           );
         })
       ),
@@ -57,7 +58,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: 'The product was not edited. Error' } })))
+            catchError((s) => of(new EditCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogEdit } })))
           );
         })
       ),
@@ -78,7 +79,7 @@ export class CatalogEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: 'The product was not deleted. Error' } })))
+            catchError((s) => of(new DeleteCatalogFailAction({ error: { status: true, message: EErrorMessages.CatalogDelete } })))
           );
         })
       ),

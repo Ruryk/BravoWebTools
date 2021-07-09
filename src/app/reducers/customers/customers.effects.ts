@@ -11,6 +11,7 @@ import {
   EditCustomersFailAction,
   EditCustomersSuccessAction
 } from './customers.actions';
+import { EErrorMessages } from '../../enums/enums';
 
 @Injectable()
 export class CustomersEffects {
@@ -32,7 +33,7 @@ export class CustomersEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new AddNewCustomersFailAction({ error: { status: true, message: 'Customer was not added. Error'  }})))
+            catchError((s) => of(new AddNewCustomersFailAction({ error: { status: true, message: EErrorMessages.CustomerAdd  }})))
           );
         })
       ),
@@ -55,7 +56,7 @@ export class CustomersEffects {
               }
               throw new Error();
             }),
-            catchError((s) => of(new EditCustomersFailAction({ error: { status: true, message: 'Customer was not edited. Error'  }})))
+            catchError((s) => of(new EditCustomersFailAction({ error: { status: true, message: EErrorMessages.CustomerEdit  }})))
           );
         })
       ),
