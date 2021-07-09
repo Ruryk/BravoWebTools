@@ -35,7 +35,7 @@ export const customersReducer = (state: ICustomersState = customersState, action
           [customerActions.payload.code]: customerActions.payload.data
         }
       };
-      case customersActionsType.addNewCustomersFail:
+    case customersActionsType.addNewCustomersFail:
       return {
         ...state,
         error: {
@@ -60,7 +60,7 @@ export const customersReducer = (state: ICustomersState = customersState, action
           [customerActions.payload.newCode]: customerActions.payload.data
         }
       };
-      case customersActionsType.editCustomersFail:
+    case customersActionsType.editCustomersFail:
       return {
         ...state,
         error: {
@@ -69,11 +69,6 @@ export const customersReducer = (state: ICustomersState = customersState, action
           message: customerActions.payload.error.message
         }
       };
-    case customersActionsType.deleteCustomers:
-      const newState: ICustomersState = { ...state };
-      const newDataState = {...newState.data};
-      delete newDataState[customerActions.payload.code];
-      return { ...newState, data: newDataState };
     default:
       return state;
   }

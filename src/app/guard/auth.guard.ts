@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { observable, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { takeUntil, map } from 'rxjs/operators';
 

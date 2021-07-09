@@ -9,3 +9,9 @@ export const CDisplayedOrdersColumnsItems: string[] = ['productCode', 'productNa
 export const config = {
   server: 'http://localhost:3000'
 };
+
+export const CStatusOrder = [
+  { value: '', viewValue: 'All' },
+  { value: 'confirm', viewValue: 'Confirm' },
+  { value: 'confirmed', viewValue: 'Confirmed' }
+];

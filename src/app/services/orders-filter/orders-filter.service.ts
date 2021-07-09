@@ -1,12 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatTableDataSource } from '@angular/material/table';
 
 import {
-  IFilterValues,
   IOrders,
-  IOrdersData,
-  IOrdersState,
   IStatus,
   OrdersTableElement
 } from 'src/app/interfaces/interfaces';
@@ -14,6 +11,7 @@ import { getOrdersDataSource, IState } from 'src/app/reducers';
 import { EOrdersColumn, EStatus } from 'src/app/enums/enums';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { CStatusOrder } from '../../constantes/constantes';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +20,7 @@ export class OrdersFilterService {
   public expandedElement: OrdersTableElement | null;
   public dataOrders = this.store.select(getOrdersDataSource);
   public dataSource: MatTableDataSource<IOrders>;
-  public status: IStatus[] = [
-    { value: '', viewValue: 'All' },
-    { value: 'confirm', viewValue: 'Confirm' },
-    { value: 'confirmed', viewValue: 'Confirmed' }
-  ];
-  public filterValues: IFilterValues = {
-    customer: [],
-    column: EOrdersColumn.Customer
-  };
+  public status: IStatus[] = CStatusOrder;
   public searchStringFilterValue: BehaviorSubject<string | null>;
   public statusFilterValue: BehaviorSubject<string | null>;
   public dateFilterValue: BehaviorSubject<number[] | null>;

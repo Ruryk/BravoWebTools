@@ -9,8 +9,7 @@ export enum customersActionsType {
   addNewCustomersFail = '[CUSTOMERS] addNewCustomersFail',
   editCustomers = '[CUSTOMERS] editCustomers',
   editCustomersSuccess = '[CUSTOMERS] editCustomersSuccess',
-  editCustomersFail = '[CUSTOMERS] editCustomersFail',
-  deleteCustomers = '[CUSTOMERS] deleteCustomers'
+  editCustomersFail = '[CUSTOMERS] editCustomersFail'
 }
 
 export class SetCustomersStateAction implements Action {
@@ -62,18 +61,10 @@ export class EditCustomersFailAction implements Action {
   }
 }
 
-export class DeleteCustomersAction implements Action {
-  readonly type = customersActionsType.deleteCustomers;
-
-  constructor(public payload: { code: string }) {
-  }
-}
-
 export type CustomersActions = SetCustomersStateAction |
   AddNewCustomersSuccessAction |
   AddNewCustomersFailAction |
   AddNewCustomersAction |
-  DeleteCustomersAction |
   EditCustomersSuccessAction |
   EditCustomersFailAction |
   EditCustomersAction;
